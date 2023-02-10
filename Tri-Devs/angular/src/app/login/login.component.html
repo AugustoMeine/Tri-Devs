@@ -1,0 +1,26 @@
+<div class="pagina bg-secondary text-light">
+    <div class="formulario bg-dark border border-secondary border-2">
+
+        <div class="titulo" >
+            Tri-Devs Pizzaria
+        </div>
+    
+        <div class="row mb-3 padding-1">
+            <label for="login" class="col-sm-2 col-form-label">Login</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="login" [(ngModel)]="login">
+            </div>
+          </div>
+
+          <div class="row mb-3 padding-1">
+            <label for="senha" class="col-sm-2 col-form-label">Senha</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="senha" [(ngModel)]="senha">
+            </div>
+          </div>
+
+          <div class="d-grid gap-1 padding-1">
+            <button class="btn btn-danger" type="button" (click)="entrar()">Entrar</button>
+          </div>
+    </div>
+</div>
