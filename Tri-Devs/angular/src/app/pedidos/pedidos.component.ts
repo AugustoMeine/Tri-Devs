@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./pedidos.component.css']
 })
 export class PedidosComponent {
-
+  listaMesa:any[]= ['one','two','teste']
 }

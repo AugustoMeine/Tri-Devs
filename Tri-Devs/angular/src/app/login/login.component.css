@@ -11,10 +11,10 @@
 }
 
 .formulario{
-    min-width: calc(100vw/3);
-    min-height: calc(100vh/2);
-    box-sizing: border-box;   
-    box-shadow: 0 0 3em rgb(80, 80, 80);
+    min-width: calc(100vw/5);
+    min-height: calc(100vh/3);
+    box-sizing: border-box;
+    box-shadow: 0 0 3em lightgray;
 }
 
 .padding-1{

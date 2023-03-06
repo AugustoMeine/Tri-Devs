@@ -1,1 +1,32 @@
-<p>pedidos works!</p>
+<div class="pagina ">
+  <div class="formulario ">
+
+      <div class="titulo" >
+          Pedidos
+      </div>
+
+      <div class="corpo" >
+        <nav class="">
+          <div class="container-fluid">
+            <form class="d-flex" role="buscar">
+              <input class="form-control me-2" type="search" placeholder="Numero Mesa" aria-label="Buscar">
+              <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+          </div>
+        </nav>
+      </div>
+
+      <div class="conteiner-grid">
+        <div *ngFor="let item of listaMesa" class="conteiner-grid2">
+            <div>{{item}}</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+
+
+

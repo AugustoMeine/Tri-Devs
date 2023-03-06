@@ -1,0 +1,35 @@
+.conteiner-grid {
+  display: grid;
+  grid-template-columns: 50%;
+}
+
+.conteiner-grid > div {
+  background-color: white;
+  border: 1px solid black;
+  font-size: 30px;
+  text-align: center;
+}
+
+.conteiner-grid2 {
+  display: grid;
+  grid-template-columns: 300px 400px 60px;
+}
+
+.conteiner-grid2 > div {
+  background-color: white;
+  border-left: 1px solid black;
+  font-size: 30px;
+  text-align: center;
+}
+
+.titulo{
+  text-align: center;
+  font-size: xx-large;
+  height: calc(100vh/12);
+}
+
+.corpo{
+  width: calc(100vw/2);
+  height: calc(100vh/12);
+  border-left: ;
+}
