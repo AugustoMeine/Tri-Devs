@@ -1,4 +1,5 @@
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 import { DirecionamentoComponent } from './direcionamento/direcionamento.component';
 import { CozinhaComponent } from './cozinha/cozinha.component';
 import { LoginComponent } from './login/login.component';
@@ -9,6 +10,8 @@ import { CardapioComponent } from './pedidos/cardapio/cardapio.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
+  {path:"Cozinha",component:CozinhaComponent},
+  {path:"Pedidos",component:PedidosComponent}
   {path:"Cozinha",component:CozinhaComponent},
   {path:"Direcionamento",component:DirecionamentoComponent},
   {path:"Pedidos",component:PedidosComponent},
