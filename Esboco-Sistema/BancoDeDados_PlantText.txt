@@ -1,0 +1,26 @@
+@startuml
+
+skin rose
+
+title Banco de dados
+
+
+class Usuario {
+  -long idUsario
+  -String login
+  -String senha
+  -String nome
+  -Date dataCriacao
+  -Date dataDesligamento
+}
+
+class acesso{
+  -long idAcesso
+  -long Idusuario
+  -char telaCozinha
+  -char telaCaixa
+  -char telaPedidos
+  -char telaGerenciamentoCadastros
+}
+
+@enduml
