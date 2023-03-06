@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+/*
 body,html{
   width: 100vw;
   height: 100vh;
@@ -8,10 +9,6 @@ body,html{
   margin: 0;
   border: 0;
   box-sizing: border-box;
-  color: rgb(212, 212, 212);
 }
+*/
 
-.btn-primary{
-  background-color: #052c65;
-  border-color: #052c65;
-}
