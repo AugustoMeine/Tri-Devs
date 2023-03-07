@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -14,18 +15,18 @@ login: string
 senha: string
 
 
-constructor(){
+constructor(private route:Router){
 this.login = "";
 this.senha = "";
 }
 
 ngOnInit(): void {
-    
 }
 
 entrar(){
-  console.log("Login:" + this.login)
-  console.log("Senha:" + this.senha)
+  console.log('login: ' + this.login)
+  console.log('senha: ' + this.senha)
+  this.route.navigate(['/']);
 }
 
 }
