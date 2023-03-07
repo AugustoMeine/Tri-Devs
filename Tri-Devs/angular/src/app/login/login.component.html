@@ -1,18 +1,28 @@
-<main class="form-signin w-100 m-auto position-relative">
-  <form class="position-relative py-50 px-50">    
+<main class="container-fluid vw-100 vh-100 text-center">
 
-    <h1 class="h3 mb-3 fw-normal">Tri-Devs</h1>
+  <div class="row w-100 h-100 justify-content-center align-items-center">
 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="Login">
-      <label for="floatingInput">Login</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Senha">
-      <label for="floatingPassword">Senha</label>
-    </div>
+    <form class="col-3 
+    border border-secondary border-opacity-75 rounded
+    shadow-lg p-2">  
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      <h1 class="h3 mt-2 mb-3 fw-big">
+        Tri-Devs
+      </h1>
+  
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Login" name="login" [(ngModel)]="login">
+        <label for="floatingInput">Login</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Senha" name="senha" [(ngModel)]="senha">
+        <label for="floatingPassword">Senha</label>
+      </div>
+  
+      <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="entrar()">Entrar</button>
+  
+    </form>
 
-  </form>
+  </div>
+
 </main>
