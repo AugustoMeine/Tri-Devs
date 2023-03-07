@@ -5,6 +5,11 @@ import com.aeh.springboot.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,6 +31,22 @@ public class UsuarioController {
 
     @PostMapping("/")
     public Usuario salvarUsuario(@RequestBody Usuario usuario){
+        //Obtem a data atual e transforma a em string no padrão dd/MM/rrrr
+        LocalDate dataAtual = LocalDate.now();
+        DateTimeFormatter formatoPadrao = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //Padrão desejado
+        String dataFormatada = dataAtual.format(formatoPadrao);
+
+        //Pega a data atual, no formato String, e converte para o fortato Date
+        SimpleDateFormat formatadorTipo = new SimpleDateFormat("dd/MM/yyyy");
+        Date data = new Date();
+        try {
+            data =  formatadorTipo.parse(dataFormatada);
+        } catch (ParseException erroParseException) {
+            throw new RuntimeException(erroParseException);
+        }
+
+        usuario.setDataCriacao(data);
+        usuario.setDataDesligamento(null);
         return(usuarioService.salvarUsuario(usuario));
     }
 

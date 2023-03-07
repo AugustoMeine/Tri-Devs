@@ -1,5 +1,6 @@
 package com.aeh.springboot.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,7 +13,6 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idUsuario")
     long idUsuario;
 
     @Column(nullable = false)
@@ -25,8 +25,10 @@ public class Usuario {
     private String nome;
 
     @Column(nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date dataCriacao;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date dataDesligamento;
 }

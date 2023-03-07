@@ -14,9 +14,8 @@ public class Permicao {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idPermicao;
 
-    @Column(nullable = false)
-    @OneToOne
-    @JoinColumn(nullable = false,name = "idUsuario", referencedColumnName = "idUsuario")
+    @ManyToOne
+    @JoinColumn(nullable = false,name = "idUsuario",unique = true)
     private Usuario usuario;
 
     @Column(nullable = false)
