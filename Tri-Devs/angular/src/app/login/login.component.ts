@@ -10,23 +10,28 @@ import { Component, OnInit } from '@angular/core';
 
 export class LoginComponent implements OnInit{
 
+  login: string
+  senha: string
 
-login: string
-senha: string
 
+  constructor(private route:Router){
+  this.login = "";
+  this.senha = "";
+  }
 
-constructor(private route:Router){
-this.login = "";
-this.senha = "";
-}
+  ngOnInit(): void {
+  }
 
-ngOnInit(): void {
-}
-
-entrar(){
-  console.log('login: ' + this.login)
-  console.log('senha: ' + this.senha)
-  this.route.navigate(['/']);
-}
+  entrar(){
+    console.log('login: ' + this.login)
+    console.log('senha: ' + this.senha)
+    if((this.login === '') && (this.senha == '')){
+      console.log("Acesso permitido!");
+      this.route.navigate(['/Direcionamento']);      
+    }
+    else{
+      console.log("Acesso negado");
+    }  
+  }
 
 }

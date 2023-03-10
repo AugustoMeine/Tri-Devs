@@ -1,28 +1,13 @@
-<main class="container-fluid vw-100 vh-100 text-center">
+<main class="p-fluid grid">
 
-  <div class="row w-100 h-100 justify-content-center align-items-center">
-
-    <form class="col-3 
-    border border-secondary border-opacity-75 rounded
-    shadow-lg p-2">  
-
-      <h1 class="h3 mt-2 mb-3 fw-big">
-        Tri-Devs
-      </h1>
-  
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="Login" name="login" [(ngModel)]="login">
-        <label for="floatingInput">Login</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Senha" name="senha" [(ngModel)]="senha">
-        <label for="floatingPassword">Senha</label>
-      </div>
-  
-      <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="entrar()">Entrar</button>
-  
-    </form>
-
+  <!-- Área de login -->
+  <div>
+    <div class="field col-12 md:col-4">
+      <span class="p-float-label">
+          <input type="text" id="inputtext" pInputText> 
+          <label for="inputtext">InputText</label>
+      </span>
+    </div>
   </div>
 
 </main>
