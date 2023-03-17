@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "usuario")
 @Data
 public class Usuario {
 

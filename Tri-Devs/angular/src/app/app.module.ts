@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';              
+import { FormsModule }   from '@angular/forms';
+
+//Importação do PrimeFaces
+import {ButtonModule} from 'primeng/button';
+import {PasswordModule} from 'primeng/password';
+import {CardModule} from 'primeng/card';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +28,10 @@ import { DirecionamentoComponent } from './direcionamento/direcionamento.compone
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ButtonModule,
+    PasswordModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
