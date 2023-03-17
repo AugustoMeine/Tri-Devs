@@ -31,4 +31,5 @@ public class Usuario {
     @Column(nullable = true)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date dataDesligamento;
+
 }
