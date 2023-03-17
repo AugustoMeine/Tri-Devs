@@ -27,7 +27,7 @@ public class Pizza implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Sabor sabor;
-
+//continuar desenvolvimento
     public Pizza(String nome, boolean ativo, int quantidadeProdutoExistente, Sabor sabor) {
         super();
         this.nome = nome;
