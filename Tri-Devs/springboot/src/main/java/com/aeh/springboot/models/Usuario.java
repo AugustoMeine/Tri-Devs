@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "usuario")
 @Data
 public class Usuario {
 
@@ -31,4 +31,5 @@ public class Usuario {
     @Column(nullable = true)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date dataDesligamento;
+
 }
