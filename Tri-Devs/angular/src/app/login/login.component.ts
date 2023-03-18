@@ -24,15 +24,8 @@ export class LoginComponent implements OnInit{
   }
 
   entrar(){
-    console.log('login: ' + this.login)
-    console.log('senha: ' + this.senha)
-    if((this.login === '') && (this.senha == '')){
-      console.log("Acesso permitido!");
-      this.route.navigate(['/Direcionamento']);      
-    }
-    else{
-      console.log("Acesso negado");
-    }  
+    console.log("Acesso permitido!");
+    this.route.navigate(['/Direcionamento']);
   }
 
 }

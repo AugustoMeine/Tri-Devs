@@ -1,40 +1,49 @@
-<main class="container-fluid vw-100 vh-100 text-center m-0 p-0">
+<main class="flex align-items-center justify-content-center
+bg-blue-800">
 
-    <div class="row w-100 h-100 justify-content-center align-items-center p-0 m-0">
-  
-      <form class="col-8 
-      border border-secondary border-opacity-75 rounded
-      shadow-lg p-2 m-0 
-      h-100
-      azul">
-      
-      <div id="areaTitulo" class="row vermelho m-0 p-0 mb-4 align-items-center justify-content-center
-      w-100 h-20">
-        <div id="titulo" class="col h1 w-100 h-100 p-0 m-0">
-            Direcionamento (x)
-        </div>
+  <p-panel class="w-6 m-0 p-0">
+
+    <ng-template pTemplate="header">
+      <span class="text-center w-full h-full">
+        Direcionamento
+      </span>      
+    </ng-template>
+
+    <span class="w-full h-full">
+      <div class="grid w-full
+      p-1 m-0">
+          <div class="col v-full h-full
+          p-0 m-0">
+              <button class="w-full" pButton type="button" label="Cozinha" (click)="cozinha()">
+              </button>
+          </div>            
       </div>
-      
-      <div id="areaBotoes" class="row m-0 p-2 
-      border border-secondary border-opacity-75
-      w-100 h-80">      
-
-        <div class="col m-0 p-0 w-100 h-100">
-
-            <button class="w-100 h-100 
-            btn btn-lg btn-primary 
-            mb-1
-            " type="submit" >
-                Cozinha
-            </button>
-
-        </div>
-
+      <div class="grid w-full
+      p-1 m-0">
+          <div class="col v-full h-full
+          p-0 m-0">
+              <button class="w-full" pButton type="button" label="Caixa" (click)="caixa()">
+              </button>
+          </div>            
       </div>
-               
+      <div class="grid w-full
+      p-1 m-0">
+          <div class="col v-full h-full
+          p-0 m-0">
+              <button class="w-full" pButton type="button" label="Pedido" (click)="pedido()">
+              </button>
+          </div>            
+      </div>
+      <div class="grid w-full
+      p-1 m-0">
+          <div class="col v-full h-full
+          p-0 m-0">
+              <button class="w-full" pButton type="button" label="Desconectar" (click)="desconectar()">
+              </button>
+          </div>            
+      </div>
+    </span>
+
+  </p-panel>
     
-      </form>
-  
-    </div>
-  
-  </main>
+</main>
