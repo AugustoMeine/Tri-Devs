@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 //Importação do PrimeFaces
 import {ButtonModule} from 'primeng/button';
 import {PasswordModule} from 'primeng/password';
 import {CardModule} from 'primeng/card';
 import {PanelModule} from 'primeng/panel';
+import {DataViewModule} from 'primeng/dataview';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,11 +33,13 @@ import { DirecionamentoComponent } from './direcionamento/direcionamento.compone
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    CommonModule,
     ButtonModule,
     PasswordModule,
     CardModule,
     PanelModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DataViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
