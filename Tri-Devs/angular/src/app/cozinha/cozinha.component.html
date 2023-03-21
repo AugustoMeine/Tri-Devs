@@ -1,1 +1,53 @@
-<h1>Tela da cozinha!</h1>
+<main class="flex flex-column bg-blue-800">
+    
+    <!-- Header da página -->
+    <span class = "surface-50 w-12 h-1
+    m-0 b-0 p-0">
+        <div class="w-full h-full">
+            <div class="col w-full h-full
+            text-center text-3xl text-white-800" (click)="direcionamento()">
+                Cozinha
+            </div>
+        </div>
+    </span>
+
+    <!-- Corpo da página (área dos pedidos recebidos) -->
+    <span class="w-full h-11 p-2 text-0">
+
+        <!-- Painel dos pedidos -->
+        <div class="w-full h-12 
+        p-0 m-0 b-0
+        surface-700
+        grid">
+            <!-- Entrada dos pedidos -->
+            <span class="col-10 h-12
+            p-1 m-0 b-0
+            border-solid broder-round-2x1 surface-border border-right-none">
+                <span *ngFor="let mesa of mesas;">
+                    <span class="grid w-4 h-1 text-center
+                    " *ngIf="true">
+                        <span class="col-4">
+                            {{mesa.idMesa}}
+                        </span>
+                    </span>
+                    <span class="grid w-4 h-11" *ngIf="true">
+                        <span class="col-4">
+                            {{mesa.pedidos[0].item.nome}}
+                            {{mesa.pedidos[0].quantidade}}
+                            {{mesa.pedidos[0].preco}}
+                        </span>
+                    </span>
+                </span>
+            </span>
+
+            <!-- Detalhamento dos pedidos -->
+            <span class="col-2 h-12
+            p-1 m-0 b-0
+            border-solid broder-round-2x1 surface-border">
+            </span>
+
+        </div>
+
+    </span>
+
+</main>

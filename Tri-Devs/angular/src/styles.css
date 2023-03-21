@@ -19,17 +19,49 @@ main{
 }
 
 .h-1{
-  height: calc(100%/1);
+  height: calc((100%/12) * 1);
 }
 
 .h-2{
-  height: calc(100%/2);
+  height: calc((100%/12) * 2);
 }
 
 .h-3{
-  height: calc(100%/3);
+  height: calc((100%/12) * 3);
 }
 
 .h-4{
-  height: calc(100%/4);
+  height: calc((100%/12) * 4);
+}
+
+.h-5{
+  height: calc((100%/12) * 5);
+}
+
+.h-6{
+  height: calc((100%/12) * 6);
+}
+
+.h-7{
+  height: calc((100%/12) * 7);
+}
+
+.h-8{
+  height: calc((100%/12) * 2);
+}
+
+.h-9{
+  height: calc((100%/12) * 9);
+}
+
+.h-10{
+  height: calc((100%/12) * 10);
+}
+
+.h-11{
+  height: calc((100%/12) * 11);
+}
+
+.h-12{
+  height: calc((100%/12) * 12);
 }

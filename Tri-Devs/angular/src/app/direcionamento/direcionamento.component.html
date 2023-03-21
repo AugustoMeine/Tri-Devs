@@ -2,46 +2,54 @@
 bg-blue-800">
 
   <p-panel class="w-6 m-0 p-0">
-
+    <!-- Titulo da página -->
     <ng-template pTemplate="header">
       <span class="text-center w-full h-full">
         Direcionamento
       </span>      
     </ng-template>
-
+    
     <span class="w-full h-full">
-      <div class="grid w-full
-      p-1 m-0">
+      <!-- Direcionamento para a cozinha -->
+      <div class="grid w-full h-auto
+      p-1 m-0" *ngIf="true">
           <div class="col v-full h-full
           p-0 m-0">
               <button class="w-full" pButton type="button" label="Cozinha" (click)="cozinha()">
               </button>
           </div>            
       </div>
-      <div class="grid w-full
-      p-1 m-0">
+
+      <!-- Direcionamento para o caixa -->
+      <div class="grid w-full h-auto
+      p-1 m-0" *ngIf="true">
           <div class="col v-full h-full
           p-0 m-0">
               <button class="w-full" pButton type="button" label="Caixa" (click)="caixa()">
               </button>
           </div>            
       </div>
-      <div class="grid w-full
-      p-1 m-0">
+
+      <!-- Direcionamento para a pedido -->
+      <div class="grid w-full h-auto
+      p-1 m-0" *ngIf="true">
           <div class="col v-full h-full
           p-0 m-0">
               <button class="w-full" pButton type="button" label="Pedido" (click)="pedido()">
               </button>
           </div>            
       </div>
-      <div class="grid w-full
-      p-1 m-0">
+
+      <!-- Desconectar, direcionando para a tela de login novamente -->
+      <div class="grid w-full h-auto
+      p-1 m-0" *ngIf="true">
           <div class="col v-full h-full
           p-0 m-0">
               <button class="w-full" pButton type="button" label="Desconectar" (click)="desconectar()">
               </button>
           </div>            
       </div>
+
     </span>
 
   </p-panel>

@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DirecionamentoComponent implements OnInit{
 
+  validacao: Boolean = false;
+
   constructor(private route:Router){
   }
 
