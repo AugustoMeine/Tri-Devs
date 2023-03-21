@@ -72,4 +72,5 @@ public class UsuarioController {
             return(ResponseEntity.status(HttpStatus.CONFLICT).body("Usuario não deletado!"));
         }
     }
+
 }
