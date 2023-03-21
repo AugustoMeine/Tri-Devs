@@ -5,8 +5,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:"Login",component:LoginComponent},
-  {path:"",component:CozinhaComponent},
+  {path:"",component:LoginComponent},
+  {path:"Cozinha",component:CozinhaComponent},
   {path:"Direcionamento" , component:DirecionamentoComponent}
 ];
 
