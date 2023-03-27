@@ -10,6 +10,8 @@ import {PasswordModule} from 'primeng/password';
 import {CardModule} from 'primeng/card';
 import {PanelModule} from 'primeng/panel';
 import {DataViewModule} from 'primeng/dataview';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { ToastModule } from 'primeng/toast';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +21,9 @@ import { CaixaComponent } from './caixa/caixa.component';
 import { CozinhaComponent } from './cozinha/cozinha.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { DirecionamentoComponent } from './direcionamento/direcionamento.component';
+import { ComandaMesaComponent } from './pedidos/comandaMesa/comandaMesa.component';
+import { CardapioComponent } from './pedidos/cardapio/cardapio.component';
+import { FinalizarComandaMesaComponent } from './pedidos/finalizarComandaMesa/finalizarComandaMesa.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +32,11 @@ import { DirecionamentoComponent } from './direcionamento/direcionamento.compone
     CaixaComponent,
     CozinhaComponent,
     PedidosComponent,
-    DirecionamentoComponent
-  ],
+    DirecionamentoComponent,
+    ComandaMesaComponent,
+    CardapioComponent,
+    FinalizarComandaMesaComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,7 +47,9 @@ import { DirecionamentoComponent } from './direcionamento/direcionamento.compone
     CardModule,
     PanelModule,
     BrowserAnimationsModule,
-    DataViewModule
+    DataViewModule,
+    ScrollPanelModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
