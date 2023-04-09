@@ -20,17 +20,11 @@ export class CozinhaComponent implements OnInit{
   existePedidoTela: boolean;
 
   constructor(private router: Router){
-    this.existePedidoTela = false;
+    this.existePedidoTela = false; //Deixar false, iniciar a tela sem detalhamento sendo exibido.
     this.listaComandas = [];
     this.listaComandasPendentePreparo = [];
     this.comandaNull = new Comanda(-1,[],-1)
     this.comandaSendoAtendida = this.comandaNull;
-
-    this.listaComandas = [     
-      new Comanda(1,[new Pedido(1,new Item(1,'Pizza de frango', 55.79,true),5)],1),
-      new Comanda(2,[new Pedido(2,new Item(2,'Pizza de Mortadela', 45.79,true),2)],2),
-      new Comanda(3,[new Pedido(3,new Item(3,'Pizza de chocolate', 79.90,true),1)],3)
-    ]
   }
 
   ngOnInit(): void {
@@ -43,6 +37,7 @@ export class CozinhaComponent implements OnInit{
   }
   
   selecionaComanda(comanda:Comanda){
+    this.existePedidoTela = true;
     this.comandaSendoAtendida = comanda;
   }
 
@@ -61,6 +56,8 @@ export class CozinhaComponent implements OnInit{
     
     let validacao: boolean = false;
 
+    this.listaComandasPendentePreparo = [];
+
     this.listaComandas.forEach(
       (comanda)=>{
         comanda.listaPedidos.forEach(
@@ -71,13 +68,59 @@ export class CozinhaComponent implements OnInit{
             }
           }          
         );
-        if(validacao){
+        if((validacao) && (comanda.comandaAberta == true)){
           this.listaComandasPendentePreparo.push(comanda);
           validacao = false;
         };
       }
     );
     
+  }
+ 
+  finalizarPedido(){
+    if(this.comandaSendoAtendida.idComanda != -1){
+      this.listaComandas.forEach(
+        (comandaAux)=>{
+          if(comandaAux.idMesa == this.comandaSendoAtendida.idMesa){
+            comandaAux.listaPedidos.forEach(
+              (pedidoAux)=>{
+                if(pedidoAux.status === 'Pendente Preparo'){
+                  pedidoAux.status = 'Pedido finalizado';
+                }
+              }
+            );
+          }
+        }
+      );
+    }else{
+      console.log("Não existe comanda selecionada!")
+    }
+
+    this.atualizaPedidosPendentePreparo();
+    this.selecionarComandaMaisRecente();
+  }
+
+  cancelarPedido(){
+    if(this.comandaSendoAtendida.idComanda != -1){
+      this.listaComandas.forEach(
+        (comandaAux)=>{
+          if(comandaAux.idMesa == this.comandaSendoAtendida.idMesa){
+            comandaAux.listaPedidos.forEach(
+              (pedidoAux)=>{
+                if(pedidoAux.status === 'Pendente Preparo'){
+                  pedidoAux.status = 'Pedido cancelado';
+                }
+              }
+            );
+          }
+        }
+      );
+    }else{
+      console.log("Não existe comanda selecionada!")
+    }
+
+    this.atualizaPedidosPendentePreparo();
+    this.selecionarComandaMaisRecente();
   }
 
 }
