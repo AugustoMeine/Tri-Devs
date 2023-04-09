@@ -1,9 +1,13 @@
 export class Item{
+    idItem: number;
     nome: string;
-    preco: number;
+    precoUnidade: number;
+    necessitaPreparoCozinha: boolean;
 
-    constructor(nome: string, preco:number){
+    constructor(idItem: number, nome: string, precoUnidade:number, necessitaPreparoCozinha:boolean){
+        this.idItem = idItem;
         this.nome = nome;
-        this.preco = preco;
+        this.precoUnidade = precoUnidade;
+        this.necessitaPreparoCozinha = necessitaPreparoCozinha;
     }
 }
