@@ -12,15 +12,15 @@ import { MesaHenrique } from '../models/MesaHenrique.model';
 export class PedidosComponent implements OnInit{
 
     listaMesas: MesaHenrique[] = [
-    new MesaHenrique(1, 'Mesa 1'),
-    new MesaHenrique(2, 'Mesa 2'),
-    new MesaHenrique(3, 'Mesa 3'),
-    new MesaHenrique(4, 'Mesa 4'),
-    new MesaHenrique(5, 'Mesa 5'),
-    new MesaHenrique(6, 'Mesa 6'),
-    new MesaHenrique(7, 'Mesa 7'),
-    new MesaHenrique(8, 'Mesa 8'),
-    new MesaHenrique(9, 'Mesa 9'),
+    new MesaHenrique(1, 'Mesa 01'),
+    new MesaHenrique(2, 'Mesa 02'),
+    new MesaHenrique(3, 'Mesa 03'),
+    new MesaHenrique(4, 'Mesa 04'),
+    new MesaHenrique(5, 'Mesa 05'),
+    new MesaHenrique(6, 'Mesa 06'),
+    new MesaHenrique(7, 'Mesa 07'),
+    new MesaHenrique(8, 'Mesa 08'),
+    new MesaHenrique(9, 'Mesa 09'),
     new MesaHenrique(10, 'Mesa 10'),
     new MesaHenrique(11, 'Mesa 11'),
     new MesaHenrique(12, 'Mesa 12'),
@@ -46,12 +46,17 @@ export class PedidosComponent implements OnInit{
   }
 
   adicionarItemMesa(mesa:MesaHenrique) {
-    this.route.navigate(['/Cardapio'])
+    this.route.navigate(['/Cardapio']);
   }
 
   finalizarComandaMesa(mesa:MesaHenrique) {
     this.toast.add({severity: 'success', summary: 'Success', detail: 'Comanda finalizada com sucesso!'});
-    console.log('QualquerMensagem')
+    console.log('QualquerMensagem');
+  }
+
+  quantidadeItensMesa = 3
+  somaQuantidadeItensMesa(){
+    this.quantidadeItensMesa++;
   }
 }
 

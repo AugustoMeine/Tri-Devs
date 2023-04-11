@@ -11,6 +11,8 @@ import {CardModule} from 'primeng/card';
 import {PanelModule} from 'primeng/panel';
 import {DataViewModule} from 'primeng/dataview';
 import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { BadgeModule } from 'primeng/badge';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +43,10 @@ import { DirecionamentoComponent } from './direcionamento/direcionamento.compone
     PanelModule,
     BrowserAnimationsModule,
     DataViewModule,
+    ScrollPanelModule,
+    ToastModule,
+    TableModule,
+    BadgeModule
     ToastModule
   ],
   providers: [],
