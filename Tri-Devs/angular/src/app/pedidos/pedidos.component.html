@@ -21,6 +21,10 @@
           </span>
         </div>
 
+      <div class="iconeQuantidadePedidoMesa">
+        <p-badge value="{{quantidadeItensMesa}}" (click)="somaQuantidadeItensMesa()"></p-badge>
+      </div>
+
         <!-- Botao para visualizar a comanda da mesa -->
         <div class="detalheComanda" *ngIf="true">
           <div class="">

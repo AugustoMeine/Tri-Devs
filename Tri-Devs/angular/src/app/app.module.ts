@@ -12,6 +12,8 @@ import {PanelModule} from 'primeng/panel';
 import {DataViewModule} from 'primeng/dataview';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { BadgeModule } from 'primeng/badge';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +51,9 @@ import { FinalizarComandaMesaComponent } from './pedidos/finalizarComandaMesa/fi
     BrowserAnimationsModule,
     DataViewModule,
     ScrollPanelModule,
-    ToastModule
+    ToastModule,
+    TableModule,
+    BadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
