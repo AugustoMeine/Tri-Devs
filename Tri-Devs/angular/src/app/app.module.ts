@@ -10,6 +10,7 @@ import {PasswordModule} from 'primeng/password';
 import {CardModule} from 'primeng/card';
 import {PanelModule} from 'primeng/panel';
 import {DataViewModule} from 'primeng/dataview';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
@@ -47,7 +48,6 @@ import { DirecionamentoComponent } from './direcionamento/direcionamento.compone
     ToastModule,
     TableModule,
     BadgeModule
-    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
