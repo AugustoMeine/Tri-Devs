@@ -1,1 +1,55 @@
-<p>pedidos works!</p>
+<main class="flex align-items-center justify-content-center bg-blue-800 w-full">
+
+  <p-panel class="w-6 h-full m-0 p-0">
+    <!-- Titulo da página -->
+    <ng-template pTemplate="header">
+      <span class="tituloPaginaPedidos text-center w-full h-full">
+        Mesas
+      </span>
+    </ng-template>
+
+    <!--Comando para gerar lista-->
+    <div *ngFor="let mesa of listaMesas">
+
+      <!--Ordena os botos e o nome da mesa lado a lado-->
+      <div class="card flex flex-wrap gap-5 p-4">
+
+        <!--Lista as mesas cadastradas no banco de dados-->
+        <div class="nomeMesa">
+          <span>
+            {{mesa.name}}
+          </span>
+        </div>
+
+      <div class="iconeQuantidadePedidoMesa">
+        <p-badge value="{{quantidadeItensMesa}}" (click)="somaQuantidadeItensMesa()"></p-badge>
+      </div>
+
+        <!-- Botao para visualizar a comanda da mesa -->
+        <div class="detalheComanda" *ngIf="true">
+          <div class="">
+            <p-button label="Visualizar" icon="pi pi-search" (click)="verDetalheComandaMesa(mesa)"></p-button>
+          </div>
+        </div>
+
+        <!-- Botao para adicionar pedido para a mesa -->
+        <div class="" *ngIf="true">
+          <div class="">
+            <div class="">
+              <p-button label="Adicionar" icon="pi pi-plus" (click)="adicionarItemMesa(mesa)"></p-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botao para finalizar o pedido enviando para a tela do caixa -->
+        <div class="" *ngIf="true">
+          <div class="">
+            <button type="button" pButton pRipple label="Finalizar" icon="pi pi-check-circle"
+              (click)="finalizarComandaMesa(mesa)"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p-toast></p-toast>
+  </p-panel>
+</main>

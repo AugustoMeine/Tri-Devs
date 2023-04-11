@@ -1,0 +1,22 @@
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: flex;
+}
+
+.nomeMesa{
+  padding: 10px;
+  font-size: 26px;
+  font-family: Impact, fantasy;
+}
+
+main{
+  height: 100%;
+}
+
+.tituloPaginaPedidos{
+  font-size: 80px;
+  font-family: Stencil Std, fantasy;
+}
