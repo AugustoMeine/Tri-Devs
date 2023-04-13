@@ -73,4 +73,9 @@ public class UsuarioController {
         }
     }
 
+    @GetMapping("/teste")
+    public ResponseEntity<Long> teste(){
+        return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.proximoIdDisponivel()));
+    }
+
 }

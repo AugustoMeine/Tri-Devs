@@ -12,6 +12,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Usuario findById(long id);
     List<Usuario> findAll();
 
-    //@Query("SELECT (idUsuario + 1) FROM USUARIO ORDER BY idUsuario GROUP BY idUsuario")
-    //long retornarUlimoID();
+    @Query("SELECT MAX(idUsuario) FROM Usuario GROUP BY idUsuario")
+    long lerUltimoUsuario();
 }
