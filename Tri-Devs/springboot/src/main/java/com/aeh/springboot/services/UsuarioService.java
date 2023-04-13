@@ -45,4 +45,8 @@ public class UsuarioService {
         }
     }
 
+    public long proximoIdDisponivel(){
+        return (usuarioRepository.lerUltimoUsuario() + 1);
+    }
+
 }

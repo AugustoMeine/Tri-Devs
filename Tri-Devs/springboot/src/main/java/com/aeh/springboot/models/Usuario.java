@@ -7,9 +7,10 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "USUARIO")
 @Data
 public class Usuario {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
