@@ -11,7 +11,6 @@ import java.util.Date;
 @Data
 public class Usuario {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long idUsuario;

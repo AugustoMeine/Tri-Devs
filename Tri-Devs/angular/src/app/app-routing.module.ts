@@ -1,8 +1,11 @@
-import { DirecionamentoComponent } from './direcionamento/direcionamento.component';
-import { CozinhaComponent } from './cozinha/cozinha.component';
-import { LoginComponent } from './login/login.component';
+//Imports angular
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+//Imports de componentes
+import { LoginComponent } from './componentes/login/login.component';
+import { CozinhaComponent } from './componentes/cozinha/cozinha.component';
+import { DirecionamentoComponent } from './componentes/direcionamento/direcionamento.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},

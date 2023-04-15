@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
-import { Item } from './../models/Item.model';
-import { Mesa } from './../models/Mesa.model';
-import { Comanda } from '../models/Comanda.model';
 import { Component, OnInit } from '@angular/core';
-import { Pedido } from '../models/Pedido.model';
+import { Comanda } from 'src/app/models/Comanda.model';
+import { Pedido } from 'src/app/models/Pedido.model';
+import { Item } from 'src/app/models/Item.model';
+
 
 @Component({
   selector: 'app-cozinha',
@@ -25,6 +25,24 @@ export class CozinhaComponent implements OnInit{
     this.listaComandasPendentePreparo = [];
     this.comandaNull = new Comanda(-1,[],-1)
     this.comandaSendoAtendida = this.comandaNull;
+
+    this.listaComandas = [
+      new Comanda(1,[
+        new Pedido(1,new Item(1,'Pizza de chocolate',45.90,true),2),      
+        new Pedido(1,new Item(2,'Pizza de frango',25.90,true),1),
+        new Pedido(1,new Item(3,'Coca-cola',12.50,true),1),
+        new Pedido(1,new Item(4,'Agua sem gas',12.50,true),1)
+      ],1),
+      new Comanda(2,[
+        new Pedido(1,new Item(1,'Pizza de portuguesa',35.90,true),1),      
+        new Pedido(1,new Item(2,'Pizza de frango',25.90,true),2),
+        new Pedido(1,new Item(3,'Coca-cola',12.50,true),1),
+        new Pedido(1,new Item(4,'Agua sem gas',12.50,true),1)
+      ],3),
+      new Comanda(3,[      
+        new Pedido(1,new Item(2,'Pizza de frango',25.90,true),2)
+      ],7)
+    ];
   }
 
   ngOnInit(): void {
