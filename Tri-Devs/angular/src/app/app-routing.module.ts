@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:"Pedidos",component:PedidosComponent},
   {path:"Cozinha",component:CozinhaComponent},
   {path:"Direcionamento",component:DirecionamentoComponent},
-  /*{path:"Comanda",component:ComandaMesaComponent},
+  /* {path:"Comanda",component:ComandaMesaComponent},
   {path:"Cardapio",component:CardapioComponent}*/
 ];
 

@@ -7,12 +7,12 @@ export class Comanda{
     idMesa: number;
     comandaAberta: boolean;
     horaPedidoMaisAntigoNaoPreparado: string;
-    
+
     constructor(idComanda: number, listaPedidos: Pedido[], idMesa:number){
         this.idComanda = idComanda;
-        this.listaPedidos = listaPedidos;       
-        this.precoTotal = 0;       
-        this.idMesa = idMesa; 
+        this.listaPedidos = listaPedidos;
+        this.precoTotal = 0;
+        this.idMesa = idMesa;
         this.comandaAberta = true; //A comanda fica aberta até o cliente pagar, no qual posteriormente seria fechada e a mesa liberada para uma nova comanda.
         this.horaPedidoMaisAntigoNaoPreparado = '';
 
@@ -33,10 +33,10 @@ export class Comanda{
                     return;
                 }
             }
-        );        
+        );
     }
 
-    adicionaPedidos(novaListaPedidos:Pedido[]){      
+    adicionaPedidos(novaListaPedidos:Pedido[]){
         novaListaPedidos.forEach(
             (pedidoAux) =>{
                 this.listaPedidos.push(pedidoAux); //Adiciona os pedidos na lista
@@ -57,5 +57,5 @@ export class Comanda{
         );
 
     }
-    
+
 }

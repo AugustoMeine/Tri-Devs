@@ -14,6 +14,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -53,7 +54,8 @@ import { FinalizarComandaMesaComponent } from './pedidos/finalizarComandaMesa/fi
     ScrollPanelModule,
     ToastModule,
     TableModule,
-    BadgeModule
+    BadgeModule,
+    MegaMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
