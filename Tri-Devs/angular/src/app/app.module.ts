@@ -15,6 +15,7 @@ import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { MegaMenuModule } from 'primeng/megamenu';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -55,7 +56,8 @@ import { FinalizarComandaMesaComponent } from './pedidos/finalizarComandaMesa/fi
     ToastModule,
     TableModule,
     BadgeModule,
-    MegaMenuModule
+    MegaMenuModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]

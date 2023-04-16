@@ -14,7 +14,8 @@ import { Item } from '../models/Item.model';
 })
 export class PedidosComponent implements OnInit{
 
-  quantidadeMesas = 17;
+  quantidadeMesas:number = 17;
+  identificadorMesa:number = 0;
 
   listasMesas: Mesa[] = [];
 
@@ -54,6 +55,10 @@ export class PedidosComponent implements OnInit{
   quantidadeItensMesa = 3
   somaQuantidadeItensMesa(){
     this.quantidadeItensMesa++;
+  }
+
+  direcionamento(){
+    this.route.navigate(['/Direcionamento'])
   }
 }
 

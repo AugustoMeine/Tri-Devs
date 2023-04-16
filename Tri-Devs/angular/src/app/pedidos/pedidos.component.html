@@ -11,52 +11,76 @@
     <div class="w-full h-full m-0 p-0 b-0">
 
       <!-- Área do título -->
-      <div class="text-center w-full h-1
-      border-noround border-1 border-double border-200
-      surface-50
-      text-center text-3xl text-white
-      flex justify-content-center align-content-center
-      m-0 p-0">
-        <span class="h-full">Mesas</span>
-      </div>
-
-      <!-- Área do corpo -->
-      <div class="text-center w-full h-11
-      border-noround border-1 border-double border-200
-      surface-50
-      text-2xl text-white
-      m-0 p-0
-      overflow-y-auto">
-
-        <!--Comando para gerar lista-->
-        <div *ngFor="let mesa of listasMesas" class="w-full h-1
-        b-0 m-0 p-0
-        grid">
-
-          <!-- Número Mesa -->
-          <div class="col-3 h-full m-0 p-0 b-0">
-            Mesa {{mesa.idMesa}}
-            <p-badge value="" (click)="somaQuantidadeItensMesa()"></p-badge>
-          </div>
-
-          <!-- Botão visualizar Mesa-->
-          <div class="col-3 h-full m-0 p-0 b-0">
-            <p-button label="Visualizar" icon="pi pi-search" (click)="verDetalheComandaMesa(mesa)"></p-button>
-          </div>
-
-          <!-- Botão Adicionar Pedido-->
-          <div class="col-3 h-full m-0 p-0 b-0">
-            <p-button label="Adicionar" icon="pi pi-plus" (click)="adicionarItemMesa(mesa)"></p-button>
-          </div>
-
-          <!-- Botão Finalizar Mesa-->
-          <div class="col-3 h-full m-0 p-0 b-0">
-            <button type="button" pButton pRipple label="Finalizar" icon="pi pi-check-circle"
-            (click)="finalizarComandaMesa(mesa)">
-            </button>
+        <div class="text-center w-full h-1
+          border-noround border-1 border-double border-200
+          surface-50
+          text-center text-3xl text-white
+          flex align-items-center justify-content-center
+          cursor-pointer">
+          <div class="flex align-content-center">
+            <div class="h-full p-0" (click)="direcionamento()">Mesas</div>
           </div>
         </div>
 
+      <!-- Área do corpo Mesa-->
+      <div class="w-full h-11
+      border-noround border-1 border-double border-200
+      surface-50 text-xl text-white m-0 p-0">
+        <!-- Área do campo Busca -->
+        <div class="w-full h-1 grid
+        surface-50 text-xl text-white m-0 p-2">
+          <!-- Campo para digitar numero mesa -->
+          <div class="col-9 p-0 m-0 b-0 h-full">
+            <input class="w-full h-full border-noround text-center" type="number" min="0" max="17" step="1" pInputText pKeyFilter="int" placeholder="Numero Mesa" [(ngModel)]="identificadorMesa" />
+          </div>
+
+          <!-- Botao buscar -->
+          <div class="col-3 p-0 m-0 b-0 h-full">
+            <button pButton icon="pi pi-search" class="w-full h-full p-button-primary p-0 m-0 border-noround"></button>
+          </div>
+        </div>
+
+        <!-- Lista Mesas -->
+        <div class="w-full h-11
+        border-noround border-double border-200
+        border-top-none border-left-none border-right-none border-bottom-none
+        surface-50 text-xl text-white m-0 p-0 overflow-y-auto">
+          <!--Comando para gerar lista das Mesas-->
+          <div *ngFor="let mesa of listasMesas" class="w-full h-1
+          b-0 m-0 p-0 grid">
+
+            <!-- Número Mesa -->
+            <div class="col-3 h-full m-0 p-0 b-0 grid">
+              <div class="col-6 h-full m-0 p-0 b-0
+            flex align-items-center justify-content-center">
+                Mesa {{mesa.idMesa}}
+              </div>
+
+              <!-- Ícone quantidade item comanda -->
+              <div class="col-6 h-full m-0 p-0 b-0
+            flex align-items-center justify-content-center">
+                <p-badge value="" (click)="somaQuantidadeItensMesa()"></p-badge>
+              </div>
+            </div>
+
+            <!-- Botão visualizar Mesa-->
+            <div class="col-3 h-full m-0 p-0 b-0 flex align-items-center justify-content-center">
+              <p-button label="Visualizar" icon="pi pi-search" (click)="verDetalheComandaMesa(mesa)"></p-button>
+            </div>
+
+            <!-- Botão Adicionar Pedido-->
+            <div class="col-3 h-full m-0 p-0 b-0 flex align-items-center justify-content-center">
+              <p-button label="Adicionar" icon="pi pi-plus" (click)="adicionarItemMesa(mesa)"></p-button>
+            </div>
+
+            <!-- Botão Finalizar Mesa-->
+            <div class="col-3 h-full m-0 p-0 b-0 flex align-items-center justify-content-center">
+              <button type="button" pButton pRipple label="Finalizar" icon="pi pi-check-circle"
+                (click)="finalizarComandaMesa(mesa)">
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
