@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 //Importação do PrimeFaces
 import {ButtonModule} from 'primeng/button';
@@ -22,11 +23,6 @@ import { DirecionamentoComponent } from './componentes/direcionamento/direcionam
 import { CozinhaComponent } from './componentes/cozinha/cozinha.component';
 import { CaixaComponent } from './componentes/caixa/caixa.component';
 import { PedidosComponent } from './componentes/pedidos/pedidos.component';
-// import { LoginComponent } from './login/login.component';
-// import { CaixaComponent } from './caixa/caixa.component';
-// import { CozinhaComponent } from './cozinha/cozinha.component';
-// import { PedidosComponent } from './pedidos/pedidos.component';
-// import { DirecionamentoComponent } from './direcionamento/direcionamento.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +32,6 @@ import { PedidosComponent } from './componentes/pedidos/pedidos.component';
     CozinhaComponent,
     CaixaComponent,
     PedidosComponent
-    // LoginComponent,
-    // CaixaComponent,
-    // CozinhaComponent,
-    // PedidosComponent,
-    // DirecionamentoComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +44,8 @@ import { PedidosComponent } from './componentes/pedidos/pedidos.component';
     PanelModule,
     BrowserAnimationsModule,
     DataViewModule,
-    ToastModule
+    ToastModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

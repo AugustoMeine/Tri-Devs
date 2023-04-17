@@ -1,19 +1,22 @@
 package com.aeh.springboot.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "usuario")
 @Data
+@AllArgsConstructor
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    long idUsuario;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idUsuario;
 
     @Column(nullable = false)
     private String login;
@@ -25,11 +28,11 @@ public class Usuario {
     private String nome;
 
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date dataCriacao;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDateTime dataCriacao;
 
     @Column
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date dataDesligamento;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDateTime dataDesligamento;
 
 }

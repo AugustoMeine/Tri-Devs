@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Usuario findById(long id);
+    Usuario findByLoginAndSenha(String login, String senha);
     List<Usuario> findAll();
 
     @Query("SELECT MAX(idUsuario) FROM Usuario GROUP BY idUsuario")

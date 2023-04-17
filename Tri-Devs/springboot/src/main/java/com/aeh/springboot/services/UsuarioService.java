@@ -1,6 +1,5 @@
 package com.aeh.springboot.services;
 
-import com.aeh.springboot.controllers.UsuarioController;
 import com.aeh.springboot.models.Usuario;
 import com.aeh.springboot.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +13,20 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Usuario salvarUsuario(Usuario usuario){
-        return(usuarioRepository.save(usuario));
-    }
-
     public Usuario lerUsuario(long idUsuario){
         return(usuarioRepository.findById(idUsuario));
     }
 
     public List<Usuario> lerUsuarios(){
         return(usuarioRepository.findAll());
+    }
+
+    public Usuario validarLogin(String login, String senha){
+        return(usuarioRepository.findByLoginAndSenha(login, senha));
+    };
+
+    public Usuario salvarUsuario(Usuario usuario){
+        return(usuarioRepository.save(usuario));
     }
 
     public Usuario alterarUsuario(Usuario usuario){
@@ -43,10 +46,6 @@ public class UsuarioService {
         else{
             return(false);
         }
-    }
-
-    public long proximoIdDisponivel(){
-        return (usuarioRepository.lerUltimoUsuario() + 1);
     }
 
 }

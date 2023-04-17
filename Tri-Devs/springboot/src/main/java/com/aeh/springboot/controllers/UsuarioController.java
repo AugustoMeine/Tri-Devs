@@ -9,61 +9,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping("/Usuario")
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     @GetMapping({"/",""})
-    public ResponseEntity<List<Usuario>> lerUsuraios(){
+    public ResponseEntity<List<Usuario>> lerUsuarios(){
         return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.lerUsuarios()));
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<Usuario> lerUsuraio(@PathVariable long idUsuario){
+    public ResponseEntity<Usuario> lerUsuario(@PathVariable long idUsuario){
         return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.lerUsuario(idUsuario)));
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Usuario> salvarUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO){
+    @GetMapping("/{login}/{senha}")
+    public ResponseEntity<Usuario> validarLogin(@PathVariable String login, @PathVariable String senha){
 
-        Usuario usuario = new Usuario();
+        //Descriptografia pendete
 
-        //Obtem a data atual e transforma a em string no padrão dd/MM/rrrr
-        LocalDate dataAtual = LocalDate.now();
-        DateTimeFormatter formatoPadrao = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //Padrão desejado
-        String dataFormatada = dataAtual.format(formatoPadrao);
+        return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.validarLogin(login,senha)));
+    }
 
-        //Pega a data atual, no formato String, e converte para o fortato Date
-        SimpleDateFormat formatadorTipo = new SimpleDateFormat("dd/MM/yyyy");
-        Date data = new Date();
-        try {
-            data =  formatadorTipo.parse(dataFormatada);
-        } catch (ParseException erroParseException) {
-            throw new RuntimeException(erroParseException);
-        }
-
-        BeanUtils.copyProperties(usuarioDTO,usuario);
-
-        usuario.setDataCriacao(data);
+    @PostMapping({"/",""})
+    public ResponseEntity<Usuario> salvarUsuario(@RequestBody Usuario usuario){
+        usuario.setDataCriacao(LocalDateTime.now());
         usuario.setDataDesligamento(null);
+
         return(ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(usuario)));
     }
 
-    @DeleteMapping("/")
-    public ResponseEntity<String> deletarUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO){
-
-        Usuario usuario = new Usuario();
+    @DeleteMapping({"/",""})
+    public ResponseEntity<String> deletarUsuario(@RequestBody Usuario usuario){
 
         if(usuarioService.deletarUsuario(usuario)){
             return(ResponseEntity.status(HttpStatus.GONE).body("Usuario deletado com sucesso!"));
@@ -71,11 +55,6 @@ public class UsuarioController {
         else{
             return(ResponseEntity.status(HttpStatus.CONFLICT).body("Usuario não deletado!"));
         }
-    }
-
-    @GetMapping("/teste")
-    public ResponseEntity<Long> teste(){
-        return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.proximoIdDisponivel()));
     }
 
 }
