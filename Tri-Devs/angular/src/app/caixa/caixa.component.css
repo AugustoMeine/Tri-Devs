@@ -1,0 +1,151 @@
+:root{
+  --dark-blue:#363f5f;
+}
+.root {
+  overflow: hidden auto;
+}
+/*========GLOBAL==========*/
+*{
+  margin: 0;/*espaçamento dos elementos,organiza as laterais*/
+  padding: 0;/*preenchimento dos elementos*/
+  box-sizing: border-box;/*manter a caixa do mesmo tamanho*/
+}
+body{
+  background: #d3dcea;
+  font-family: 'Poppins',sans-serif;
+  }
+.container{
+  width: 80vw;
+  margin: auto;
+}
+
+/*========HEADER==========*/
+.header{
+  background: #1D2530;
+  min-height: 80px;
+  text-align: center;/*alinhamento do texto*/
+}
+#logo{
+  color:#fff;
+  font-weight: 100;/*leveza da fonte, bem fininha*/
+}
+.search-bar {
+  height: 45px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+.input-text {
+  background: white;
+  height: 45px;
+  width: 100%;
+  color: gray;
+  border-radius: 8px;
+  border: unset;
+}
+::placeholder {
+  color: darkgray;
+}
+
+.content {
+  padding: 0 !important;
+}
+.search-bar i {
+  color:black;
+}
+
+.container-pedido {
+  min-height: 75vh;
+}
+
+.sem-pedido {
+  text-align: center;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.cards-container {
+  margin-right: 24px;
+}
+
+.descricao-pedido {
+  background: white;
+  border-radius: 4px;
+  height: fit-content;
+  min-height: 325px;
+  padding-bottom: 2rem;
+}
+
+.td-right {
+  text-align: right !important;
+}
+
+.descricao-title {
+ margin: 0.75rem;
+  text-align: center;
+ color: var(--blue-800);
+ font-weight: normal;
+}
+/*BALANCE=========*/
+#balance{
+   margin-top: -8rem;
+}
+#balance h2{
+  color: white;
+  margin-top: 0;
+}
+.card {
+  background: rgb(135, 160, 249);
+  padding: 1rem 1.5rem;/*preenchimento em cima e dos lados*/
+  border-radius: 0.25rem;/*arredondamento da borda*/
+  margin-bottom: 2rem;/*espaçamento em baixo*/
+}
+.card h3{
+  font-weight: normal;
+  font-size: 1.2rem;
+}
+.card p{
+  font-size: 2rem;
+  line-height: 3rem;
+}
+
+/*TABLE=========*/
+.table-container {
+  overflow: hidden auto;
+  max-height: 65vh;
+}
+#table-data{
+  margin-right:80%;
+  padding: 1rem;
+  width: 100%;
+  border-spacing: 0rem 0.5rem;
+  color: #859ef0;
+}
+table thead tr th :first-child,
+table tbody tr td :first-child{
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+table thead th{
+  font-weight: normal;
+  padding: 1rem 8px;
+  text-align: left;
+  color: black;
+}
+
+table tbody tr:hover{
+  background: whitesmoke;
+}
+table tbody td{
+  padding: 1rem 8px;
+  font-weight: normal;
+  color: var(--blue-600);
+}
+
+footer{
+  text-align: center;
+  padding: 4rem 0 2rem;
+  color: var(--dark-blue);
+  opacity: 0.6;
+}
+#textoBucarPedidos{
+  color: var(--dark-blue);
+}

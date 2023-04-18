@@ -1,1 +1,94 @@
-<p>caixa works!</p>
+<main class="flex flex-column bg-blue-800 root">
+
+  <!-- Header da página -->
+    <div class="header flex text-3xl text-white-800 align-items-center justify-content-center" (click)="direcionamento()">
+        Caixa
+    </div>
+
+
+    <!-- Corpo da página (área dos pedidos recebidos) -->
+       <!-- Painel do caixa -->
+     <p-panel class="w-full p-2 content">
+      <div class="container"><!--Caixa-->
+
+        <div class="flex flex-wrap">
+          <div class="flex search-bar">
+            <span class="p-input-icon-left w-full">
+                <i class="pi pi-search"></i>
+                <input type="text" class="input-text" pInputText placeholder="Insira o codigo do pedido" [(ngModel)]="idPedido" />
+            </span>
+            <p-button label="Buscar" class="ml-2" (onClick)="buscarPedido()"></p-button>
+          </div>
+        </div>
+        <section class="container-pedido flex w-full flex-column lg:flex-row" *ngIf="pedidoEncontrado; else semPedido">
+          <div class="cards-container w-full lg:w-5">
+            <div class="card w-full"><!--Cartões,Divisões,Caixas--> <!--Class é uma classificação dos atributos-->
+              <h3>Valor Total</h3>
+              <p>{{pedidoEncontrado.valorTotal | currency: 'BRL'}}</p>
+            </div>
+            <div class="card">
+              <div class="flex justify-content-between">
+                <h3>Valor Recebido</h3>
+                <i class="pi pi-pencil" *ngIf="valorRecebido" (click)="valorRecebido = undefined"></i>
+              </div>
+              <div *ngIf="valorRecebido; else inputValor" class="mt-2">
+                <span>{{metodoPagamento ? 'Pagamento: ' + metodoPagamento : 'Método não selecionado'}}</span>
+                <p> {{valorRecebido | currency: 'BRL'}}</p>
+              </div>
+              <ng-template #inputValor>
+                <div class="flex flex-wrap gap-3 mt-4">
+                  <div class="flex align-items-center">
+                    <p-radioButton name="pagamento" value="Cartão" [(ngModel)]="metodoPagamento" inputId="cartao-radio"></p-radioButton>
+                    <label for="cartao-radio" class="ml-2">Cartão</label>
+                  </div>
+                  <div class="flex align-items-center">
+                    <p-radioButton name="pagamento" value="Dinheiro" [(ngModel)]="metodoPagamento" inputId="dinheiro-radio"></p-radioButton>
+                    <label for="dinheiro-radio" class="ml-2">Dinheiro</label>
+                  </div>
+                  <div class="flex align-items-center">
+                    <p-radioButton name="pagamento" value="Pix" [(ngModel)]="metodoPagamento" inputId="pix-radio"></p-radioButton>
+                    <label for="pix-radio" class="ml-2">Pix</label>
+                  </div>
+                </div>
+                <div class="flex search-bar mt-4">
+                  <input type="number" class="input-text pl-2" placeholder="R$" [(ngModel)]="inputValorRecebido" />
+                  <p-button label="Inserir" class="ml-2" (onClick)="inserirValor()"></p-button>
+                </div>
+              </ng-template>
+            </div>
+            <div class="card" *ngIf="valorRecebido">
+              <h3>Troco</h3>
+              <p>{{valorRecebido - pedidoEncontrado.valorTotal | currency: 'BRL'}}</p>
+            </div>
+          </div>
+          <section class="descricao-pedido w-full lg:w-7">
+            <h2 class="descricao-title">Descrição do Pedido</h2>
+            <div class="table-container">
+              <table id="table-data" border="0" align="left"><!--Tabela de dados-->
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th class="td-right">Quantidade</th>
+                        <th class="td-right">Valor Unitário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of pedidoEncontrado?.itens">
+                        <td>{{item.nome}}</td>
+                        <td class="td-right">{{item.quantidade}}</td>
+                        <td class="td-right">{{item.preco | currency: 'BRL'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+          </section>
+        </section>
+      </div>
+      </p-panel>
+</main>
+
+<ng-template #semPedido>
+  <section class="container-pedido flex w-full">
+    <h3 class="sem-pedido">Nenhum pedido encontrado</h3>
+  </section>
+</ng-template>

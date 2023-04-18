@@ -10,10 +10,6 @@ import {PasswordModule} from 'primeng/password';
 import {CardModule} from 'primeng/card';
 import {PanelModule} from 'primeng/panel';
 import {DataViewModule} from 'primeng/dataview';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { ToastModule } from 'primeng/toast';
-import { TableModule } from 'primeng/table';
-import { BadgeModule } from 'primeng/badge';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,9 +19,9 @@ import { CaixaComponent } from './caixa/caixa.component';
 import { CozinhaComponent } from './cozinha/cozinha.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { DirecionamentoComponent } from './direcionamento/direcionamento.component';
-import { ComandaMesaComponent } from './pedidos/comandaMesa/comandaMesa.component';
-import { CardapioComponent } from './pedidos/cardapio/cardapio.component';
-import { FinalizarComandaMesaComponent } from './pedidos/finalizarComandaMesa/finalizarComandaMesa.component';
+import {InputTextModule} from "primeng/inputtext";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {RadioButtonModule} from "primeng/radiobutton";
 
 @NgModule({
   declarations: [
@@ -34,27 +30,23 @@ import { FinalizarComandaMesaComponent } from './pedidos/finalizarComandaMesa/fi
     CaixaComponent,
     CozinhaComponent,
     PedidosComponent,
-    DirecionamentoComponent,
-    ComandaMesaComponent,
-    CardapioComponent,
-    FinalizarComandaMesaComponent
-   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    CommonModule,
-    ButtonModule,
-    PasswordModule,
-    CardModule,
-    PanelModule,
-    BrowserAnimationsModule,
-    DataViewModule,
-    ScrollPanelModule,
-    ToastModule,
-    TableModule,
-    BadgeModule
+    DirecionamentoComponent
   ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        CommonModule,
+        ButtonModule,
+        PasswordModule,
+        CardModule,
+        PanelModule,
+        BrowserAnimationsModule,
+        DataViewModule,
+        InputTextModule,
+        HttpClientModule,
+        RadioButtonModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -42,7 +42,6 @@ main{
   height: calc((100%/12) * 6);
 }
 
-
 .h-7{
   height: calc((100%/12) * 7);
 }
@@ -66,6 +65,3 @@ main{
 .h-12{
   height: calc((100%/12) * 12);
 }
-
-
-

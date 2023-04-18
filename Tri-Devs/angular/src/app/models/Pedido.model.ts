@@ -1,17 +1,26 @@
-import { Item } from './Item.model';
-export class Pedido{   
-    idPedido: number;
-    item: Item;
-    quantidadeItem: number;
-    horaResgistro: string;
-    status: string;
+import {Item, ItemDTO} from './Item.model';
 
-    constructor(idPedido: number, item: Item, quantidadeItem: number){
-        this.idPedido = idPedido;
+export interface PedidoDTO {
+  id: string;
+  itens: ItemDTO[];
+  valorTotal: number;
+  necessitaPreparo: boolean;
+  data: string;
+}
+
+export class Pedido{
+    item: Item;
+    quantidade: number;
+    preco: number;
+    precoUnidade: number;
+    necessitaPreparo: boolean;
+
+    constructor(item: Item, quantidade: number, necessitaPreparo: boolean){
         this.item = item;
-        this.quantidadeItem = quantidadeItem;
-        this.horaResgistro = '00:00:00'; //Salvar a hora no momento que realizar o pedido
-        this.status = 'Pendente Preparo'; //Salvar o status na hora da realização do pedido
+        this.quantidade = quantidade;
+        this.necessitaPreparo = necessitaPreparo;
+        this.precoUnidade = item.preco;
+        this.preco = item.preco * quantidade;
     }
-    
+
 }

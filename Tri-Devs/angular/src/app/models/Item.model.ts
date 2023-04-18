@@ -1,13 +1,16 @@
-export class Item{
-    idItem: number;
-    nome: string;
-    precoUnidade: number;
-    necessitaPreparoCozinha: boolean;
+export interface ItemDTO {
+  nome: string;
+  preco: number;
+  quantidade: number;
+  id: string;
+}
 
-    constructor(idItem: number, nome: string, precoUnidade:number, necessitaPreparoCozinha:boolean){
-        this.idItem = idItem;
+export class Item{
+    nome: string;
+    preco: number;
+
+    constructor(nome: string, preco:number){
         this.nome = nome;
-        this.precoUnidade = precoUnidade;
-        this.necessitaPreparoCozinha = necessitaPreparoCozinha;
+        this.preco = preco;
     }
 }
