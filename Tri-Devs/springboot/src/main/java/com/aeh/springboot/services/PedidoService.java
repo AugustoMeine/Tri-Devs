@@ -2,12 +2,16 @@ package com.aeh.springboot.services;
 
 import com.aeh.springboot.models.Pedido;
 import com.aeh.springboot.repositories.PedidoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class PedidoService {
-    @Autowired
+
     private PedidoRepository pedidoRepository;
 
     public Pedido lerPedido(long idPedido){

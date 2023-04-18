@@ -4,6 +4,7 @@ import com.aeh.springboot.dtos.UsuarioDTO;
 import com.aeh.springboot.models.Usuario;
 import com.aeh.springboot.services.UsuarioService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/Usuario")
 @CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
     @GetMapping({"/",""})
     public ResponseEntity<List<Usuario>> lerUsuarios(){

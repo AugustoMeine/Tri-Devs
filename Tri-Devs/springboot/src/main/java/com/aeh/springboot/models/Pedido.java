@@ -1,13 +1,10 @@
 package com.aeh.springboot.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -20,22 +17,23 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idPedido;
 
-    @OneToOne
-    @JoinColumn(nullable = false,name = "idItem")
+    @ManyToOne
+    @JoinColumn(name = "idItem")
     private Item item;
 
     @Column(nullable = false)
     private int quantidadeItem;
 
     @Column(nullable = false)
+    @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern = "HH:mm:ss")
-    private LocalTime horaResgistro;
+    private Date horaResgistro;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "HH:mm:ss")
-    private LocalDate dataResgistro;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dataResgistro;
 
     @Column(nullable = false)
     private String status;
-
 }

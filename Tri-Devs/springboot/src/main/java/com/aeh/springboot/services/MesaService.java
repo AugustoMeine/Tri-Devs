@@ -2,14 +2,17 @@ package com.aeh.springboot.services;
 
 import com.aeh.springboot.models.Mesa;
 import com.aeh.springboot.repositories.MesaRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class MesaService {
 
-    @Autowired
-    private MesaRepository mesaRepository;
+    private final MesaRepository mesaRepository;
 
     public Mesa lerMesa(long idMesa){
         return(mesaRepository.findById(idMesa));

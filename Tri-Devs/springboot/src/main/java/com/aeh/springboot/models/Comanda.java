@@ -16,12 +16,14 @@ public class Comanda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idComanda;
 
-    @Column(nullable = false)
-    private List<Pedido> listaPedido;
+//    @ManyToOne
+//    @Column(nullable = false)
+//    private List<Pedido> listaPedido;
 
     @Column(nullable = false)
     private float precoTotal;
 
+    @ManyToOne
     @JoinColumn(nullable = false, name = "idMesa")
     private Mesa mesa;
 

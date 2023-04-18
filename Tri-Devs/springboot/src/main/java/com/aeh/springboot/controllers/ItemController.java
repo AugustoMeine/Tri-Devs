@@ -2,6 +2,7 @@ package com.aeh.springboot.controllers;
 
 import com.aeh.springboot.models.Item;
 import com.aeh.springboot.services.ItemService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/Item")
 @CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 public class ItemController{
 
-    @Autowired
-    private ItemService itemService;
+    private final ItemService itemService;
 
     @GetMapping({"/",""})
     public ResponseEntity<List<Item>> lerItens(){

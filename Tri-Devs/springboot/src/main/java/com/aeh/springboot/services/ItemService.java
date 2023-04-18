@@ -2,16 +2,17 @@ package com.aeh.springboot.services;
 
 import com.aeh.springboot.models.Item;
 import com.aeh.springboot.repositories.ItemRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ItemService {
 
-    @Autowired
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     public Item lerItem(long idItem){
         return(itemRepository.findById(idItem));

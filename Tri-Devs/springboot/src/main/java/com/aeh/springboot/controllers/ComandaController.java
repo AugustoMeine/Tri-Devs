@@ -2,6 +2,7 @@ package com.aeh.springboot.controllers;
 
 import com.aeh.springboot.models.Comanda;
 import com.aeh.springboot.services.ComandaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/Comanda")
 @CrossOrigin("*")
+@RequiredArgsConstructor
 public class ComandaController {
-    
-    @Autowired
-    private ComandaService comandaService;
+
+    private final ComandaService comandaService;
 
     @GetMapping({"/",""})
     public ResponseEntity<List<Comanda>> lerComandas(){

@@ -2,16 +2,17 @@ package com.aeh.springboot.services;
 
 import com.aeh.springboot.models.Usuario;
 import com.aeh.springboot.repositories.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public Usuario lerUsuario(long idUsuario){
         return(usuarioRepository.findById(idUsuario));

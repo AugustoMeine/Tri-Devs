@@ -2,6 +2,7 @@ package com.aeh.springboot.controllers;
 
 import com.aeh.springboot.models.Mesa;
 import com.aeh.springboot.services.MesaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/Mesa")
 @CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 public class MesaController {
-    
-    @Autowired
-    private MesaService mesaService;
+
+    private final MesaService mesaService;
 
     @GetMapping({"/",""})
     public ResponseEntity<List<Mesa>> lerMesas(){

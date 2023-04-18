@@ -2,11 +2,14 @@ package com.aeh.springboot.controllers;
 
 import com.aeh.springboot.models.Pedido;
 import com.aeh.springboot.services.PedidoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -14,8 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/Pedido")
 @CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 public class PedidoController {
-    @Autowired
+
     private PedidoService pedidoService;
 
     @GetMapping({"/",""})
@@ -31,8 +35,8 @@ public class PedidoController {
     @PostMapping({"/",""})
     public ResponseEntity<Pedido> salvarPedido(@RequestBody Pedido pedido){
 
-        pedido.setHoraResgistro(LocalTime.now());
-        pedido.setDataResgistro(LocalDate.now());
+//        pedido.setHoraResgistro(new Time(System.currentTimeMillis()));
+//        pedido.setDataResgistro(Date.valueOf(LocalDate.now()));
 
         return(ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.salvarPedido(pedido)));
     }
