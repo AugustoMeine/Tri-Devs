@@ -3,7 +3,6 @@ package com.aeh.springboot.services;
 import com.aeh.springboot.models.Mesa;
 import com.aeh.springboot.repositories.MesaRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PedidoController {
 
-    private PedidoService pedidoService;
+    private final PedidoService pedidoService;
 
     @GetMapping({"/",""})
     public ResponseEntity<List<Pedido>> lerPedidos(){
@@ -35,8 +35,8 @@ public class PedidoController {
     @PostMapping({"/",""})
     public ResponseEntity<Pedido> salvarPedido(@RequestBody Pedido pedido){
 
-//        pedido.setHoraResgistro(new Time(System.currentTimeMillis()));
-//        pedido.setDataResgistro(Date.valueOf(LocalDate.now()));
+        pedido.setHoraResgistro(LocalTime.now());
+        pedido.setDataResgistro(LocalDate.now());
 
         return(ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.salvarPedido(pedido)));
     }

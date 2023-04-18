@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PedidoService {
 
-    private PedidoRepository pedidoRepository;
+    private final PedidoRepository pedidoRepository;
 
     public Pedido lerPedido(long idPedido){
         return(pedidoRepository.findById(idPedido));

@@ -23,7 +23,7 @@ public class UsuarioService {
     }
 
     public Usuario validarLogin(String login, String senha){
-        return(usuarioRepository.findByLoginAndSenha(login, senha));
+        return(usuarioRepository.validarAcessoUsuario(login, senha));
     };
 
     public Usuario salvarUsuario(Usuario usuario){

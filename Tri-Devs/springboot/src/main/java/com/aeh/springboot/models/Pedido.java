@@ -3,14 +3,18 @@ package com.aeh.springboot.models;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
-@Table(name = "pedidos")
+@Table(name = "pedido")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Pedido {
 
     @Id
@@ -21,18 +25,20 @@ public class Pedido {
     @JoinColumn(name = "idItem")
     private Item item;
 
+    @ManyToOne
+    @JoinColumn(name = "idComanda")
+    private Comanda comanda;
+
     @Column(nullable = false)
     private int quantidadeItem;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern = "HH:mm:ss")
-    private Date horaResgistro;
+    private LocalTime horaResgistro;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dataResgistro;
+    private LocalDate dataResgistro;
 
     @Column(nullable = false)
     private String status;

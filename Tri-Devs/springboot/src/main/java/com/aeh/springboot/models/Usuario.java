@@ -3,6 +3,8 @@ package com.aeh.springboot.models;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -12,6 +14,7 @@ import java.time.LocalDateTime;
 @Table(name = "usuario")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
     @Id
@@ -31,7 +34,7 @@ public class Usuario {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dataCriacao;
 
-    @Column
+    @Column(nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dataDesligamento;
 

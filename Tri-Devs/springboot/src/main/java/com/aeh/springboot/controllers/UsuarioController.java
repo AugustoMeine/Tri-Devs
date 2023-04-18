@@ -1,12 +1,8 @@
 package com.aeh.springboot.controllers;
 
-import com.aeh.springboot.dtos.UsuarioDTO;
 import com.aeh.springboot.models.Usuario;
 import com.aeh.springboot.services.UsuarioService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +17,7 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
-    @GetMapping({"/",""})
+    @GetMapping("")
     public ResponseEntity<List<Usuario>> lerUsuarios(){
         return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.lerUsuarios()));
     }
@@ -31,15 +27,15 @@ public class UsuarioController {
         return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.lerUsuario(idUsuario)));
     }
 
-    @GetMapping("/{login}/{senha}")
-    public ResponseEntity<Usuario> validarLogin(@PathVariable String login, @PathVariable String senha){
+    @GetMapping("Login")
+    public ResponseEntity<Usuario> validarLogin(@RequestBody Usuario usuario){
 
         //Descriptografia pendete
 
-        return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.validarLogin(login,senha)));
+        return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.validarLogin(usuario.getLogin(),usuario.getSenha())));
     }
 
-    @PostMapping({"/",""})
+    @PostMapping("")
     public ResponseEntity<Usuario> salvarUsuario(@RequestBody Usuario usuario){
         usuario.setDataCriacao(LocalDateTime.now());
         usuario.setDataDesligamento(null);
@@ -47,7 +43,7 @@ public class UsuarioController {
         return(ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(usuario)));
     }
 
-    @DeleteMapping({"/",""})
+    @DeleteMapping("")
     public ResponseEntity<String> deletarUsuario(@RequestBody Usuario usuario){
 
         if(usuarioService.deletarUsuario(usuario)){
