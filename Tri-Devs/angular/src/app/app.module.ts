@@ -28,10 +28,10 @@ import { DirecionamentoComponent } from './componentes/direcionamento/direcionam
 import { CozinhaComponent } from './componentes/cozinha/cozinha.component';
 import { CaixaComponent } from './componentes/caixa/caixa.component';
 import { PedidosComponent } from './componentes/pedidos/pedidos.component';
-import { CadastroUsuarioComponent } from './componentes/cadastro/cadastro-usuario/cadastro-usuario.component';
-import { CadastroItemComponent } from './componentes/cadastro/cadastro-item/cadastro-item.component';
-import { CadastroMesaComponent } from './componentes/cadastro/cadastro-mesa/cadastro-mesa.component';
-import { CadastroComponent } from './componentes/cadastro/cadastro/cadastro.component';
+import { GerenciamentoComponent } from './componentes/gerenciamento/gerenciamento.component';
+import { GerenciamentoUsuarioComponent } from './componentes/gerenciamento/gerenciamento-usuario/gerenciamento-usuario.component';
+import { GerenciamentoItemComponent } from './componentes/gerenciamento/gerenciamento-item/gerenciamento-item.component';
+import { GerenciamentoMesaComponent } from './componentes/gerenciamento/gerenciamento-mesa/gerenciamento-mesa.component';
 
 @NgModule({
   declarations: [
@@ -41,10 +41,10 @@ import { CadastroComponent } from './componentes/cadastro/cadastro/cadastro.comp
     CozinhaComponent,
     CaixaComponent,
     PedidosComponent,
-    CadastroUsuarioComponent,
-    CadastroItemComponent,
-    CadastroMesaComponent,
-    CadastroComponent
+    GerenciamentoComponent,
+    GerenciamentoUsuarioComponent,
+    GerenciamentoItemComponent,
+    GerenciamentoMesaComponent
   ],
   imports: [
     BrowserModule,

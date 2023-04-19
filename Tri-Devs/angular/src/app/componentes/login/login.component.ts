@@ -1,7 +1,7 @@
-import { LoginService } from '../../services/login/login.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/Usuario.model';
+import { UsuarioService } from 'src/app/services/login/Usuario.service';
 
 
 
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit{
   login: string;
   senha: string;
 
-  constructor(private route:Router, private loginService: LoginService){
+  constructor(private route:Router, private usuarioService: UsuarioService){
     this.login = "adm";
     this.senha = "adm";
   }
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit{
   }
 
   entrar(){
-    this.loginService.logar(this.login,this.senha).subscribe(
+    this.usuarioService.logar(this.login,this.senha).subscribe(
       {
         next:(data: Usuario)=>{
           if(data){

@@ -11,13 +11,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Usuario")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://localhost:4200","*"})
 @RequiredArgsConstructor
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
-    @GetMapping("")
+    @GetMapping("/")
     public ResponseEntity<List<Usuario>> lerUsuarios(){
         return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.lerUsuarios()));
     }

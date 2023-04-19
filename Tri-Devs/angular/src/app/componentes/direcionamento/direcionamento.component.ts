@@ -28,8 +28,8 @@ export class DirecionamentoComponent implements OnInit{
     this.route.navigate(['/Pedido']);
   }
 
-  cadastro(){
-    this.route.navigate(['/Cadastro']);
+  gerenciamento(){
+    this.route.navigate(['/Gerenciamento']);
   }
 
   desconectar(){

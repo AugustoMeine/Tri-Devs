@@ -11,7 +11,7 @@
             m-0 b-0 p-0
             cursor-pointer" 
             (click)="direcionamento()">
-                Cadastro
+                Administração (validar nome)
             </div>
         </div>
     </span>
@@ -27,7 +27,7 @@
             <!-- Cadastrar Usuario-->
             <div class="h-4 w-full m-0 b-0 p-1">
 
-                <p-button (click)="cadastrarUsuario()"
+                <p-button (click)="gerenciarUsuario()"
                 styleClass="p-button-outlined p-button-secondary 
                 w-full h-full border-noround 
                 m-0 b-0 p-0 grid">
@@ -54,7 +54,7 @@
 
             <!-- Cadastrar Mesa-->
             <div class="h-4 w-full m-0 b-0 p-1">
-                <p-button (click)="cadastrarMesa()"
+                <p-button (click)="gerenciarMesa()"
                 styleClass="p-button-outlined p-button-secondary 
                 w-full h-full border-noround 
                 m-0 b-0 p-0 grid">
@@ -80,7 +80,7 @@
 
             <!-- Cadastrar Item-->
             <div class="h-4 w-full m-0 b-0 p-1">
-                <p-button (click)="cadastrarItem()"
+                <p-button (click)="gerenciarItem()"
                 styleClass="p-button-outlined p-button-secondary 
                 w-full h-full border-noround 
                 m-0 b-0 p-0 grid">
@@ -110,12 +110,12 @@
         <div class="col-11 h-full bg-green-800
         m-0 b-0 p-0">
 
-            <app-cadastro-usuario *ngIf="cadastroAtual == 'Usuario'"></app-cadastro-usuario>
-            <app-cadastro-mesa *ngIf="cadastroAtual == 'Mesa'"></app-cadastro-mesa>
-            <app-cadastro-item *ngIf="cadastroAtual == 'Item'"></app-cadastro-item>
+            <app-gerenciamento-usuario *ngIf="gerenciamentoAtual == 'Usuario'"></app-gerenciamento-usuario>
+            <app-gerenciamento-mesa *ngIf="gerenciamentoAtual == 'Mesa'"></app-gerenciamento-mesa>
+            <app-gerenciamento-item *ngIf="gerenciamentoAtual == 'Item'"></app-gerenciamento-item>
 
             <!-- Tela em branco, quando nada está selecionado -->
-            <div class="w-full h-full p-2 text-0" *ngIf="cadastroAtual == 'x'">
+            <div class="w-full h-full p-2 text-0" *ngIf="gerenciamentoAtual == 'x'">
 
                 <div class="w-full h-full 
                 p-0 m-0 b-0

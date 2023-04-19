@@ -8,7 +8,7 @@ import { CozinhaComponent } from './componentes/cozinha/cozinha.component';
 import { DirecionamentoComponent } from './componentes/direcionamento/direcionamento.component';
 import { PedidosComponent } from './componentes/pedidos/pedidos.component';
 import { CaixaComponent } from './componentes/caixa/caixa.component';
-import { CadastroComponent } from './componentes/cadastro/cadastro/cadastro.component';
+import { GerenciamentoComponent } from './componentes/gerenciamento/gerenciamento.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
@@ -16,7 +16,7 @@ const routes: Routes = [
   {path:"Direcionamento" , component:DirecionamentoComponent},
   {path:"Pedido", component:PedidosComponent},
   {path:"Caixa",component:CaixaComponent},
-  {path:"Cadastro", component:CadastroComponent}  
+  {path:"Gerenciamento", component:GerenciamentoComponent}  
 ];
 
 @NgModule({

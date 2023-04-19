@@ -1,0 +1,40 @@
+<div class="w-full h-full p-2 text-0">
+
+    <div class="w-full h-full 
+    p-0 m-0 b-0
+    surface-700
+    border-solid broder-round-2x1 surface-border
+    grid">
+        <!-- 
+            login:string;
+            senha:string;
+            nome:string;
+            dataCriacao:string;
+            dataDesligamento:string;
+         -->
+         
+        <p-table [value]="listaUsuarios" [scrollable]="true" scrollHeight="100%" class="w-full h-full">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Id Usuario</th>
+                    <th>Nome</th>
+                    <th>Login</th>
+                    <th>Senha</th>
+                    <th>Data Criação</th>
+                    <th>Data Desligamento</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-usuario>
+                <tr>
+                    <td>{{usuario.idUsuario}}</td>
+                    <td>{{usuario.nome}}</td>
+                    <td>{{usuario.login}}</td>
+                    <td>{{usuario.senha}}</td>
+                    <td>{{usuario.dataCriacao}}</td>
+                    <td>{{usuario.dataDesligamento}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
