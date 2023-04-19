@@ -19,7 +19,7 @@ import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { MegaMenuModule } from 'primeng/megamenu';
-import { InputTextModule } from 'primeng/inputtext';AppRoutingModule 
+import { InputTextModule } from 'primeng/inputtext';
 
 
 //Componentes
@@ -28,6 +28,10 @@ import { DirecionamentoComponent } from './componentes/direcionamento/direcionam
 import { CozinhaComponent } from './componentes/cozinha/cozinha.component';
 import { CaixaComponent } from './componentes/caixa/caixa.component';
 import { PedidosComponent } from './componentes/pedidos/pedidos.component';
+import { CadastroUsuarioComponent } from './componentes/cadastro/cadastro-usuario/cadastro-usuario.component';
+import { CadastroItemComponent } from './componentes/cadastro/cadastro-item/cadastro-item.component';
+import { CadastroMesaComponent } from './componentes/cadastro/cadastro-mesa/cadastro-mesa.component';
+import { CadastroComponent } from './componentes/cadastro/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { PedidosComponent } from './componentes/pedidos/pedidos.component';
     DirecionamentoComponent,
     CozinhaComponent,
     CaixaComponent,
-    PedidosComponent
+    PedidosComponent,
+    CadastroUsuarioComponent,
+    CadastroItemComponent,
+    CadastroMesaComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,

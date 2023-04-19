@@ -25,7 +25,11 @@ export class DirecionamentoComponent implements OnInit{
   }
 
   pedido(){
-    this.route.navigate(['/Pedidos']);
+    this.route.navigate(['/Pedido']);
+  }
+
+  cadastro(){
+    this.route.navigate(['/Cadastro']);
   }
 
   desconectar(){

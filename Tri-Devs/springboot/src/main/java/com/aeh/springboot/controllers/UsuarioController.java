@@ -27,12 +27,12 @@ public class UsuarioController {
         return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.lerUsuario(idUsuario)));
     }
 
-    @GetMapping("Login")
-    public ResponseEntity<Usuario> validarLogin(@RequestBody Usuario usuario){
+    @GetMapping("/Login/{login}/{senha}")
+    public ResponseEntity<Usuario> validarLogin(@PathVariable String login, @PathVariable String senha){
 
         //Descriptografia pendete
 
-        return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.validarLogin(usuario.getLogin(),usuario.getSenha())));
+        return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.validarLogin(login,senha)));
     }
 
     @PostMapping("")

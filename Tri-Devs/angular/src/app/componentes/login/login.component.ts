@@ -13,24 +13,22 @@ import { Usuario } from 'src/app/models/Usuario.model';
 
 export class LoginComponent implements OnInit{
 
-  login: string
-  senha: string
-
+  login: string;
+  senha: string;
 
   constructor(private route:Router, private loginService: LoginService){
-  this.login = "";
-  this.senha = "";
+    this.login = "adm";
+    this.senha = "adm";
   }
 
   ngOnInit(): void {
   }
 
   entrar(){
-
     this.loginService.logar(this.login,this.senha).subscribe(
       {
         next:(data: Usuario)=>{
-          if(!data){
+          if(data){
             console.log("Logado com sucesso!");
             console.log(data);
             this.route.navigate(['/Direcionamento']);                        
@@ -40,7 +38,8 @@ export class LoginComponent implements OnInit{
           }
         },
         error:(erro: any)=>{
-          console.log("Erro ao logar: " + erro);
+          console.log("Falha no envio dos dados: ");
+          console.log(erro);
         }
       }
     );
