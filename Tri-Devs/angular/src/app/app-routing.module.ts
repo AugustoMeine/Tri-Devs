@@ -6,11 +6,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './componentes/login/login.component';
 import { CozinhaComponent } from './componentes/cozinha/cozinha.component';
 import { DirecionamentoComponent } from './componentes/direcionamento/direcionamento.component';
+import { PedidosComponent } from './componentes/pedidos/pedidos.component';
+import { CaixaComponent } from './componentes/caixa/caixa.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
   {path:"Cozinha",component:CozinhaComponent},
-  {path:"Direcionamento" , component:DirecionamentoComponent}
+  {path:"Direcionamento" , component:DirecionamentoComponent},
+  {path:"Pedido", component:PedidosComponent},
+  {path:"Caixa",component:CaixaComponent}
 ];
 
 @NgModule({

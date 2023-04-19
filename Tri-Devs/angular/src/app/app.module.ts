@@ -14,7 +14,12 @@ import {PasswordModule} from 'primeng/password';
 import {CardModule} from 'primeng/card';
 import {PanelModule} from 'primeng/panel';
 import {DataViewModule} from 'primeng/dataview';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { BadgeModule } from 'primeng/badge';
+import { MegaMenuModule } from 'primeng/megamenu';
+import { InputTextModule } from 'primeng/inputtext';AppRoutingModule 
 
 
 //Componentes
@@ -45,7 +50,12 @@ import { PedidosComponent } from './componentes/pedidos/pedidos.component';
     BrowserAnimationsModule,
     DataViewModule,
     ToastModule,
-    HttpClientModule
+    HttpClientModule,
+    ScrollPanelModule,
+    TableModule,
+    BadgeModule,
+    MegaMenuModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]
