@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/Usuario.model';
-import { UsuarioService } from 'src/app/services/login/Usuario.service';
+import { UsuarioService } from 'src/app/services/usuario/Usuario.service';
 
 
 
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit{
           if(data){
             console.log("Logado com sucesso!");
             console.log(data);
-            this.route.navigate(['/Direcionamento']);                        
+            this.route.navigate(['/Direcionamento']);
           }else{
             console.log("Erro ao logar!");
             console.log(data);
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit{
         }
       }
     );
-    
+
 
   }
 

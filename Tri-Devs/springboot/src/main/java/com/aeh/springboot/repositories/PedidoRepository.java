@@ -10,4 +10,5 @@ import java.util.List;
 public interface PedidoRepository extends JpaRepository<Pedido,Long> {
     Pedido findById(long id);
     List<Pedido> findAll();
+    boolean existsById(long idPedido);
 }

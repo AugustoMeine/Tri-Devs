@@ -24,6 +24,9 @@ public class Comanda {
     private long idMesa;
 
     @Column(nullable = false)
+    private long precoTotalPedido;
+
+    @Column(nullable = false)
     private boolean comandaAberta;
 
 }

@@ -1,34 +1,34 @@
 <main class="flex flex-column bg-blue-800">
-    
-    <!-- 
-        Header da página 
+
+    <!--
+        Header da página
     -->
     <span class = "surface-50 w-12 h-1
     m-0 b-0 p-0">
         <div class="w-full h-full">
             <div class="col w-full h-full
             text-center text-3xl text-white-800
-            cursor-pointer" 
+            cursor-pointer"
             (click)="direcionamento()">
                 Cozinha
             </div>
         </div>
     </span>
 
-    <!-- 
-        Corpo da página (área dos pedidos/comandas recebidos) 
+    <!--
+        Corpo da página (área dos pedidos/comandas recebidos)
     -->
     <div class="w-full h-11 p-2 text-0">
 
-        <!-- 
-            Painel das comandas 
+        <!--
+            Painel das comandas
         -->
-        <div class="w-full h-12 
+        <div class="w-full h-12
         p-0 m-0 b-0
         surface-700
         grid">
-            <!-- 
-                Entrada das comandas 
+            <!--
+                Entrada das comandas
             -->
             <div class="col-2 h-12
             p-0 m-0 b-0
@@ -62,11 +62,11 @@
                     w-full h-11
                     flex flex-column text-center">
                         <!-- Linha da tabela -->
-                        <div *ngFor="let comanda of listaComandasPendentePreparo" 
+                        <div *ngFor="let comanda of listaComandasPendentePreparo"
                         class="p-0 m-0 b-0
                         w-full h-1
                         grid text-center
-                        cursor-pointer" 
+                        cursor-pointer"
                         (click)="selecionaComanda(comanda)">
                             <!-- Comanda selecionada -->
                             <!-- Coluna 1 -->
@@ -74,13 +74,13 @@
                             w-full h-full border-bottom-1 bg-blue-200
                             flex justify-content-center align-items-center" *ngIf="comanda.idMesa == this.comandaSendoAtendida.idMesa">
                                 {{comanda.idMesa}}
-                            </div>   
-                            <!-- Coluna 2 --> 
+                            </div>
+                            <!-- Coluna 2 -->
                             <div class="col p-0 m-0 b-0
                             w-full h-full border-bottom-1 bg-blue-200
                             flex justify-content-center align-items-center" *ngIf="comanda.idMesa == this.comandaSendoAtendida.idMesa">
                                 {{comanda.horaPedidoMaisAntigoNaoPreparado}}
-                            </div>                           
+                            </div>
 
                             <!-- Comanda não selecionada -->
                             <!-- Coluna 1 -->
@@ -99,15 +99,15 @@
                         </div>
                     </div>
 
-                    
-                    
+
+
                 </div>
             </div>
 
-            <!-- 
-                Detalhamento da comanda selecionada 
+            <!--
+                Detalhamento da comanda selecionada
             -->
-            <div id="dealhamentoComanda" 
+            <div id="dealhamentoComanda"
             class="col-10 h-12
             p-0 m-0 b-0
             border-solid broder-round-2x1 surface-border
@@ -148,7 +148,7 @@
                              flex justify-content-center align-items-center">
                                  <h4>Nome Item</h4>
                              </div>
-                             <!-- Coluna: Quantidade do item --> 
+                             <!-- Coluna: Quantidade do item -->
                              <div class="col p-0 m-0 b-0
                              w-full h-full border-bottom-2 surface-border
                              flex justify-content-center align-items-center">
@@ -160,9 +160,9 @@
                         <div class="p-0 m-0 b-0
                         w-full h-11
                         flex flex-column text-center overflow-y-auto"  *ngIf="existePedidoTela">
-                           
+
                             <!-- Linha da tabela de pedidos -->
-                            <div *ngFor="let pedido of comandaSendoAtendida.listaPedidos"                          
+                            <div *ngFor="let pedido of comandaSendoAtendida.listaPedidos"
                             class="p-0 m-0 b-0
                             w-full h-1
                             grid text-center
@@ -174,22 +174,22 @@
                                 flex justify-content-center align-items-center"
                                 *ngIf="pedido.item.necessitaPreparoCozinha">
                                     {{pedido.idPedido}}
-                                </div>   
-                                <!-- Coluna: Nome do item --> 
+                                </div>
+                                <!-- Coluna: Nome do item -->
                                 <div class="col p-0 m-0 b-0
                                 w-full h-full border-bottom-1
                                 flex justify-content-center align-items-center"
                                 *ngIf="pedido.item.necessitaPreparoCozinha">
                                     {{pedido.item.nome}}
-                                </div> 
+                                </div>
 
-                                <!-- Coluna: Quantidade do item --> 
+                                <!-- Coluna: Quantidade do item -->
                                 <div class="col p-0 m-0 b-0
                                 w-full h-full border-bottom-1
                                 flex justify-content-center align-items-center"
                                 *ngIf="pedido.item.necessitaPreparoCozinha">
                                     {{pedido.quantidadeItem}}
-                                </div> 
+                                </div>
 
                             </div>
                         </div>
@@ -225,7 +225,7 @@
 
                     </div>
                 </div>
-                
+
             </div>
 
         </div>

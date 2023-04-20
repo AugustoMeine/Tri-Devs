@@ -16,13 +16,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Pedido")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://localhost:4200","*"})
 @RequiredArgsConstructor
 public class PedidoController {
 
     private final PedidoService pedidoService;
 
-    @GetMapping({"/",""})
+    @GetMapping("/")
     public ResponseEntity<List<Pedido>> lerPedidos(){
         return(ResponseEntity.status(HttpStatus.OK).body(pedidoService.lerPedidos()));
     }
@@ -32,7 +32,7 @@ public class PedidoController {
         return(ResponseEntity.status(HttpStatus.OK).body(pedidoService.lerPedido(idPedido)));
     }
 
-    @PostMapping({"/",""})
+    @PostMapping("/")
     public ResponseEntity<Pedido> salvarPedido(@RequestBody Pedido pedido){
 
         pedido.setHoraResgistro(LocalTime.now());
@@ -41,7 +41,12 @@ public class PedidoController {
         return(ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.salvarPedido(pedido)));
     }
 
-    @DeleteMapping({"/",""})
+    @PutMapping("/")
+    public ResponseEntity<Pedido> atualizarPedido(@RequestBody Pedido pedido){
+        return(ResponseEntity.status(HttpStatus.GONE).body(pedidoService.alterarPedido(pedido)));
+    }
+
+    @DeleteMapping("/")
     public ResponseEntity<String> deletarPedido(@RequestBody Pedido pedido){
 
         if(pedidoService.deletarPedido(pedido)){

@@ -1,40 +1,79 @@
 <div class="w-full h-full p-2 text-0">
 
-    <div class="w-full h-full 
+    <div class="w-full h-full
     p-0 m-0 b-0
-    surface-700
+    bg-indigo-900
     border-solid broder-round-2x1 surface-border
     grid">
-        <!-- 
-            login:string;
-            senha:string;
-            nome:string;
-            dataCriacao:string;
-            dataDesligamento:string;
-         -->
-         
-        <p-table [value]="listaUsuarios" [scrollable]="true" scrollHeight="100%" class="w-full h-full">
+
+        <p-table [value]="listaUsuarios"
+                 selectionMode="single" [(selection)]="usuarioSelecionado" [scrollable]="true"
+                 scrollHeight="100%" class="w-full h-full cursor-pointer">
             <ng-template pTemplate="header">
-                <tr>
-                    <th>Id Usuario</th>
-                    <th>Nome</th>
-                    <th>Login</th>
-                    <th>Senha</th>
-                    <th>Data Criação</th>
-                    <th>Data Desligamento</th>
+                <tr class="grid p-0 b-0 m-0">
+                    <th class="col-1 text-center">Id Usuario</th>
+                    <th class="col-1 text-center">Nome</th>
+                    <th class="col-2 text-center">Login</th>
+                    <th class="col-2 text-center">Senha</th>
+                    <th class="col-2 text-center">Data Criação</th>
+                    <th class="col-2 text-center">Data Desligamento</th>
+                    <th class="col-2 text-center">
+                      <div class="w-full h-full bg-green-600 cursor-pointer border- border-solid border-0 border-right-none"
+                      (click)="cadastrarModel()">
+                        <i class="pi pi-plus text-green-900"></i>
+                      </div>
+                      <p-dialog header="Cadastrar usuario" [(visible)]="cadastroVisivel" [style]="{width: '60vw', height: '90vh'}">
+                        <div class="w-full h-full b-0 m-0 p-0 grid">
+                          <!--Linha 1 - Nome -->
+                          <div class="col-12 h-3 b-0 m-0 p-2 grid">
+                            <div class="col-2 h-full text-center align-items-end">Nome</div>
+                            <input class="col-10 h-full justify-content-start" type="text" pInputText [(ngModel)]="nome" />
+                          </div>
+                          <!--Linha 2 - Login -->
+                          <div class="col-12 h-3 b-0 m-0 p-2 grid">
+                            <div class="col-2 h-full text-center">Login</div>
+                            <input class="col-10 h-full justify-content-start" type="text" pInputText [(ngModel)]="login" />
+                          </div>
+                          <div class="col-12 h-3 b-0 m-0 p-2 grid">
+                            <div class="col-2 h-full text-center">Senha</div>
+                            <input class="col-10 h-full justify-content-start" type="password" pInputText [(ngModel)]="senha" />
+                          </div>
+                          <!-- Botão para confirmar -->
+                          <div class="col-12 h-3 b-0 m-0 p-2 grid">
+                            <div class="pi pi-check                             p-0 m-0 b-0
+                            w-full h-full
+                            bg-green-100 text-green-500
+                            flex justify-content-center align-items-center
+                            cursor-pointer" (click)="finalizarCadastro()">
+                            </div>
+                          </div>
+                        </div>
+                      </p-dialog>
+                    </th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-usuario>
-                <tr>
-                    <td>{{usuario.idUsuario}}</td>
-                    <td>{{usuario.nome}}</td>
-                    <td>{{usuario.login}}</td>
-                    <td>{{usuario.senha}}</td>
-                    <td>{{usuario.dataCriacao}}</td>
-                    <td>{{usuario.dataDesligamento}}</td>
+            <ng-template pTemplate="body" let-usuario >
+                <tr class="grid p-0 m-0 b-0">
+                    <td class="col-1 text-center">{{usuario.idUsuario}}</td>
+                    <td class="col-1 text-center">{{usuario.nome}}</td>
+                    <td class="col-2 text-center">{{usuario.login}}</td>
+                    <td class="col-2 text-center">{{usuario.senha}}</td>
+                    <td class="col-2 text-center">{{usuario.dataCriacao}}</td>
+                    <td class="col-2 text-center">{{usuario.dataDesligamento}}</td>
+                    <td class="col-2 text-center h-full">
+                      <div class="w-full h-full p-0 m-0 b-0 outline-none grid">
+                        <div class="col-6 h-full bg-yellow-500 cursor-pointer border-2 border-solid border-0 border-right-none">
+                          <i class="pi pi-pencil text-yellow-800"></i>
+                        </div>
+                        <div class="col-6 h-full bg-red-600 cursor-pointer border-2 border-solid border-0">
+                          <i class="pi pi-times text-red-900"></i>
+                        </div>
+                      </div>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>
+
     </div>
 
 </div>

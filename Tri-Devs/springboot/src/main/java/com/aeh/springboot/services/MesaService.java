@@ -26,7 +26,7 @@ public class MesaService {
     }
 
     public Mesa alterarMesa(Mesa mesa){
-        if(mesa.getIdMesa() >= 0){
+        if(mesaRepository.existsById(mesa.getIdMesa())){
             return(mesaRepository.save(mesa));
         }
         else{
@@ -43,4 +43,5 @@ public class MesaService {
             return(false);
         }
     }
+
 }

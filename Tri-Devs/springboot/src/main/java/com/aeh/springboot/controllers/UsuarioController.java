@@ -43,6 +43,11 @@ public class UsuarioController {
         return(ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(usuario)));
     }
 
+    @PutMapping("")
+    public ResponseEntity<Usuario> atualizarUsuario(@RequestBody Usuario usuario){
+        return(ResponseEntity.status(HttpStatus.GONE).body(usuarioService.alterarUsuario(usuario)));
+    }
+
     @DeleteMapping("")
     public ResponseEntity<String> deletarUsuario(@RequestBody Usuario usuario){
 

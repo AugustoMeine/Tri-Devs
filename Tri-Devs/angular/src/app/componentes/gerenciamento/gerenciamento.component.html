@@ -1,6 +1,6 @@
 <main class="flex flex-column bg-blue-800">
-    <!-- 
-        Header da página 
+    <!--
+        Header da página
     -->
     <span class = "surface-50 w-12 h-1
     m-0 b-0 p-0">
@@ -9,41 +9,41 @@
             <div class="col w-full h-full
             text-center text-3xl text-white-800
             m-0 b-0 p-0
-            cursor-pointer" 
+            cursor-pointer"
             (click)="direcionamento()">
-                Administração (validar nome)
+                Administração
             </div>
         </div>
     </span>
 
-    <!-- 
-        Corpo da página (área dos pedidos/comandas recebidos) 
+    <!--
+        Corpo da página (área dos pedidos/comandas recebidos)
     -->
     <div class="w-full h-11 text-0 grid
     m-0 b-0 p-0">
         <!-- Área das opções de cadastro -->
         <div class="col-1 h-full
-        m-0 b-0 p-0">               
+        m-0 b-0 p-0">
             <!-- Cadastrar Usuario-->
             <div class="h-4 w-full m-0 b-0 p-1">
 
                 <p-button (click)="gerenciarUsuario()"
-                styleClass="p-button-outlined p-button-secondary 
-                w-full h-full border-noround 
+                styleClass="p-button-outlined p-button-secondary
+                w-full h-full border-noround
                 m-0 b-0 p-0 grid">
                     <div class="col-12 grid w-full h-6
                     m-0 b-0 p-0">
                         <div class="col m-0 b-0 p-0
                         pi pi-user-plus flex justify-content-center align-items-center
                         w-full h-full
-                        text-white text-2xl" 
+                        text-white text-2xl"
                         iconPos="top">
-                        </div> 
+                        </div>
                     </div>
                     <div class="col-12 grid w-full h-6
                     m-0 b-0 p-0">
                         <div class="col m-0 b-0 p-0 w-full h-full
-                        flex justify-content-center align-items-center 
+                        flex justify-content-center align-items-center
                         text-white text-xl">
                             Usuario
                         </div>
@@ -55,22 +55,22 @@
             <!-- Cadastrar Mesa-->
             <div class="h-4 w-full m-0 b-0 p-1">
                 <p-button (click)="gerenciarMesa()"
-                styleClass="p-button-outlined p-button-secondary 
-                w-full h-full border-noround 
+                styleClass="p-button-outlined p-button-secondary
+                w-full h-full border-noround
                 m-0 b-0 p-0 grid">
                     <div class="col-12 grid w-full h-6
                     m-0 b-0 p-0">
                         <div class="col m-0 b-0 p-0
                         pi pi-table flex justify-content-center align-items-center
                         w-full h-full
-                        text-white text-2xl" 
+                        text-white text-2xl"
                         iconPos="top">
-                        </div> 
+                        </div>
                     </div>
                     <div class="col-12 grid w-full h-6
                     m-0 b-0 p-0">
                         <div class="col m-0 b-0 p-0 w-full h-full
-                        flex justify-content-center align-items-center 
+                        flex justify-content-center align-items-center
                         text-white text-xl">
                             Mesa
                         </div>
@@ -81,22 +81,22 @@
             <!-- Cadastrar Item-->
             <div class="h-4 w-full m-0 b-0 p-1">
                 <p-button (click)="gerenciarItem()"
-                styleClass="p-button-outlined p-button-secondary 
-                w-full h-full border-noround 
+                styleClass="p-button-outlined p-button-secondary
+                w-full h-full border-noround
                 m-0 b-0 p-0 grid">
                     <div class="col-12 grid w-full h-6
                     m-0 b-0 p-0">
                         <div class="col m-0 b-0 p-0
                         pi pi-apple flex justify-content-center align-items-center
                         w-full h-full
-                        text-white text-2xl" 
+                        text-white text-2xl"
                         iconPos="top">
-                        </div> 
+                        </div>
                     </div>
                     <div class="col-12 grid w-full h-6
                     m-0 b-0 p-0">
                         <div class="col m-0 b-0 p-0 w-full h-full
-                        flex justify-content-center align-items-center 
+                        flex justify-content-center align-items-center
                         text-white text-xl">
                             Item
                         </div>
@@ -107,7 +107,7 @@
         </div>
 
         <!-- Área do formulário -->
-        <div class="col-11 h-full bg-green-800
+        <div class="col-11 h-full
         m-0 b-0 p-0">
 
             <app-gerenciamento-usuario *ngIf="gerenciamentoAtual == 'Usuario'"></app-gerenciamento-usuario>
@@ -117,15 +117,15 @@
             <!-- Tela em branco, quando nada está selecionado -->
             <div class="w-full h-full p-2 text-0" *ngIf="gerenciamentoAtual == 'x'">
 
-                <div class="w-full h-full 
+                <div class="w-full h-full
                 p-0 m-0 b-0
                 surface-700
                 border-solid broder-round-2x1 surface-border
                 flex justify-content-center align-items-center ">-</div>
-            
+
             </div>
 
         </div>
-    </div>  
-    
+    </div>
+
 </main>
