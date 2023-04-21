@@ -10,4 +10,5 @@ import java.util.List;
 public interface MesaRepository extends JpaRepository<Mesa,Long> {
     Mesa findById(long id);
     List<Mesa> findAll();
+    boolean existsById(long idMesa);
 }

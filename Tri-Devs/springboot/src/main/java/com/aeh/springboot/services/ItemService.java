@@ -1,6 +1,7 @@
 package com.aeh.springboot.services;
 
 import com.aeh.springboot.models.Item;
+import com.aeh.springboot.models.Mesa;
 import com.aeh.springboot.repositories.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ItemService {
     }
 
     public Item alterarItem(Item item){
-        if(item.getIdItem() >= 0){
+        if(itemRepository.existsById(item.getIdItem())){
             return(itemRepository.save(item));
         }
         else{

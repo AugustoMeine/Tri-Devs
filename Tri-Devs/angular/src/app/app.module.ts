@@ -20,6 +20,7 @@ import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { InputTextModule } from 'primeng/inputtext';
+import { DialogModule } from 'primeng/dialog';
 
 
 //Componentes
@@ -63,7 +64,8 @@ import { GerenciamentoMesaComponent } from './componentes/gerenciamento/gerencia
     TableModule,
     BadgeModule,
     MegaMenuModule,
-    InputTextModule
+    InputTextModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

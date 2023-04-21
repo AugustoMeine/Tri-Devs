@@ -28,18 +28,18 @@ export class CozinhaComponent implements OnInit{
 
     this.listaComandas = [
       new Comanda(1,[
-        new Pedido(1,new Item(1,'Pizza de chocolate',45.90,true),2),      
+        new Pedido(1,new Item(1,'Pizza de chocolate',45.90,true),2),
         new Pedido(1,new Item(2,'Pizza de frango',25.90,true),1),
-        new Pedido(1,new Item(3,'Coca-cola',12.50,true),1),
-        new Pedido(1,new Item(4,'Agua sem gas',12.50,true),1)
+        new Pedido(1,new Item(3,'Coca-cola',12.50,false),1),
+        new Pedido(1,new Item(4,'Agua sem gas',12.50,false),1)
       ],1),
       new Comanda(2,[
-        new Pedido(1,new Item(1,'Pizza de portuguesa',35.90,true),1),      
+        new Pedido(1,new Item(1,'Pizza de portuguesa',35.90,true),1),
         new Pedido(1,new Item(2,'Pizza de frango',25.90,true),2),
-        new Pedido(1,new Item(3,'Coca-cola',12.50,true),1),
-        new Pedido(1,new Item(4,'Agua sem gas',12.50,true),1)
+        new Pedido(1,new Item(3,'Coca-cola',12.50,false),1),
+        new Pedido(1,new Item(4,'Agua sem gas',12.50,false),1)
       ],3),
-      new Comanda(3,[      
+      new Comanda(3,[
         new Pedido(1,new Item(2,'Pizza de frango',25.90,true),2)
       ],7)
     ];
@@ -53,7 +53,7 @@ export class CozinhaComponent implements OnInit{
   direcionamento(){
     this.router.navigate(['/Direcionamento'])
   }
-  
+
   selecionaComanda(comanda:Comanda){
     this.existePedidoTela = true;
     this.comandaSendoAtendida = comanda;
@@ -70,8 +70,8 @@ export class CozinhaComponent implements OnInit{
     }
   }
 
-  atualizaPedidosPendentePreparo(){  
-    
+  atualizaPedidosPendentePreparo(){
+
     let validacao: boolean = false;
 
     this.listaComandasPendentePreparo = [];
@@ -84,7 +84,7 @@ export class CozinhaComponent implements OnInit{
               validacao = true;
               return;
             }
-          }          
+          }
         );
         if((validacao) && (comanda.comandaAberta == true)){
           this.listaComandasPendentePreparo.push(comanda);
@@ -92,9 +92,9 @@ export class CozinhaComponent implements OnInit{
         };
       }
     );
-    
+
   }
- 
+
   finalizarPedido(){
     if(this.comandaSendoAtendida.idComanda != -1){
       this.listaComandas.forEach(

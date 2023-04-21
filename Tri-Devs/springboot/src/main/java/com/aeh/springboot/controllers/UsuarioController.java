@@ -35,15 +35,21 @@ public class UsuarioController {
         return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.validarLogin(login,senha)));
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     public ResponseEntity<Usuario> salvarUsuario(@RequestBody Usuario usuario){
+        usuario.setIdUsuario(-1L);
         usuario.setDataCriacao(LocalDateTime.now());
-        usuario.setDataDesligamento(null);
+        usuario.setDataDesligamento(LocalDateTime.of(3000,12,31,0,0));
 
         return(ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(usuario)));
     }
 
-    @DeleteMapping("")
+    @PutMapping("/")
+    public ResponseEntity<Usuario> atualizarUsuario(@RequestBody Usuario usuario){
+        return(ResponseEntity.status(HttpStatus.GONE).body(usuarioService.alterarUsuario(usuario)));
+    }
+
+    @DeleteMapping("/")
     public ResponseEntity<String> deletarUsuario(@RequestBody Usuario usuario){
 
         if(usuarioService.deletarUsuario(usuario)){

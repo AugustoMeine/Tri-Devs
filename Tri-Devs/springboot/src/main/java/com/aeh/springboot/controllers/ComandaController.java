@@ -2,6 +2,7 @@ package com.aeh.springboot.controllers;
 
 import com.aeh.springboot.models.Comanda;
 import com.aeh.springboot.services.ComandaService;
+import com.aeh.springboot.services.MesaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,13 +13,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Comanda")
-@CrossOrigin("*")
+@CrossOrigin(origins = {"http://localhost:4200","*"})
 @RequiredArgsConstructor
 public class ComandaController {
 
     private final ComandaService comandaService;
 
-    @GetMapping({"/",""})
+    @GetMapping("/")
     public ResponseEntity<List<Comanda>> lerComandas(){
         return(ResponseEntity.status(HttpStatus.OK).body(comandaService.lerComandas()));
     }
@@ -28,12 +29,17 @@ public class ComandaController {
         return(ResponseEntity.status(HttpStatus.OK).body(comandaService.lerComanda(idComanda)));
     }
 
-    @PostMapping({"/",""})
+    @PostMapping("/")
     public ResponseEntity<Comanda> salvarComanda(@RequestBody Comanda comanda){
         return(ResponseEntity.status(HttpStatus.CREATED).body(comandaService.salvarComanda(comanda)));
     }
 
-    @DeleteMapping({"/",""})
+    @PutMapping("/")
+    public ResponseEntity<Comanda> atualizarComanda(@RequestBody Comanda comanda){
+        return(ResponseEntity.status(HttpStatus.GONE).body(comandaService.alterarComanda(comanda)));
+    }
+
+    @DeleteMapping("/")
     public ResponseEntity<String> deletarComanda(@RequestBody Comanda comanda){
 
         if(comandaService.deletarComanda(comanda)){

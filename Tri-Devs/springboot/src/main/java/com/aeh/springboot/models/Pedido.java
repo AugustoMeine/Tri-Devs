@@ -21,13 +21,17 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idPedido;
 
-    @ManyToOne
-    @JoinColumn(name = "idItem")
-    private Item item;
+//    @ManyToOne
+//    @JoinColumn(name = "idItem")
+//    private Item item;
+    @Column(nullable = false)
+    private long idItem;
 
-    @ManyToOne
-    @JoinColumn(name = "idComanda")
-    private Comanda comanda;
+//    @ManyToOne
+//    @JoinColumn(name = "idComanda")
+//    private Comanda comanda;
+    @Column(nullable = false)
+    private long idComanda;
 
     @Column(nullable = false)
     private int quantidadeItem;

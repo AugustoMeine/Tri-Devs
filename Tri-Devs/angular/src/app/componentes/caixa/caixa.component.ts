@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-caixa',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class CaixaComponent {
 
+  constructor(private router:Router) {
+  }
+  direcionamento(){
+    this.router.navigate(['/Direcionamento'])
+  }
 }

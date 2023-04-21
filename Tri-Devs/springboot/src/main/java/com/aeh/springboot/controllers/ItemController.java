@@ -13,13 +13,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Item")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://localhost:4200","*"})
 @RequiredArgsConstructor
 public class ItemController{
 
     private final ItemService itemService;
 
-    @GetMapping({"/",""})
+    @GetMapping("/")
     public ResponseEntity<List<Item>> lerItens(){
         return(ResponseEntity.status(HttpStatus.OK).body(itemService.lerItems()));
     }
@@ -29,12 +29,17 @@ public class ItemController{
         return(ResponseEntity.status(HttpStatus.OK).body(itemService.lerItem(idItem)));
     }
 
-    @PostMapping({"/",""})
+    @PostMapping("/")
     public ResponseEntity<Item> salvarItem(@RequestBody Item item){
         return(ResponseEntity.status(HttpStatus.CREATED).body(itemService.salvarItem(item)));
     }
 
-    @DeleteMapping({"/",""})
+    @PutMapping("/")
+    public ResponseEntity<Item> atualizarItem(@RequestBody Item item){
+        return(ResponseEntity.status(HttpStatus.GONE).body(itemService.alterarItem(item)));
+    }
+
+    @DeleteMapping("/")
     public ResponseEntity<String> deletarItem(@RequestBody Item item){
 
         if(itemService.deletarItem(item)){

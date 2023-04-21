@@ -16,9 +16,15 @@ public class Comanda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idComanda;
 
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "idMesa")
-    private Mesa mesa;
+//    @ManyToOne
+//    @JoinColumn(nullable = false, name = "idMesa")
+//    private Mesa mesa;
+
+    @Column(nullable = false)
+    private long idMesa;
+
+    @Column(nullable = false)
+    private long precoTotalPedido;
 
     @Column(nullable = false)
     private boolean comandaAberta;

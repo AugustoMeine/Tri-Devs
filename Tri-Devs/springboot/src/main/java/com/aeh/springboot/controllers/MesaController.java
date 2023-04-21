@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Mesa")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://localhost:4200","*"})
 @RequiredArgsConstructor
 public class MesaController {
 
     private final MesaService mesaService;
 
-    @GetMapping({"/",""})
+    @GetMapping("/")
     public ResponseEntity<List<Mesa>> lerMesas(){
         return(ResponseEntity.status(HttpStatus.OK).body(mesaService.lerMesas()));
     }
@@ -28,12 +28,17 @@ public class MesaController {
         return(ResponseEntity.status(HttpStatus.OK).body(mesaService.lerMesa(idMesa)));
     }
 
-    @PostMapping({"/",""})
+    @PostMapping("/")
     public ResponseEntity<Mesa> salvarMesa(@RequestBody Mesa mesa){
         return(ResponseEntity.status(HttpStatus.CREATED).body(mesaService.salvarMesa(mesa)));
     }
 
-    @DeleteMapping({"/",""})
+    @PutMapping("/")
+    public ResponseEntity<Mesa> AtualizarMesa(@RequestBody Mesa mesa){
+        return(ResponseEntity.status(HttpStatus.GONE).body(mesaService.alterarMesa(mesa)));
+    }
+
+    @DeleteMapping("/")
     public ResponseEntity<String> deletarMesa(@RequestBody Mesa mesa){
 
         if(mesaService.deletarMesa(mesa)){
