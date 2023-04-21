@@ -1,6 +1,10 @@
 package com.aeh.springboot.controllers;
 
 import com.aeh.springboot.models.Pedido;
+import com.aeh.springboot.repositories.ComandaRepository;
+import com.aeh.springboot.repositories.ItemRepository;
+import com.aeh.springboot.services.ComandaService;
+import com.aeh.springboot.services.ItemService;
 import com.aeh.springboot.services.PedidoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,10 @@ import java.util.List;
 public class PedidoController {
 
     private final PedidoService pedidoService;
+    private final ItemRepository itemRepository;
+    private final ItemService itemService;
+    private final ComandaRepository comandaRepository;
+    private final ComandaService comandaService;
 
     @GetMapping("/")
     public ResponseEntity<List<Pedido>> lerPedidos(){
@@ -33,9 +41,20 @@ public class PedidoController {
         return(ResponseEntity.status(HttpStatus.OK).body(pedidoService.lerPedido(idPedido)));
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Pedido> salvarPedido(@RequestBody Pedido pedido){
-        return(ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.salvarPedido(pedido)));
+    @PostMapping("/{idItem}/{idComanda}")
+    public ResponseEntity<Pedido> salvarPedido(@PathVariable long idItem,@PathVariable long idComanda,@RequestBody Pedido pedido){
+
+        if(itemRepository.existsById(idItem) && comandaRepository.existsById(idComanda)){
+
+            pedido.setComanda(comandaService.lerComanda(idComanda));
+            pedido.setItem(itemService.lerItem(idItem));
+
+            return(ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.salvarPedido(pedido)));
+        }
+        else{
+            return(null);
+        }
+
     }
 
     @PutMapping("/")

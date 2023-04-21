@@ -37,10 +37,6 @@ public class UsuarioController {
 
     @PostMapping("/")
     public ResponseEntity<Usuario> salvarUsuario(@RequestBody Usuario usuario){
-        usuario.setIdUsuario(-1L);
-        usuario.setDataCriacao(LocalDateTime.now());
-        usuario.setDataDesligamento(LocalDateTime.of(3000,12,31,0,0));
-
         return(ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(usuario)));
     }
 

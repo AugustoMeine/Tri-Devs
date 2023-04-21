@@ -32,16 +32,14 @@ public class PedidoService {
 
     public Pedido salvarPedido(Pedido pedido){
 
-        if(itemRepository.existsById(pedido.getIdItem()) && comandaRepository.existsById(pedido.getIdComanda())){
+        if(itemRepository.existsById(pedido.getItem().getIdItem()) && comandaRepository.existsById(pedido.getComanda().getIdComanda())){
             //Valida se a comanda está aberta
-            Comanda comanda = comandaService.lerComanda(pedido.getIdComanda());
+            Comanda comanda = comandaService.lerComanda(pedido.getComanda().getIdComanda());
 
             if(comanda.isComandaAberta()){
 
                 pedido.setHoraResgistro(LocalTime.parse(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
                 pedido.setDataResgistro(LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")),DateTimeFormatter.ofPattern("dd/MM/uuuu")));
-
-
 
                 return(pedidoRepository.save(pedido));
             }
@@ -57,9 +55,9 @@ public class PedidoService {
 
     public Pedido alterarPedido(Pedido pedido){
         if(pedidoRepository.existsById(pedido.getIdPedido())){
-            if(itemRepository.existsById(pedido.getIdItem()) && comandaRepository.existsById(pedido.getIdComanda())){
+            if(itemRepository.existsById(pedido.getItem().getIdItem()) && comandaRepository.existsById(pedido.getComanda().getIdComanda())){
                 //Valida se a comanda está aberta
-                Comanda comanda = comandaService.lerComanda(pedido.getIdComanda());
+                Comanda comanda = comandaService.lerComanda(pedido.getComanda().getIdComanda());
 
                 if(comanda.isComandaAberta()){
                     return(pedidoRepository.save(pedido));
