@@ -1,3 +1,216 @@
-<div (click)="direcionamento()" class="w-screen h-screen">
+<main class="flex flex-column bg-blue-800">
 
-</div>
+  <!--
+      Header da página
+  -->
+  <span class = "surface-50 w-12 h-1
+    m-0 b-0 p-0">
+        <div class="w-full h-full">
+            <div class="col w-full h-full
+            text-center text-3xl text-white-800
+            cursor-pointer"
+                 (click)="direcionamento()">
+                Cozinha
+            </div>
+        </div>
+    </span>
+
+  <!--
+      Corpo da página (área dos pedidos/comandas recebidos)
+  -->
+  <div class="w-full h-11 p-2 text-0">
+
+    <!--
+        Painel das comandas
+    -->
+    <div class="w-full h-12
+        p-0 m-0 b-0
+        surface-700
+        grid">
+      <!--
+          Entrada das comandas
+      -->
+      <div class="col-2 h-12
+            p-0 m-0 b-0
+            border-solid broder-round-2x1 surface-border border-right-none
+            flex flex-wrap flex-row
+            overflow-y-auto">
+        <!--Lista das comandas-->
+        <div id="AreaTabela"
+             class="p-0 m-0 b-0
+                w-full h-full">
+          <!-- Cabeçario da tabela -->
+          <div class="p-0 m-0 b-0
+                    w-full h-1 surface-100 text-800
+                    grid text-center">
+            <!-- Coluna 1 -->
+            <div class="col p-0 m-0 b-0
+                        w-full h-full border-bottom-2 surface-border
+                        flex justify-content-center align-items-center">
+              <h4>Mesa</h4>
+            </div>
+          </div>
+
+          <!-- Corpo da tabela -->
+          <div class="p-0 m-0 b-0
+                    w-full h-11
+                    flex flex-column text-center">
+            <!-- Linha da tabela -->
+            <div *ngFor="let mesa of listaMesas"
+                 class="p-0 m-0 b-0
+                        w-full h-1
+                        grid text-center
+                        cursor-pointer"
+                 (click)="selecionarMesa(mesa)">
+              <!-- Comanda selecionada -->
+              <!-- Coluna 1 -->
+              <div class="col p-0 m-0 b-0
+                            w-full h-full border-bottom-1 bg-blue-200
+                            flex justify-content-center align-items-center" *ngIf="mesa.idMesa == this.mesaSelecionada.idMesa">
+                {{mesa.idMesa}}
+              </div>
+
+              <!-- Comanda não selecionada -->
+              <!-- Coluna 1 -->
+              <div class="col p-0 m-0 b-0
+                            w-full h-full border-bottom-1 surface-border
+                            flex justify-content-center align-items-center" *ngIf="mesa.idMesa == this.mesaSelecionada.idMesa">
+                {{mesa.idMesa}}
+              </div>
+
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+      <!--
+          Detalhamento da mesa selecionada
+      -->
+      <div class="col-10 h-12
+            p-0 m-0 b-0
+            border-solid broder-round-2x1 surface-border
+            grid">
+        <!-- Área do detalhamento (nova DIV criada para deixar responsivo) -->
+        <div class="col w-full h-full
+                p-0 m-0 b-0">
+          <!-- ID da mesa -->
+          <div class="col w-full h-1
+                    p-0 m-0 b-0
+                    border-bottom-1 surface-border
+                    grid">
+            <div class="col w-full h-full
+                        p-0 m-0 b-0
+                        flex justify-content-center align-items-center">
+              <h2> Mesa {{mesaSelecionada.idMesa}}</h2>
+            </div>
+          </div>
+
+          <!-- Área com os pedidos -->
+          <div class="col w-full h-10
+                    p-0 m-0 b-0
+                    grid">
+
+            <!-- Cabeçario da tabela de pedidos -->
+            <div class="p-0 m-0 b-0
+                         w-full h-1 surface-100 text-800
+                         grid text-center ">
+              <!-- Coluna: ID do Pedido -->
+              <div class="col p-0 m-0 b-0
+                             w-full h-full border-bottom-2 surface-border
+                             flex justify-content-center align-items-center">
+                <h4>ID Pedido</h4>
+              </div>
+              <!-- Coluna: Nome do item -->
+              <div class="col p-0 m-0 b-0
+                             w-full h-full border-bottom-2 surface-border
+                             flex justify-content-center align-items-center">
+                <h4>Nome Item</h4>
+              </div>
+              <!-- Coluna: Quantidade do item -->
+              <div class="col p-0 m-0 b-0
+                             w-full h-full border-bottom-2 surface-border
+                             flex justify-content-center align-items-center">
+                <h4>Quantidade Item</h4>
+              </div>
+            </div>
+
+            <!-- Lista com os pedidos vinculados a mesa -->
+            <div class="p-0 m-0 b-0
+                        w-full h-11
+                        flex flex-column text-center overflow-y-auto">
+
+              <!-- Linha da tabela de pedidos -->
+              <div *ngFor="let pedido of listaPedidos"
+                   class="p-0 m-0 b-0
+                            w-full h-1
+                            grid text-center
+                            cursor-pointer">
+                <!-- Comanda selecionada -->
+                <!-- Coluna: ID do Pedido -->
+                <div class="col p-0 m-0 b-0
+                                w-full h-full border-bottom-1
+                                flex justify-content-center align-items-center"
+                     *ngIf="pedido.item.necessitaPreparoCozinha">
+                  {{pedido.idPedido}}
+                </div>
+                <!-- Coluna: Nome do item -->
+                <div class="col p-0 m-0 b-0
+                                w-full h-full border-bottom-1
+                                flex justify-content-center align-items-center"
+                     *ngIf="pedido.item.necessitaPreparoCozinha">
+                  {{pedido.item.nome}}
+                </div>
+
+                <!-- Coluna: Quantidade do item -->
+                <div class="col p-0 m-0 b-0
+                                w-full h-full border-bottom-1
+                                flex justify-content-center align-items-center"
+                     *ngIf="pedido.item.necessitaPreparoCozinha">
+                  {{pedido.quantidadeItem}}
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirmação ou encerramento do pedido-->
+          <div class="col w-full h-1
+                    border-top-1 surface-border
+                    p-0 m-0 b-0
+                    grid">
+
+            <div class="col w-6 h-full
+                        p-0 m-0 b-0
+                        flex justify-content-center align-items-center
+                        border-right-1 surface-border">
+              <div class="pi pi-times                             p-0 m-0 b-0
+                            w-full h-full
+                            bg-red-100 text-red-500
+                            flex justify-content-center align-items-center
+                            cursor-pointer"
+                   (click)="cancelarPedido()"></div>
+            </div>
+
+            <div class="col w-6 h-full
+                        p-0 m-0 b-0">
+              <div class="pi pi-check                             p-0 m-0 b-0
+                            w-full h-full
+                            bg-green-100 text-green-500
+                            flex justify-content-center align-items-center
+                            cursor-pointer"
+                   (click)="finalizarPedido()"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>

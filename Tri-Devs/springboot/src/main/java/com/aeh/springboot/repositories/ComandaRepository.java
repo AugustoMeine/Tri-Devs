@@ -13,7 +13,7 @@ import java.util.List;
 public interface ComandaRepository extends JpaRepository<Comanda,Long> {
     Comanda findById(long id);
     List<Comanda> findAll();
-    @Query("SELECT c FROM Comanda c WHERE c.idMesa = :vMesa AND c.comandaAberta = true")
+    @Query("SELECT c FROM Comanda c WHERE c.mesa.idMesa = :vMesa AND c.comandaAberta = true")
     List<Comanda> localizarComandasPorMesa(@Param("vMesa") long vMesa);
 
     boolean existsById(long idComanda);
