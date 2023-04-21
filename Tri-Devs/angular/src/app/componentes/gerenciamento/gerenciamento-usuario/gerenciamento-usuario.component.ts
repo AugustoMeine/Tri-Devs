@@ -54,13 +54,53 @@ export class GerenciamentoUsuarioComponent implements OnInit{
     this.usuarioSelecionado = this.listaUsuarios[0];
   }
 
+  ngOnInit(): void {
+  }
+
   cadastrarModel(){
     this.cadastroVisivel = true;
   }
 
   finalizarCadastro(){
+    this.usuarioService.salvarUsuario(new Usuario(-1,this.nome,this.login,this.senha,"","")).subscribe(
+      {
+      next:(data:Usuario) =>{
+        if(data){
+          console.log("Usuario cadastrado com sucesso!")
+        }
+        else{
+          console.log("Usuario não cadastrado!")
+        }
+      },
+      error:(erro:any)=>{
+        console.log("Falha na conexão com a API: ");
+        console.log(erro);
+      }
+      }
+    );
+    // Atualiza a lista de usuários
+    this.usuarioService.lerUsuarios().subscribe(
+      {
+        next:(data:Usuario[])=>{
+          if(data){
+            this.listaUsuarios = []
+            data.forEach(
+              (usuario:Usuario)=>{
+                this.listaUsuarios.push(usuario);
+              }
+            )
+          }else{
+            console.log("Não existente usuários cadastrados!");
+          }
+        },
+        error:(erro:any)=>{
+          console.log("Falha na conexão com a API: ");
+          console.log(erro);
+        }
+      }
+    );
+
+    this.cadastroVisivel = false;
   }
 
-  ngOnInit(): void {
-  }
 }
