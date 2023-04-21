@@ -2,16 +2,16 @@
 bg-blue-800">
 
     <span class="w-4 h-20rem bg-gray-900 p-0 p-1
-    border-round-xl">
+    border-round-xl shadow-6">
 
         <!-- Nome site -->
         <div class="grid text-center w-full h-2
         p-1 m-0 b-0">
-            <span class="col w-full h-full 
+            <span class="col w-full h-full
             flex align-items-center justify-content-center
-            text-4xl">Tri-Devs</span> 
+            text-4xl">Tri-Devs</span>
         </div>
-               
+
         <!-- Corpo login -->
 
         <div class="grid w-full h-4
@@ -20,7 +20,7 @@ bg-blue-800">
             p-0 m-0 b-0
             flex align-items-center justify-content-center">
                 <span class="p-inputgroup-addon w-2 h-4rem"><i class="pi pi-user"></i></span>
-                <input class="w-10 h-4rem text-lg" type="text" pInputText placeholder="Login" [(ngModel)]="login">         
+                <input class="w-10 h-4rem text-lg" type="text" pInputText placeholder="Login" [(ngModel)]="login">
             </div>
         </div>
 
@@ -31,10 +31,10 @@ bg-blue-800">
             p-0 m-0 b-0
             flex align-items-center justify-content-center">
                 <span class="p-inputgroup-addon w-2 h-4rem"><i class="pi pi-lock"></i></span>
-                <input class="w-10 h-4rem text-lg" type="password" pInputText placeholder="Senha" [(ngModel)]="senha">         
+                <input class="w-10 h-4rem text-lg" type="password" pInputText placeholder="Senha" [(ngModel)]="senha">
             </div>
         </div>
-        
+
         <!-- Botão para logar -->
         <div class="grid w-full h-2
         p-1 m-0 b-0">
@@ -42,9 +42,9 @@ bg-blue-800">
             p-0 m-0 b-0">
                 <button class="w-12 h-full" pButton type="button" label="Entrar" (click)="entrar()">
                 </button>
-            </div>            
+            </div>
         </div>
-                        
+
     </span>
-    
+
 </main>
