@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit{
             console.log(data);
             this.route.navigate(['/Direcionamento']);
           }else{
-            console.log("Erro ao logar!");
+            console.log("Login e/ou senha inválido(s)");
             console.log(data);
           }
         },

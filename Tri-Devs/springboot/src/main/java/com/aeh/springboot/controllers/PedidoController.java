@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -34,10 +35,6 @@ public class PedidoController {
 
     @PostMapping("/")
     public ResponseEntity<Pedido> salvarPedido(@RequestBody Pedido pedido){
-
-        pedido.setHoraResgistro(LocalTime.now());
-        pedido.setDataResgistro(LocalDate.now());
-
         return(ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.salvarPedido(pedido)));
     }
 

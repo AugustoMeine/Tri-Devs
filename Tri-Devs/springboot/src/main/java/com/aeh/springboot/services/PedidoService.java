@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -36,8 +37,11 @@ public class PedidoService {
             Comanda comanda = comandaService.lerComanda(pedido.getIdComanda());
 
             if(comanda.isComandaAberta()){
-                pedido.setDataResgistro(LocalDate.now());
-                pedido.setHoraResgistro(LocalTime.now());
+
+                pedido.setHoraResgistro(LocalTime.parse(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+                pedido.setDataResgistro(LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")),DateTimeFormatter.ofPattern("dd/MM/uuuu")));
+
+
 
                 return(pedidoRepository.save(pedido));
             }
