@@ -18,6 +18,7 @@ export class CaixaComponent implements OnInit{
 
   constructor(private router: Router){
     this.mesaSelecionada = this.listaMesas[0];
+    //o
   }
 
   ngOnInit(): void {
