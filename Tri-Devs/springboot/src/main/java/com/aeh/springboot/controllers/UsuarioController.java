@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,14 +32,12 @@ public class UsuarioController {
 
     @GetMapping("/Login/{login}/{senha}")
     public ResponseEntity<Usuario> validarLogin(@PathVariable String login, @PathVariable String senha){
-
-        //Descriptografia pendete
-
         return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.validarLogin(login,senha)));
     }
 
     @PostMapping("/")
     public ResponseEntity<Usuario> salvarUsuario(@RequestBody Usuario usuario){
+
         return(ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(usuario)));
     }
 
@@ -45,15 +46,9 @@ public class UsuarioController {
         return(ResponseEntity.status(HttpStatus.GONE).body(usuarioService.alterarUsuario(usuario)));
     }
 
-    @DeleteMapping("/")
-    public ResponseEntity<String> deletarUsuario(@RequestBody Usuario usuario){
-
-        if(usuarioService.deletarUsuario(usuario)){
-            return(ResponseEntity.status(HttpStatus.GONE).body("Usuario deletado com sucesso!"));
-        }
-        else{
-            return(ResponseEntity.status(HttpStatus.CONFLICT).body("Usuario não deletado!"));
-        }
+    @GetMapping("/Deletar/{idUsuario}")
+    public boolean deletarUsuario(@PathVariable long idUsuario){
+        return(usuarioService.deletarUsuario(idUsuario));
     }
 
 }

@@ -36,31 +36,11 @@ public class ComandaController {
 
     @PostMapping("/{idMesa}")
     public ResponseEntity<Comanda> salvarComanda(@PathVariable long idMesa,@RequestBody Comanda comanda){
-
-        if(mesaRepository.existsById(idMesa)){
-            comanda.setMesa(mesaService.lerMesa(idMesa));
-
-            return(ResponseEntity.status(HttpStatus.CREATED).body(comandaService.salvarComanda(comanda)));
-        }
-        else{
-            return(null);
-        }
-
+        return(ResponseEntity.status(HttpStatus.CREATED).body(comandaService.salvarComanda(idMesa,comanda)));
     }
 
     @GetMapping("/Finalizar/{idComanda}")
-    public ResponseEntity<Comanda> atualizarComanda(@PathVariable long idComanda){
+    public ResponseEntity<Comanda> finalizarComanda(@PathVariable long idComanda){
         return(ResponseEntity.status(HttpStatus.CREATED).body(comandaService.finalizarComanda(idComanda)));
-    }
-
-    @DeleteMapping("/")
-    public ResponseEntity<String> deletarComanda(@RequestBody Comanda comanda){
-
-        if(comandaService.deletarComanda(comanda)){
-            return(ResponseEntity.status(HttpStatus.GONE).body("Comanda deletado com sucesso!"));
-        }
-        else{
-            return(ResponseEntity.status(HttpStatus.CONFLICT).body("Comanda não deletado!"));
-        }
     }
 }

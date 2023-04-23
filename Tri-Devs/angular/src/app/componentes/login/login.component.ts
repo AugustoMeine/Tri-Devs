@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/models/Usuario.model';
-import { UsuarioService } from 'src/app/services/usuario/Usuario.service';
+import { UsuarioService } from 'src/app/services/Usuario.service';
+import {Usuario} from "../../models/Usuario.model";
 
 
 
@@ -43,8 +43,6 @@ export class LoginComponent implements OnInit{
         }
       }
     );
-
-
   }
 
 }

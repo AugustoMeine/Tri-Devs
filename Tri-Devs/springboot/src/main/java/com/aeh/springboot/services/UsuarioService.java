@@ -3,10 +3,11 @@ package com.aeh.springboot.services;
 import com.aeh.springboot.models.Usuario;
 import com.aeh.springboot.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final Logger log = LoggerFactory.getLogger(UsuarioService.class);
 
     public Usuario lerUsuario(long idUsuario){
         return(usuarioRepository.findById(idUsuario));
@@ -25,10 +27,14 @@ public class UsuarioService {
     }
 
     public Usuario validarLogin(String login, String senha){
-        return(usuarioRepository.validarAcessoUsuario(login, senha));
+        return(usuarioRepository.validarAcessoUsuario(login,senha));
     };
 
     public Usuario salvarUsuario(Usuario usuario){
+        //Valida se já existe alguem com o usuário notificado
+        if(usuarioRepository.existsByLogin(usuario.getLogin())){
+          return(null);
+        }
 
         usuario.setIdUsuario(-1L);
         usuario.setDataCriacao(LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss")),DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss")));
@@ -38,22 +44,32 @@ public class UsuarioService {
     }
 
     public Usuario alterarUsuario(Usuario usuario){
-        if(usuario.getIdUsuario() >= 0){
-            return(usuarioRepository.save(usuario));
-        }
-        else{
+        if(!usuarioRepository.existsById(usuario.getIdUsuario())){
+            log.info("Possui usuario existente!" + usuario.getLogin());
             return(null);
         }
+
+        Usuario usuarioFinal = usuarioRepository.findById(usuario.getIdUsuario());
+
+        usuarioFinal.setLogin(usuario.getLogin());
+        usuarioFinal.setSenha(usuario.getSenha());
+        usuarioFinal.setNome(usuario.getNome());
+
+        //Valida se o login novo já existe
+        if(usuarioRepository.existsByLogin(usuarioFinal.getLogin())){
+            return(null);
+        }
+
+        return(usuarioRepository.save(usuarioFinal));
     }
 
-    public boolean deletarUsuario(Usuario usuario){
-        if(usuario.getIdUsuario() >= 0){
-            usuarioRepository.delete(usuario);
-            return(true);
+    public boolean deletarUsuario(long idUsuario){
+        //valida se o usuário existe
+        if(usuarioRepository.existsById(idUsuario)){
+            usuarioRepository.deleteById(idUsuario);
+            return(!usuarioRepository.existsById(idUsuario));
         }
-        else{
-            return(false);
-        }
+        return(false);
     }
 
 }

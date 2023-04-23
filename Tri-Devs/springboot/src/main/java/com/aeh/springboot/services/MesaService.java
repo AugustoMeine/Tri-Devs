@@ -25,23 +25,28 @@ public class MesaService {
         return(mesaRepository.save(mesa));
     }
 
-    public Mesa alterarMesa(Mesa mesa){
-        if(mesaRepository.existsById(mesa.getIdMesa())){
-            return(mesaRepository.save(mesa));
-        }
-        else{
+    public Mesa alterarMesa(long idMesa,Mesa mesa){
+
+        if(!mesaRepository.existsById(idMesa)){
             return(null);
         }
+
+        Mesa mesaFinalizada = mesaRepository.findById(idMesa);
+
+        mesaFinalizada.setEstaOcupada(mesa.isEstaOcupada());
+
+        return(mesaRepository.save(mesaFinalizada));
     }
 
-    public boolean deletarMesa(Mesa mesa){
-        if(mesa.getIdMesa() >= 0){
-            mesaRepository.delete(mesa);
-            return(true);
-        }
-        else{
+    public boolean deletarMesa(long idMesa){
+        //Valida se existe, antes de excluir
+        if(!mesaRepository.existsById(idMesa)){
             return(false);
         }
+
+        mesaRepository.deleteById(idMesa);
+        return(!mesaRepository.existsById(idMesa)); //Valida se existe e como apagou, ele inverte.
+
     }
 
 }
