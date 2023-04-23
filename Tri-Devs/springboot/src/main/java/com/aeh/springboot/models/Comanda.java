@@ -21,7 +21,7 @@ public class Comanda {
     private Mesa mesa;
 
     @Column(nullable = false)
-    private long precoTotalPedido;
+    private float precoTotalPedido;
 
     @Column(nullable = false)
     private boolean comandaAberta;

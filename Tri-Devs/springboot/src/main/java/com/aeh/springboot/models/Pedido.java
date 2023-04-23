@@ -25,20 +25,15 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Item item;
-//    @Column(nullable = false)
-//    private long idItem;
 
     @ManyToOne
     @JoinColumn(nullable = false)
     private Comanda comanda;
-//    @Column(nullable = false)
-//    private long idComanda;
 
     @Column(nullable = false)
     private int quantidadeItem;
 
     @Column(nullable = false)
-    //@DateTimeFormat(pattern = "HH:mm:ss")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss", locale = "pt-BR")
     private LocalTime horaResgistro;
 
@@ -48,4 +43,12 @@ public class Pedido {
 
     @Column(nullable = false)
     private String status;
+    /*
+    Pedido - status:
+
+    1)Pendente preparo - quando é registrado e precisa ser preparado na cozinha
+    2)Pendente entrega - quando é registrado e precisa ser entrege ao cliente
+    3)Finalizado - quando é entrege ao cliente, onde ele consumindo, ou não, ele vai pagar.
+    4)Cancelado - quando não será entregue/preparado um pedido previamente registrado. (Não será cobrado no caixa)
+     */
 }

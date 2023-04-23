@@ -29,9 +29,9 @@ public class ItemController{
         return(ResponseEntity.status(HttpStatus.OK).body(itemService.lerItem(idItem)));
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Item> salvarItem(@RequestBody Item item){
-        return(ResponseEntity.status(HttpStatus.CREATED).body(itemService.salvarItem(item)));
+    @PostMapping("/{idItem}")
+    public ResponseEntity<Item> salvarItem(@RequestBody Item item,@PathVariable long idItem){
+        return(ResponseEntity.status(HttpStatus.CREATED).body(itemService.salvarItem(idItem,item)));
     }
 
     @PutMapping("/")
@@ -39,15 +39,9 @@ public class ItemController{
         return(ResponseEntity.status(HttpStatus.GONE).body(itemService.alterarItem(item)));
     }
 
-    @DeleteMapping("/")
-    public ResponseEntity<String> deletarItem(@RequestBody Item item){
-
-        if(itemService.deletarItem(item)){
-            return(ResponseEntity.status(HttpStatus.GONE).body("Item deletado com sucesso!"));
-        }
-        else{
-            return(ResponseEntity.status(HttpStatus.CONFLICT).body("Item não deletado!"));
-        }
+    @GetMapping("/Deletar/{idItem}")
+    public boolean deletarItem(@PathVariable long idItem){
+        return(itemService.deletarItem(idItem));
     }
     
 }

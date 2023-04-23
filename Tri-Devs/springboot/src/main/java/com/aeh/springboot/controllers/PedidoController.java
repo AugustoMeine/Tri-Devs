@@ -1,5 +1,7 @@
 package com.aeh.springboot.controllers;
 
+import com.aeh.springboot.models.Comanda;
+import com.aeh.springboot.models.Item;
 import com.aeh.springboot.models.Pedido;
 import com.aeh.springboot.repositories.ComandaRepository;
 import com.aeh.springboot.repositories.ItemRepository;
@@ -41,35 +43,15 @@ public class PedidoController {
         return(ResponseEntity.status(HttpStatus.OK).body(pedidoService.lerPedido(idPedido)));
     }
 
-    @PostMapping("/{idItem}/{idComanda}")
-    public ResponseEntity<Pedido> salvarPedido(@PathVariable long idItem,@PathVariable long idComanda,@RequestBody Pedido pedido){
-
-        if(itemRepository.existsById(idItem) && comandaRepository.existsById(idComanda)){
-
-            pedido.setComanda(comandaService.lerComanda(idComanda));
-            pedido.setItem(itemService.lerItem(idItem));
-
-            return(ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.salvarPedido(pedido)));
-        }
-        else{
-            return(null);
-        }
-
+    @GetMapping("/{idComanda}/{idItem}/{quantidadeItem}")
+    public ResponseEntity<Pedido> salvarPedido(@PathVariable long idComanda,@PathVariable long idItem,@PathVariable int quantidadeItem){
+        return(ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.salvarPedido(idComanda,idItem,quantidadeItem)));
     }
 
-    @PutMapping("/")
-    public ResponseEntity<Pedido> atualizarPedido(@RequestBody Pedido pedido){
-        return(ResponseEntity.status(HttpStatus.GONE).body(pedidoService.alterarPedido(pedido)));
+    @GetMapping("/AlterarStatus/{idPedido}/{idStatus}")
+    public ResponseEntity<Pedido> alterarStatusPedido(@PathVariable long idPedido, @PathVariable long idStatus){
+        return(ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.alterarStatusPedido(idPedido,idStatus)));
     }
 
-    @DeleteMapping("/")
-    public ResponseEntity<String> deletarPedido(@RequestBody Pedido pedido){
 
-        if(pedidoService.deletarPedido(pedido)){
-            return(ResponseEntity.status(HttpStatus.GONE).body("Pedido deletado com sucesso!"));
-        }
-        else{
-            return(ResponseEntity.status(HttpStatus.CONFLICT).body("Pedido não deletado!"));
-        }
-    }
 }

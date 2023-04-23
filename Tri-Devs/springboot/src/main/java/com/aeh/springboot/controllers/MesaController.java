@@ -33,19 +33,13 @@ public class MesaController {
         return(ResponseEntity.status(HttpStatus.CREATED).body(mesaService.salvarMesa(mesa)));
     }
 
-    @PutMapping("/")
-    public ResponseEntity<Mesa> AtualizarMesa(@RequestBody Mesa mesa){
-        return(ResponseEntity.status(HttpStatus.GONE).body(mesaService.alterarMesa(mesa)));
+    @PutMapping("/{idMesa}")
+    public ResponseEntity<Mesa> AtualizarMesa(@PathVariable long idMesa,@RequestBody Mesa mesa){
+        return(ResponseEntity.status(HttpStatus.GONE).body(mesaService.alterarMesa(idMesa,mesa)));
     }
 
-    @DeleteMapping("/")
-    public ResponseEntity<String> deletarMesa(@RequestBody Mesa mesa){
-
-        if(mesaService.deletarMesa(mesa)){
-            return(ResponseEntity.status(HttpStatus.GONE).body("Mesa deletado com sucesso!"));
-        }
-        else{
-            return(ResponseEntity.status(HttpStatus.CONFLICT).body("Mesa não deletado!"));
-        }
+    @GetMapping("/Deletar/{idMesa}")
+    public boolean deletarMesa(@PathVariable long idMesa){
+        return(mesaService.deletarMesa(idMesa));
     }
 }

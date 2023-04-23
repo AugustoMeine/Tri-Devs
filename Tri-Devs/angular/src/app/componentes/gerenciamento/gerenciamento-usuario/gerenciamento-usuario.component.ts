@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/Usuario.model';
-import { UsuarioService } from 'src/app/services/usuario/Usuario.service';
+import { UsuarioService } from 'src/app/services/Usuario.service';
 
 @Component({
   selector: 'app-gerenciamento-usuario',

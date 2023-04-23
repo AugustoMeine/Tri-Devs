@@ -1,11 +1,14 @@
 package com.aeh.springboot.services;
 
 import com.aeh.springboot.models.Comanda;
+import com.aeh.springboot.models.Item;
 import com.aeh.springboot.models.Pedido;
 import com.aeh.springboot.repositories.ComandaRepository;
 import com.aeh.springboot.repositories.ItemRepository;
 import com.aeh.springboot.repositories.PedidoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -30,59 +33,83 @@ public class PedidoService {
         return(pedidoRepository.findAll());
     }
 
-    public Pedido salvarPedido(Pedido pedido){
+    public Pedido salvarPedido(long idComanda, long idItem, int quantidadeItem){
 
-        if(itemRepository.existsById(pedido.getItem().getIdItem()) && comandaRepository.existsById(pedido.getComanda().getIdComanda())){
-            //Valida se a comanda está aberta
-            Comanda comanda = comandaService.lerComanda(pedido.getComanda().getIdComanda());
+        //Verificar se a comanda existe
+        if(!comandaRepository.existsById(idComanda)){
+            return(null);
+        }
 
-            if(comanda.isComandaAberta()){
+        //verifica se a comanda está aberta
+        if(!comandaRepository.findById(idComanda).isComandaAberta()){
+            return(null);
+        }
 
-                pedido.setHoraResgistro(LocalTime.parse(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
-                pedido.setDataResgistro(LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")),DateTimeFormatter.ofPattern("dd/MM/uuuu")));
+        //Verificar se o item existe
+        if(!itemRepository.existsById(idItem)){
+            return(null);
+        }
 
-                return(pedidoRepository.save(pedido));
-            }
-            else{
-                return(null);
-            }
+        Comanda comandaCriacaoPedido = comandaRepository.findById(idComanda);
+        Item itemCriacaoPedido = itemRepository.findById(idItem);
+        Pedido pedidoCriacaoPedido = new Pedido();
 
+        //Populando o pedido que será criado
+        pedidoCriacaoPedido.setIdPedido(-1L);
+        pedidoCriacaoPedido.setItem(itemCriacaoPedido);
+        pedidoCriacaoPedido.setComanda(comandaCriacaoPedido);
+        pedidoCriacaoPedido.setDataResgistro(LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")),DateTimeFormatter.ofPattern("dd/MM/uuuu")));
+        pedidoCriacaoPedido.setHoraResgistro(LocalTime.parse(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+        pedidoCriacaoPedido.setQuantidadeItem(quantidadeItem);
+
+        //Validar o status correto
+        if(itemCriacaoPedido.isNecessitaPreparoCozinha()){
+            pedidoCriacaoPedido.setStatus("Pendente preparo");
         }else{
+            pedidoCriacaoPedido.setStatus("Pendente entrega");
+        }
+
+        //Salvar o pedido
+        Pedido pedidoConfirmacao = pedidoRepository.save(pedidoCriacaoPedido);
+        if(!pedidoRepository.existsById(pedidoConfirmacao.getIdPedido())){
             return(null);
         }
 
+        //Calcular o valor total to pedido (ValorDoItem * quantidadeDoItem)
+        float valorSomadoPedido = itemCriacaoPedido.getPrecoUnidade() * quantidadeItem;
+
+        if(!comandaService.calcularValor(idComanda,valorSomadoPedido)){
+            return(null);
+        }
+
+        return(pedidoConfirmacao);
     }
 
-    public Pedido alterarPedido(Pedido pedido){
-        if(pedidoRepository.existsById(pedido.getIdPedido())){
-            if(itemRepository.existsById(pedido.getItem().getIdItem()) && comandaRepository.existsById(pedido.getComanda().getIdComanda())){
-                //Valida se a comanda está aberta
-                Comanda comanda = comandaService.lerComanda(pedido.getComanda().getIdComanda());
+    public Pedido alterarStatusPedido(long idPedido, long idStatus){
+        //validar se o pedido existe
+        if(!pedidoRepository.existsById(idPedido)){
+            return(null);
+        }
 
-                if(comanda.isComandaAberta()){
-                    return(pedidoRepository.save(pedido));
-                }
-                else{
-                    return(null);
-                }
+        Pedido pedidoStatusAlterado = pedidoRepository.findById(idPedido);
 
-            }else{
-                return(null);
-            }
+        //Defini qual status foi solicitado através do pedido da tela
+        if(idStatus == 1){
+            pedidoStatusAlterado.setStatus("Pendente preparo");
+        }
+        else if(idStatus == 2){
+            pedidoStatusAlterado.setStatus("Pendente entrega");
+        }
+        else if(idStatus == 3){
+            pedidoStatusAlterado.setStatus("Finalizado");
+        }
+        else if(idStatus == 4){
+            pedidoStatusAlterado.setStatus("Cancelado");
         }
         else{
             return(null);
         }
-    }
 
-    public boolean deletarPedido(Pedido pedido){
-        if(pedido.getIdPedido() >= 0){
-            pedidoRepository.delete(pedido);
-            return(true);
-        }
-        else{
-            return(false);
-        }
+        return(pedidoRepository.save(pedidoStatusAlterado));
     }
-
 }
