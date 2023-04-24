@@ -1,106 +1,103 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Usuario } from 'src/app/models/Usuario.model';
 import { UsuarioService } from 'src/app/services/Usuario.service';
+import {interval, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-gerenciamento-usuario',
   templateUrl: './gerenciamento-usuario.component.html',
   styleUrls: ['./gerenciamento-usuario.component.css']
 })
-export class GerenciamentoUsuarioComponent implements OnInit{
-  listaUsuarios: Usuario[] = [];
-  usuarioSelecionado: Usuario;
-  cadastroVisivel:boolean = false;
+export class GerenciamentoUsuarioComponent implements OnInit, OnDestroy{
 
-  idUsuario: number;
-  nome:string;
-  login:string
-  senha:string;
-  dataCriacao:string;
-  dataDesligamento:string;
+  private subscription: Subscription;
+  listaUsuarios: Usuario[] = [];
+  cadastroVisivel:boolean = false;
+  alterarVisivel:boolean = false;
+  usuarioCadastro: Usuario;
+  usuarioAlteracao: Usuario;
+  statusSelecionado:number = -1;
+
 
   constructor(private usuarioService: UsuarioService){
-    this.idUsuario = -1;
-    this.nome = '';
-    this.login = '';
-    this.senha = '';
-    this.dataCriacao = '';
-    this.dataDesligamento = '';
 
-    usuarioService.lerUsuarios().subscribe(
-      {
-        next:(data:Usuario[])=>{
-          if(data){
-            console.log("Lista Retornada com sucesso!");
-            data.forEach(
-              (usuario:Usuario)=>{
-                this.listaUsuarios.push(usuario);
-              }
-            )
+    this.usuarioCadastro = new Usuario(-1,'','','','','','');
+    this.usuarioAlteracao = new Usuario(-1,'','','','','','');
+    this.subscription = new Subscription();
 
-          }else{
-            console.log("Lista não existente!");
-            console.log(data);
-          }
-        },
-        error:(erro:any)=>{
-          console.log("Falha na conexão com a API: ");
-          console.log(erro);
-        }
+    this.lerListaUsuarios();
 
-      }
-    );
-
-    this.usuarioSelecionado = this.listaUsuarios[0];
   }
 
   ngOnInit(): void {
+    this.subscription = interval(1000).subscribe(() => {
+      this.x(); // substitua "minhaFuncao" pela função que deseja executar
+    });
+
+    this.x();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  x(){
+    if(this.alterarVisivel){
+
+    }else{
+      this.lerListaUsuarios()
+    }
+
+  }
+
+  lerListaUsuarios(){
+    this.usuarioService.lerUsuarios().subscribe(
+      (listaUsuarios)=>{
+        this.listaUsuarios = listaUsuarios;
+      }
+    );
   }
 
   cadastrarModel(){
     this.cadastroVisivel = true;
   }
 
-  finalizarCadastro(){
-    this.usuarioService.salvarUsuario(new Usuario(-1,this.nome,this.login,this.senha,"","")).subscribe(
-      {
-      next:(data:Usuario) =>{
-        if(data){
-          console.log("Usuario cadastrado com sucesso!")
-        }
-        else{
-          console.log("Usuario não cadastrado!")
-        }
-      },
-      error:(erro:any)=>{
-        console.log("Falha na conexão com a API: ");
-        console.log(erro);
-      }
-      }
-    );
-    // Atualiza a lista de usuários
-    this.usuarioService.lerUsuarios().subscribe(
-      {
-        next:(data:Usuario[])=>{
-          if(data){
-            this.listaUsuarios = []
-            data.forEach(
-              (usuario:Usuario)=>{
-                this.listaUsuarios.push(usuario);
-              }
-            )
-          }else{
-            console.log("Não existente usuários cadastrados!");
-          }
-        },
-        error:(erro:any)=>{
-          console.log("Falha na conexão com a API: ");
-          console.log(erro);
-        }
+  realizarCadastro(){
+
+    this.usuarioService.salvarUsuario(this.statusSelecionado,this.usuarioCadastro).subscribe(
+      (retorno:any)=>{
+        console.log('Usuario Cadastrado' + retorno);
       }
     );
 
+    this.lerListaUsuarios();
+
     this.cadastroVisivel = false;
+  }
+
+  alterarModel(usuario: Usuario){
+    this.usuarioAlteracao = usuario;
+    this.alterarVisivel = true;
+  }
+
+  alterarUsuario(usuario:Usuario){
+    this.usuarioService.atualizarUsuario(this.usuarioAlteracao).subscribe(
+      (retorno:any)=>{
+        console.log("Usuario alterado: " + retorno);
+      }
+    );
+
+    this.alterarVisivel = false;
+  }
+
+  excluirUsuario(usuario: Usuario){
+    this.usuarioService.deletarUsuario(usuario.idUsuario).subscribe(
+      (retorno:any)=>{
+        console.log('Usuario deletado: ' + retorno)
+      }
+    );
   }
 
 }

@@ -49,4 +49,13 @@ public class MesaService {
 
     }
 
+    public long lerPedidosVinculados(long idMesa){
+
+        if(!mesaRepository.existsById(idMesa)){
+            return(0);
+        }
+
+        return(mesaRepository.lerPedidosVinculados(idMesa));
+    }
+
 }

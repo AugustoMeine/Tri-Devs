@@ -38,6 +38,16 @@ public class PedidoController {
         return(ResponseEntity.status(HttpStatus.OK).body(pedidoService.lerPedidos()));
     }
 
+    @GetMapping("/Comanda/{idComanda}")
+    public ResponseEntity<List<Pedido>> lerPedidosDaComanda(@PathVariable long idComanda){
+        return(ResponseEntity.status(HttpStatus.OK).body(pedidoService.lerPedidosDaComanda(idComanda)));
+    }
+
+    @GetMapping("/PendentePreparo/")
+    public ResponseEntity<List<Pedido>> lerPedidosPendentePreparo(){
+        return(ResponseEntity.status(HttpStatus.OK).body(pedidoService.lerPedidosPendentePreparo()));
+    }
+
     @GetMapping("/{idPedido}")
     public ResponseEntity<Pedido> lerPedido(@PathVariable long idPedido){
         return(ResponseEntity.status(HttpStatus.OK).body(pedidoService.lerPedido(idPedido)));

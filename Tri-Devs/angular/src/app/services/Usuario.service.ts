@@ -12,17 +12,28 @@ export class UsuarioService {
 
   }
 
-  public logar(login:string, senha:string):Observable<any>{
-    return(this.http.get('http://localhost:4321/Usuario/Login/'+login+'/'+senha));
-  }
-
   public lerUsuarios():Observable<any>{
     return(this.http.get('http://localhost:4321/Usuario/'));
   }
 
-  public salvarUsuario(usuario: Usuario):Observable<any>{
-    return(this.http.post('http://localhost:4321/Usuario/',usuario));
+  public lerUsuario(idUsuario: number): Observable<any>{
+    return(this.http.get('http://localhost:4321/Usuario/'+idUsuario));
   }
 
+  public validarLogin(login:string, senha:string):Observable<any>{
+    return(this.http.get('http://localhost:4321/Usuario/Login/'+login+'/'+senha));
+  }
+
+  public salvarUsuario(idStatus:number, usuario: Usuario){
+    return(this.http.post('http://localhost:4321/Usuario/'+idStatus, usuario));
+  }
+
+  public atualizarUsuario(usuario: Usuario){
+    return(this.http.put('http://localhost:4321/Usuario/', usuario));
+  }
+
+  public deletarUsuario(idUsuario: number){
+    return(this.http.get('http://localhost:4321/Usuario/Deletar/'+ idUsuario));
+  }
 
 }

@@ -28,6 +28,11 @@ public class MesaController {
         return(ResponseEntity.status(HttpStatus.OK).body(mesaService.lerMesa(idMesa)));
     }
 
+    @GetMapping("/LerPedidos/{idMesa}")
+    public ResponseEntity<Long> lerPedidosVinculados(@PathVariable long idMesa){
+        return(ResponseEntity.status(HttpStatus.OK).body(mesaService.lerPedidosVinculados(idMesa)));
+    }
+
     @PostMapping("/")
     public ResponseEntity<Mesa> salvarMesa(@RequestBody Mesa mesa){
         return(ResponseEntity.status(HttpStatus.CREATED).body(mesaService.salvarMesa(mesa)));

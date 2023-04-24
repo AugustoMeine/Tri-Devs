@@ -1,8 +1,10 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Comanda } from 'src/app/models/Comanda.model';
 import { Pedido } from 'src/app/models/Pedido.model';
-import { Item } from 'src/app/models/Item.model';
+import {ComandaService} from "../../services/Comanda.service";
+import {PedidoService} from "../../services/Pedido.service";
+import {interval, Subscription} from "rxjs";
 
 
 @Component({
@@ -11,134 +13,60 @@ import { Item } from 'src/app/models/Item.model';
   styleUrls: ['./cozinha.component.css'],
   providers: []
 })
-export class CozinhaComponent implements OnInit{
+export class CozinhaComponent implements OnInit,OnDestroy{
 
-  listaComandas: Comanda[];
-  listaComandasPendentePreparo: Comanda[];
-  comandaSendoAtendida: Comanda;
-  comandaNull: Comanda;
-  existePedidoTela: boolean;
-
-  constructor(private router: Router){
-    this.existePedidoTela = false; //Deixar false, iniciar a tela sem detalhamento sendo exibido.
-    this.listaComandas = [];
-    this.listaComandasPendentePreparo = [];
-    this.comandaNull = new Comanda(-1,[],-1)
-    this.comandaSendoAtendida = this.comandaNull;
-
-    this.listaComandas = [
-      new Comanda(1,[
-        new Pedido(1,new Item(1,'Pizza de chocolate',45.90,true),2),
-        new Pedido(1,new Item(2,'Pizza de frango',25.90,true),1),
-        new Pedido(1,new Item(3,'Coca-cola',12.50,false),1),
-        new Pedido(1,new Item(4,'Agua sem gas',12.50,false),1)
-      ],1),
-      new Comanda(2,[
-        new Pedido(1,new Item(1,'Pizza de portuguesa',35.90,true),1),
-        new Pedido(1,new Item(2,'Pizza de frango',25.90,true),2),
-        new Pedido(1,new Item(3,'Coca-cola',12.50,false),1),
-        new Pedido(1,new Item(4,'Agua sem gas',12.50,false),1)
-      ],3),
-      new Comanda(3,[
-        new Pedido(1,new Item(2,'Pizza de frango',25.90,true),2)
-      ],7)
-    ];
+  listaPedidos: Pedido[] = [];
+  private subscription: Subscription;
+  constructor(private router: Router,private comandaService: ComandaService,private pedidoService:PedidoService,){
+    this.subscription = new Subscription();
   }
 
   ngOnInit(): void {
-    this.selecionarComandaMaisRecente();
-    this.atualizaPedidosPendentePreparo();
+    this.subscription = interval(1000).subscribe(() => {
+      this.lerPedidosPendentePreparo(); // substitua "minhaFuncao" pela função que deseja executar
+    });
+    this.lerPedidosPendentePreparo();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   direcionamento(){
     this.router.navigate(['/Direcionamento'])
   }
 
-  selecionaComanda(comanda:Comanda){
-    this.existePedidoTela = true;
-    this.comandaSendoAtendida = comanda;
-  }
+  lerPedidosPendentePreparo(){
+    this.listaPedidos = [];
 
-  selecionarComandaMaisRecente(){
-    if(this.listaComandasPendentePreparo.length != 0){
-      this.existePedidoTela = true;
-      this.selecionaComanda(this.listaComandasPendentePreparo[0]);
-    }
-    else{
-      this.existePedidoTela = false;
-      this.comandaSendoAtendida = this.comandaNull;
-    }
-  }
-
-  atualizaPedidosPendentePreparo(){
-
-    let validacao: boolean = false;
-
-    this.listaComandasPendentePreparo = [];
-
-    this.listaComandas.forEach(
-      (comanda)=>{
-        comanda.listaPedidos.forEach(
-          (pedido)=>{
-            if(pedido.status == 'Pendente Preparo'){
-              validacao = true;
-              return;
-            }
-          }
-        );
-        if((validacao) && (comanda.comandaAberta == true)){
-          this.listaComandasPendentePreparo.push(comanda);
-          validacao = false;
-        };
+    this.pedidoService.lerPedidosPendentePreparo().subscribe(
+      (data: Pedido[])=>{
+        localStorage.setItem('pedidosPendentePreparo',JSON.stringify(data));
       }
     );
 
+    let listaRetornada = localStorage.getItem('pedidosPendentePreparo');
+    if (listaRetornada != null){
+      this.listaPedidos = JSON.parse(listaRetornada);
+    }
   }
 
   finalizarPedido(){
-    if(this.comandaSendoAtendida.idComanda != -1){
-      this.listaComandas.forEach(
-        (comandaAux)=>{
-          if(comandaAux.idMesa == this.comandaSendoAtendida.idMesa){
-            comandaAux.listaPedidos.forEach(
-              (pedidoAux)=>{
-                if(pedidoAux.status === 'Pendente Preparo'){
-                  pedidoAux.status = 'Pedido finalizado';
-                }
-              }
-            );
-          }
-        }
-      );
-    }else{
-      console.log("Não existe comanda selecionada!")
-    }
+    this.pedidoService.alterarStatusPedido(this.listaPedidos[0].idPedido,2).subscribe(
+      (data:any) => {console.log(data)}
+    );
 
-    this.atualizaPedidosPendentePreparo();
-    this.selecionarComandaMaisRecente();
+    this.listaPedidos = this.listaPedidos.slice(1,this.listaPedidos.length);
   }
 
   cancelarPedido(){
-    if(this.comandaSendoAtendida.idComanda != -1){
-      this.listaComandas.forEach(
-        (comandaAux)=>{
-          if(comandaAux.idMesa == this.comandaSendoAtendida.idMesa){
-            comandaAux.listaPedidos.forEach(
-              (pedidoAux)=>{
-                if(pedidoAux.status === 'Pendente Preparo'){
-                  pedidoAux.status = 'Pedido cancelado';
-                }
-              }
-            );
-          }
-        }
-      );
-    }else{
-      console.log("Não existe comanda selecionada!")
-    }
+    this.pedidoService.alterarStatusPedido(this.listaPedidos[0].idPedido,4).subscribe(
+      (data:any) => {console.log(data)}
+    );
 
-    this.atualizaPedidosPendentePreparo();
-    this.selecionarComandaMaisRecente();
+    this.listaPedidos = this.listaPedidos.slice(1,this.listaPedidos.length);
   }
 
 }

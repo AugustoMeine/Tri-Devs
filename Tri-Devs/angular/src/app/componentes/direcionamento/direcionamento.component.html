@@ -6,62 +6,62 @@ bg-blue-800">
     <ng-template pTemplate="header">
       <span class="text-center w-full h-full">
         Direcionamento
-      </span>      
+      </span>
     </ng-template>
-    
+
     <span class="w-full h-full">
       <!-- Direcionamento para a cozinha -->
       <div class="grid w-full h-auto
-      p-1 m-0" *ngIf="true">
+      p-1 m-0" *ngIf="((usuarioLogado.acesso == 'ADM') || (usuarioLogado.acesso == 'COZINHEIRO'))">
           <div class="col v-full h-full
           p-0 m-0">
               <button class="w-full" pButton type="button" label="Cozinha" (click)="cozinha()">
               </button>
-          </div>            
+          </div>
       </div>
 
       <!-- Direcionamento para o caixa -->
       <div class="grid w-full h-auto
-      p-1 m-0" *ngIf="true">
+      p-1 m-0" *ngIf="((usuarioLogado.acesso == 'ADM') || (usuarioLogado.acesso == 'GARCOM') || (usuarioLogado.acesso == 'CAIXA'))">
           <div class="col v-full h-full
           p-0 m-0">
               <button class="w-full" pButton type="button" label="Caixa" (click)="caixa()">
               </button>
-          </div>            
+          </div>
       </div>
 
       <!-- Direcionamento para a pedido -->
       <div class="grid w-full h-auto
-      p-1 m-0" *ngIf="true">
+      p-1 m-0" *ngIf="((usuarioLogado.acesso == 'ADM') || (usuarioLogado.acesso == 'GARCOM'))">
           <div class="col v-full h-full
           p-0 m-0">
               <button class="w-full" pButton type="button" label="Pedido" (click)="pedido()">
               </button>
-          </div>            
+          </div>
       </div>
 
       <!-- Cadastros, direcionando para a tela de Gerenciamento -->
       <div class="grid w-full h-auto
-      p-1 m-0" *ngIf="true">
+      p-1 m-0" *ngIf="(usuarioLogado.acesso == 'ADM')">
           <div class="col v-full h-full
           p-0 m-0">
               <button class="w-full" pButton type="button" label="Gerenciamento" (click)="gerenciamento()">
               </button>
-          </div>            
+          </div>
       </div>
 
       <!-- Desconectar, direcionando para a tela de login novamente -->
       <div class="grid w-full h-auto
-      p-1 m-0" *ngIf="true">
+      p-1 m-0">
           <div class="col v-full h-full
           p-0 m-0">
               <button class="w-full" pButton type="button" label="Desconectar" (click)="desconectar()">
               </button>
-          </div>            
+          </div>
       </div>
 
     </span>
 
   </p-panel>
-    
+
 </main>

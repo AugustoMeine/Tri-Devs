@@ -17,23 +17,21 @@ export class LoginComponent implements OnInit{
   senha: string;
 
   constructor(private route:Router, private usuarioService: UsuarioService){
-    this.login = "adm";
-    this.senha = "adm";
+    this.login = "";
+    this.senha = "";
   }
 
   ngOnInit(): void {
   }
 
   entrar(){
-    this.usuarioService.logar(this.login,this.senha).subscribe(
+    this.usuarioService.validarLogin(this.login,this.senha).subscribe(
       {
         next:(data: Usuario)=>{
           if(data){
-            console.log("Logado com sucesso!");
-            console.log(data);
+            localStorage.setItem('usuarioLogado',JSON.stringify(data));
             this.route.navigate(['/Direcionamento']);
           }else{
-            console.log("Login e/ou senha inválido(s)");
             console.log(data);
           }
         },
