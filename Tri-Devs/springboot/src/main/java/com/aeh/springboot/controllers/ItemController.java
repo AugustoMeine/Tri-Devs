@@ -21,7 +21,7 @@ public class ItemController{
 
     @GetMapping("/")
     public ResponseEntity<List<Item>> lerItens(){
-        return(ResponseEntity.status(HttpStatus.OK).body(itemService.lerItems()));
+        return(ResponseEntity.status(HttpStatus.OK).body(itemService.lerItens()));
     }
 
     @GetMapping("/{idItem}")
@@ -30,7 +30,7 @@ public class ItemController{
     }
 
     @PostMapping("/{idItem}")
-    public ResponseEntity<Item> salvarItem(@RequestBody Item item,@PathVariable long idItem){
+    public ResponseEntity<Item> salvarItem(@PathVariable long idItem,@RequestBody Item item){
         return(ResponseEntity.status(HttpStatus.CREATED).body(itemService.salvarItem(idItem,item)));
     }
 

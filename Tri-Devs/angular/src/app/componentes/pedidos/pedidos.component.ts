@@ -1,10 +1,10 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Comanda } from 'src/app/models/Comanda.model';
-import { Pedido } from 'src/app/models/Pedido.model';
-import { Item } from 'src/app/models/Item.model';
 import { Mesa } from 'src/app/models/Mesa.model';
+import {interval, Subscription} from "rxjs";
+import {MesaService} from "../../services/Mesa.service";
 
 @Component({
   selector: 'app-pedidos',
@@ -12,32 +12,46 @@ import { Mesa } from 'src/app/models/Mesa.model';
   styleUrls: ['./pedidos.component.css'],
   providers: [MessageService]
 })
-export class PedidosComponent implements OnInit{
+export class PedidosComponent implements OnInit,OnDestroy{
 
-  quantidadeMesas:number = 17;
-  identificadorMesa:number = 0;
+  private subscription: Subscription;
 
   listasMesas: Mesa[] = [];
-
-  listaComandas: Comanda[] = [
-    new Comanda(1, [new Pedido(1,new Item(1,'Pizza de chocolate', 59.90, true),2)], 1),
-    new Comanda(2, [new Pedido(1,new Item(1,'Pizza de chocolate', 59.90, true),2)], 1)
-  ];
+  idPesquisaMesa: number = 0;
+  listaComandas: Comanda[] = [];
 
   onSelect(mesa: Mesa): void {
     console.log(mesa.idMesa)
   }
 
-  constructor(private route:Router, private toast:MessageService){
+  constructor(private route:Router, private toast:MessageService, private mesaService:MesaService){
     this.listaComandas = [];
 
-    while(this.quantidadeMesas > 0){
-      this.listasMesas.push(new Mesa(this.quantidadeMesas));
-      this.quantidadeMesas -= 1;
-    }
+    this.subscription = new Subscription();
+
+    this.lerQuantidadeMesas();
   }
 
   ngOnInit(): void {
+    this.subscription = interval(100000).subscribe(() => {
+      this.lerQuantidadeMesas(); // substitua "minhaFuncao" pela função que deseja executar
+    });
+
+    this.lerQuantidadeMesas();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  lerQuantidadeMesas(){
+    this.mesaService.lerMesas().subscribe(
+      (listaMesas:Mesa[])=>{
+        this.listasMesas = listaMesas;
+      }
+    );
   }
 
   verDetalheComandaMesa(mesa:Mesa) {
@@ -52,12 +66,8 @@ export class PedidosComponent implements OnInit{
     this.toast.add({severity: 'success', summary: 'Mesa Finalizada', detail: 'Comanda enviada para a tela do caixa!'});
   }
 
-  quantidadeItensMesa = 3
-  somaQuantidadeItensMesa(){
-    this.quantidadeItensMesa++;
-  }
-
   direcionamento(){
     this.route.navigate(['/Direcionamento'])
   }
+
 }

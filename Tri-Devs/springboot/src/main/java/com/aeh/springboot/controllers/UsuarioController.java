@@ -35,10 +35,10 @@ public class UsuarioController {
         return(ResponseEntity.status(HttpStatus.OK).body(usuarioService.validarLogin(login,senha)));
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Usuario> salvarUsuario(@RequestBody Usuario usuario){
+    @PostMapping("/{idStatus}")
+    public ResponseEntity<Usuario> salvarUsuario(@PathVariable long idStatus,@RequestBody Usuario usuario){
 
-        return(ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(usuario)));
+        return(ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.salvarUsuario(idStatus,usuario)));
     }
 
     @PutMapping("/")

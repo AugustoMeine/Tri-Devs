@@ -24,8 +24,25 @@ public class ComandaService {
         return(comandaRepository.findById(idComanda));
     }
 
+    public Comanda consultarComandaDaMesa(long idMesa){
+
+        if(!mesaRepository.existsById(idMesa)){
+            return(null);
+        }
+
+        return(comandaRepository.consultarComandaDaMesa(idMesa));
+    }
+
     public List<Comanda> lerComandas(){
         return(comandaRepository.findAll());
+    }
+
+    public List<Comanda> lerComandasAbertas(){
+        return(comandaRepository.lerComandasAbertas());
+    }
+
+    public List<Comanda> lerComandasAbertasComPedidosPendentePreparo(){
+        return(comandaRepository.lerComandasAbertasComPedidosPendentePreparo());
     }
 
     public Comanda salvarComanda(long idMesa,Comanda comanda){

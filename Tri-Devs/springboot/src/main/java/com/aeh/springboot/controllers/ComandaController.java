@@ -21,17 +21,29 @@ import java.util.List;
 public class ComandaController {
 
     private final ComandaService comandaService;
-    private final MesaService mesaService;
-    private final MesaRepository mesaRepository;
 
     @GetMapping("/")
     public ResponseEntity<List<Comanda>> lerComandas(){
         return(ResponseEntity.status(HttpStatus.OK).body(comandaService.lerComandas()));
     }
 
+    @GetMapping("/Abertas/")
+    public ResponseEntity<List<Comanda>> lerComandasAbertas(){
+        return(ResponseEntity.status(HttpStatus.OK).body(comandaService.lerComandasAbertas()));
+    }
+    @GetMapping("/Abertas/PendentePreparo/")
+    public ResponseEntity<List<Comanda>> lerComandasAbertasComPedidosPendentePreparo(){
+        return(ResponseEntity.status(HttpStatus.OK).body(comandaService.lerComandasAbertasComPedidosPendentePreparo()));
+    }
+
     @GetMapping("/{idComanda}")
     public ResponseEntity<Comanda> lerComanda(@PathVariable long idComanda){
         return(ResponseEntity.status(HttpStatus.OK).body(comandaService.lerComanda(idComanda)));
+    }
+
+    @GetMapping("/consultarComandaDaMesa/{idMesa}")
+    public ResponseEntity<Comanda> consultarComandaDaMesa(@PathVariable long idMesa){
+        return(ResponseEntity.status(HttpStatus.OK).body(comandaService.consultarComandaDaMesa(idMesa)));
     }
 
     @PostMapping("/{idMesa}")

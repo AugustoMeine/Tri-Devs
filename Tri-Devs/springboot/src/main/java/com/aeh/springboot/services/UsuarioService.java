@@ -30,7 +30,7 @@ public class UsuarioService {
         return(usuarioRepository.validarAcessoUsuario(login,senha));
     };
 
-    public Usuario salvarUsuario(Usuario usuario){
+    public Usuario salvarUsuario(long idStatus,Usuario usuario){
         //Valida se já existe alguem com o usuário notificado
         if(usuarioRepository.existsByLogin(usuario.getLogin())){
           return(null);
@@ -40,23 +40,43 @@ public class UsuarioService {
         usuario.setDataCriacao(LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss")),DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss")));
         usuario.setDataDesligamento(LocalDateTime.of(3000,12,31,23,59,59));
 
+        //Defini qual status foi solicitado através do pedido da tela
+        if(idStatus == 1){
+            usuario.setAcesso("ADM");
+        }
+        else if(idStatus == 2){
+            usuario.setAcesso("GARCOM");
+        }
+        else if(idStatus == 3){
+            usuario.setAcesso("CAIXA");
+        }
+        else if(idStatus == 4){
+            usuario.setAcesso("COZINHEIRO");
+        }
+        else{
+            return(null);
+        }
+
         return(usuarioRepository.save(usuario));
     }
 
     public Usuario alterarUsuario(Usuario usuario){
         if(!usuarioRepository.existsById(usuario.getIdUsuario())){
-            log.info("Possui usuario existente!" + usuario.getLogin());
+            log.info("Não possui usuario existente! =>" + usuario.getIdUsuario());
             return(null);
         }
 
         Usuario usuarioFinal = usuarioRepository.findById(usuario.getIdUsuario());
 
+        //Não popula o acesso notificado, pois o acesso não é possível realizar a alteração
         usuarioFinal.setLogin(usuario.getLogin());
         usuarioFinal.setSenha(usuario.getSenha());
         usuarioFinal.setNome(usuario.getNome());
 
+
         //Valida se o login novo já existe
         if(usuarioRepository.existsByLogin(usuarioFinal.getLogin())){
+            log.info("Já existe usuário com o login desejado! =>" + usuario.getLogin());
             return(null);
         }
 

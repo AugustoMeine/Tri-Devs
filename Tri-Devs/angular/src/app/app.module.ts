@@ -21,6 +21,7 @@ import { BadgeModule } from 'primeng/badge';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 
 //Componentes
@@ -65,7 +66,8 @@ import { GerenciamentoMesaComponent } from './componentes/gerenciamento/gerencia
     BadgeModule,
     MegaMenuModule,
     InputTextModule,
-    DialogModule
+    DialogModule,
+    RadioButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

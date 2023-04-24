@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Usuario} from "../../../models/Usuario.model";
 import {Item} from "../../../models/Item.model";
 import {UsuarioService} from "../../../services/Usuario.service";
-import {ItemService} from "../../../services/item.service";
+import {ItemService} from "../../../services/Item.service";
 
 @Component({
   selector: 'app-gerenciamento-item',
@@ -44,16 +44,7 @@ export class GerenciamentoItemComponent implements OnInit{
   }
 
   atualizarLista(){
-    this.itemService.lerItens().subscribe(
-      {
-        next: (data: Item[]) =>{
-            this.listaItens = data;
-        },
-        error: (erro:any) =>{
 
-        }
-      }
-    );
   }
 
 }

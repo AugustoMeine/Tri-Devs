@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import {Usuario} from "../../models/Usuario.model";
 
 @Component({
   selector: 'app-direcionamento',
@@ -8,12 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DirecionamentoComponent implements OnInit{
 
-  validacao: Boolean = false;
+  usuarioLogado:Usuario;
 
   constructor(private route:Router){
+    this.usuarioLogado=this.validarLogin();
   }
 
   ngOnInit(): void {
+  }
+
+  validarLogin(){
+    let validacao = localStorage.getItem("usuarioLogado");
+    if(validacao != null){
+      return(JSON.parse(validacao));
+    }else{
+      this.route.navigate(['/']);
+      return(null);
+    }
+
   }
 
   caixa(){
@@ -33,6 +46,7 @@ export class DirecionamentoComponent implements OnInit{
   }
 
   desconectar(){
+    localStorage.removeItem("usuarioLogado");
     this.route.navigate(['/']);
   }
 

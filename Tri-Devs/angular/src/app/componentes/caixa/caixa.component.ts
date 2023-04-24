@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Pedido} from "../../models/Pedido.model";
 import {Mesa} from "../../models/Mesa.model";
+import {Comanda} from "../../models/Comanda.model";
+import {PedidoService} from "../../services/Pedido.service";
+import {MesaService} from "../../services/Mesa.service";
+import {ComandaService} from "../../services/Comanda.service";
 
 
 @Component({
@@ -10,14 +14,12 @@ import {Mesa} from "../../models/Mesa.model";
   styleUrls: ['./caixa.component.css']
 })
 export class CaixaComponent implements OnInit{
-  listaPedidos:Pedido[] = [];
-  listaMesas:Mesa[] = [];
-
-  mesaSelecionada: Mesa;
+  ListaMesas: Mesa[] = []
+  listaPedidos: Pedido[] = []
 
 
-  constructor(private router: Router){
-    this.mesaSelecionada = this.listaMesas[0];
+  constructor(private router: Router,private pedidoService: PedidoService, private mesaService: MesaService, private comandaService: ComandaService){
+
   }
 
   ngOnInit(): void {
@@ -28,6 +30,10 @@ export class CaixaComponent implements OnInit{
     this.router.navigate(['/Direcionamento'])
   }
 
+  selecionarMesa(mesa:Mesa){
+
+  }
+
   cancelarPedido(){
 
   }
@@ -35,9 +41,4 @@ export class CaixaComponent implements OnInit{
   finalizarPedido(){
 
   }
-
-  selecionarMesa(mesa:Mesa){
-
-  }
-
 }

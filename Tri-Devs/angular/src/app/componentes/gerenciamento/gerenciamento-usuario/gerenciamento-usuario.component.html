@@ -1,79 +1,152 @@
 <div class="w-full h-full p-2 text-0">
 
-    <div class="w-full h-full
+  <div class="w-full h-full
     p-0 m-0 b-0
     bg-indigo-900
     border-solid broder-round-2x1 surface-border
-    grid">
+    grid overflow-y-auto">
 
-        <p-table [value]="listaUsuarios"
-                 selectionMode="single" [(selection)]="usuarioSelecionado" [scrollable]="true"
-                 scrollHeight="100%" class="w-full h-full cursor-pointer">
-            <ng-template pTemplate="header">
-                <tr class="grid p-0 b-0 m-0">
-                    <th class="col-1 text-center">Id Usuario</th>
-                    <th class="col-1 text-center">Nome</th>
-                    <th class="col-2 text-center">Login</th>
-                    <th class="col-2 text-center">Senha</th>
-                    <th class="col-2 text-center">Data Criação</th>
-                    <th class="col-2 text-center">Data Desligamento</th>
-                    <th class="col-2 text-center">
-                      <div class="w-full h-full bg-green-600 cursor-pointer border- border-solid border-0 border-right-none"
-                      (click)="cadastrarModel()">
-                        <i class="pi pi-plus text-green-900"></i>
-                      </div>
-                      <p-dialog header="Cadastrar usuario" [(visible)]="cadastroVisivel" [style]="{width: '60vw', height: '90vh'}">
-                        <div class="w-full h-full b-0 m-0 p-0 grid">
-                          <!--Linha 1 - Nome -->
-                          <div class="col-12 h-3 b-0 m-0 p-2 grid">
-                            <div class="col-2 h-full text-center align-items-end">Nome</div>
-                            <input class="col-10 h-full justify-content-start" type="text" pInputText [(ngModel)]="nome" />
-                          </div>
-                          <!--Linha 2 - Login -->
-                          <div class="col-12 h-3 b-0 m-0 p-2 grid">
-                            <div class="col-2 h-full text-center">Login</div>
-                            <input class="col-10 h-full justify-content-start" type="text" pInputText [(ngModel)]="login" />
-                          </div>
-                          <div class="col-12 h-3 b-0 m-0 p-2 grid">
-                            <div class="col-2 h-full text-center">Senha</div>
-                            <input class="col-10 h-full justify-content-start" type="password" pInputText [(ngModel)]="senha" />
-                          </div>
-                          <!-- Botão para confirmar -->
-                          <div class="col-12 h-3 b-0 m-0 p-2 grid">
-                            <div class="pi pi-check p-0 m-0 b-0
+    <p-table [value]="listaUsuarios"
+             selectionMode="single" [scrollable]="true"
+             scrollHeight="100%" class="w-full h-full cursor-pointer">
+      <ng-template pTemplate="header">
+        <tr class="grid p-0 b-0 m-0">
+          <th class="col-1 text-center">Id Usuario</th>
+          <th class="col-1 text-center">Nome</th>
+          <th class="col-2 text-center">Login</th>
+          <th class="col-2 text-center">Senha</th>
+          <th class="col-2 text-center">Data Criação</th>
+          <th class="col-2 text-center">Data Desligamento</th>
+          <th class="col-2 text-center">
+            <div class="w-full h-full bg-green-600 cursor-pointer border- border-solid border-0 border-right-none"
+                 (click)="cadastrarModel()">
+              <i class="pi pi-plus text-green-900"></i>
+            </div>
+            <p-dialog header="Cadastrar usuario" [(visible)]="cadastroVisivel" [style]="{width: '60vw', height: '90vh'}">
+              <div class="w-full h-full b-0 m-0 p-0 grid">
+                <!--Linha 1 - Nome -->
+                <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                <i class="pi pi-circle"></i>
+                            </span>
+                  <input pInputText type="text" placeholder="Nome" [(ngModel)]="usuarioCadastro.nome"/>
+                </div>
+                <!--Linha 2 - Login -->
+                <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                <i class="pi pi-user"></i>
+                            </span>
+                  <input pInputText type="text" placeholder="Login" [(ngModel)]="usuarioCadastro.login"/>
+                </div>
+                <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                <i class="pi pi-lock"></i>
+                            </span>
+                  <input pInputText type="password" placeholder="Senha" [(ngModel)]="usuarioCadastro.senha"/>
+                </div>
+                <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
+                  <div class="flex flex-wrap gap-3">
+                    <div class="flex align-items-center">
+                      <p-radioButton name="Administrador" value="1" [(ngModel)]="statusSelecionado" inputId="A"></p-radioButton>
+                      <label for="A" class="ml-2">Administrador</label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                      <p-radioButton name="Garçom" value="2" [(ngModel)]="statusSelecionado" inputId="B"></p-radioButton>
+                      <label for="B" class="ml-2">Garçom</label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                      <p-radioButton name="Caixa" value="3" [(ngModel)]="statusSelecionado" inputId="C"></p-radioButton>
+                      <label for="C" class="ml-2">Caixa</label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                      <p-radioButton name="Cozinheiro(a)" value="4" [(ngModel)]="statusSelecionado" inputId="D"></p-radioButton>
+                      <label for="D" class="ml-2">Cozinheiro(a)</label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Botão para confirmar -->
+                <div class="col-12 h-3 b-0 m-0 p-2 grid">
+                  <div class="pi pi-check p-0 m-0 b-0
                             w-full h-full
                             bg-green-100 text-green-500
                             flex justify-content-center align-items-center
-                            cursor-pointer" (click)="finalizarCadastro()">
-                            </div>
-                          </div>
-                        </div>
-                      </p-dialog>
-                    </th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-usuario >
-                <tr class="grid p-0 m-0 b-0">
-                    <td class="col-1 text-center">{{usuario.idUsuario}}</td>
-                    <td class="col-1 text-center">{{usuario.nome}}</td>
-                    <td class="col-2 text-center">{{usuario.login}}</td>
-                    <td class="col-2 text-center">{{usuario.senha}}</td>
-                    <td class="col-2 text-center">{{usuario.dataCriacao}}</td>
-                    <td class="col-2 text-center">{{usuario.dataDesligamento}}</td>
-                    <td class="col-2 text-center h-full">
-                      <div class="w-full h-full p-0 m-0 b-0 outline-none grid">
-                        <div class="col-6 h-full bg-yellow-500 cursor-pointer border-2 border-solid border-0 border-right-none">
-                          <i class="pi pi-pencil text-yellow-800"></i>
-                        </div>
-                        <div class="col-6 h-full bg-red-600 cursor-pointer border-2 border-solid border-0">
-                          <i class="pi pi-times text-red-900"></i>
-                        </div>
-                      </div>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
+                            cursor-pointer
+                            border-round-2xl border-solid" (click)="realizarCadastro()">
+                  </div>
+                </div>
+              </div>
+            </p-dialog>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-usuario>
+        <tr class="grid p-0 m-0 b-0">
+          <td class="col-1 text-center">{{usuario.idUsuario}}</td>
+          <td class="col-1 text-center">{{usuario.nome}}</td>
+          <td class="col-2 text-center">{{usuario.login}}</td>
+          <td class="col-2 text-center">{{usuario.senha}}</td>
+          <td class="col-2 text-center">{{usuario.dataCriacao}}</td>
+          <td class="col-2 text-center">{{usuario.dataDesligamento}}</td>
+          <td class="col-2 text-center h-full">
+            <div class="w-full h-full p-0 m-0 b-0 outline-none grid">
+              <div class="col-6 h-full bg-yellow-500 cursor-pointer border-2 border-solid border-0 border-right-none"
+                   (click)="alterarModel(this.usuario)">
+                <i class="pi pi-pencil text-yellow-800"></i>
+              </div>
+              <p-dialog header="Alterar usuario" [(visible)]="alterarVisivel" [style]="{width: '60vw', height: '90vh'}">
+                <div class="w-full h-full b-0 m-0 p-0 grid">
+                  <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                Id Usuario
+                            </span>
+                    <input pInputText type="text" placeholder="IdUsuario" [disabled]="true" [value]="this.usuarioAlteracao.idUsuario"/>
+                  </div>
 
-    </div>
+                  <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                <i class="pi pi-circle"></i>
+                            </span>
+                    <input pInputText type="text" placeholder="Nome" [(ngModel)]="this.usuarioAlteracao.nome"/>
+                  </div>
+
+                  <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                <i class="pi pi-user"></i>
+                            </span>
+                    <input pInputText type="text" placeholder="Login" [(ngModel)]="this.usuarioAlteracao.login"/>
+                  </div>
+
+                  <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                <i class="pi pi-lock"></i>
+                            </span>
+                    <input pInputText type="password" placeholder="Senha" [(ngModel)]="this.usuarioAlteracao.senha"/>
+                  </div>
+                </div>
+
+                <div class="col-12 h-3 b-0 m-0 p-2 grid">
+                  <div class="pi pi-check p-0 m-0 b-0
+                            w-full h-full
+                            bg-green-100 text-green-500
+                            flex justify-content-center align-items-center
+                            cursor-pointer
+                            border-round-2xl border-solid" (click)="alterarUsuario(usuario)">
+                  </div>
+                </div>
+              </p-dialog>
+              <div class="col-6 h-full bg-red-600 cursor-pointer border-2 border-solid border-0"
+                   (click)="excluirUsuario(usuario)">
+                <i class="pi pi-times text-red-900"></i>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
 
 </div>

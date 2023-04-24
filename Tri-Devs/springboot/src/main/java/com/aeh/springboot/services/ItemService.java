@@ -19,7 +19,7 @@ public class ItemService {
         return(itemRepository.findById(idItem));
     }
 
-    public List<Item> lerItems(){
+    public List<Item> lerItens(){
         return(itemRepository.findAll());
     }
 

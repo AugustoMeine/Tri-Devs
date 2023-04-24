@@ -39,4 +39,14 @@ public class Usuario {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", locale = "pt-BR")
     private LocalDateTime dataDesligamento;
 
+    @Column(nullable = false)
+    private String acesso;
+    /*
+    Acessos ao sistema
+    1 - ADM
+    2 - GARCOM
+    3 - CAIXA
+    4 - COZINHEIRO
+    */
+
 }

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class GerenciamentoComponent implements OnInit{
   // gerenciamentoAtual:string = "x";
-  gerenciamentoAtual:string = "x";
+  gerenciamentoAtual:string = "Usuario";
 
   constructor(private router: Router){
   }

@@ -33,6 +33,19 @@ public class PedidoService {
         return(pedidoRepository.findAll());
     }
 
+    public List<Pedido> lerPedidosDaComanda(long idComanda){
+        //Validar se a comanda existe
+        if(!comandaRepository.existsById(idComanda)){
+            return(null);
+        }
+
+        return(pedidoRepository.localizarPedidosPeloIdComanda(idComanda));
+    }
+
+    public List<Pedido> lerPedidosPendentePreparo(){
+        return(pedidoRepository.lerPedidosPendentePreparo());
+    }
+
     public Pedido salvarPedido(long idComanda, long idItem, int quantidadeItem){
 
         //Verificar se a comanda existe
