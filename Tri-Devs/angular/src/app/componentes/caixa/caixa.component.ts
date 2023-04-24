@@ -14,7 +14,7 @@ import {ComandaService} from "../../services/Comanda.service";
   styleUrls: ['./caixa.component.css']
 })
 export class CaixaComponent implements OnInit{
-  ListaMesas: Mesa[] = []
+  listaMesas: Mesa[] = []
   listaPedidos: Pedido[] = []
 
 
@@ -23,15 +23,19 @@ export class CaixaComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
+    this.lerMesas();
   }
 
   direcionamento(){
     this.router.navigate(['/Direcionamento'])
   }
 
-  selecionarMesa(mesa:Mesa){
-
+  lerMesas(){
+    this.mesaService.lerMesas().subscribe(
+      (mesasRetornadas:Mesa[])=>{
+        this.listaMesas = mesasRetornadas;
+      }
+    );
   }
 
   cancelarPedido(){

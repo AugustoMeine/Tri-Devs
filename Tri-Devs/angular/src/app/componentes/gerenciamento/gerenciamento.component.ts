@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {Usuario} from "../../models/Usuario.model";
 
 @Component({
   selector: 'app-gerenciamento',
@@ -7,17 +8,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./gerenciamento.component.css']
 })
 export class GerenciamentoComponent implements OnInit{
-  // gerenciamentoAtual:string = "x";
-  gerenciamentoAtual:string = "Mesa";
-
-  constructor(private router: Router){
+  gerenciamentoAtual:string = "x";
+  usuarioLogado:Usuario;
+  constructor(private route: Router){
+    this.usuarioLogado=this.validarLogin();
   }
 
   ngOnInit(): void {
+    console.log(this.usuarioLogado);
+  }
+
+  validarLogin(){
+    let validacao = localStorage.getItem("usuarioLogado");
+    if(validacao != null){
+      return(JSON.parse(validacao));
+    }else{
+      this.route.navigate(['/']);
+      return(null);
+    }
+
   }
 
   direcionamento(){
-    this.router.navigate(['/Direcionamento'])
+    this.route.navigate(['/Direcionamento'])
   }
 
   gerenciarUsuario(){

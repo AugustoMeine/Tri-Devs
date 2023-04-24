@@ -22,6 +22,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { SplitterModule } from 'primeng/splitter';
 
 
 //Componentes
@@ -67,7 +68,8 @@ import { GerenciamentoMesaComponent } from './componentes/gerenciamento/gerencia
     MegaMenuModule,
     InputTextModule,
     DialogModule,
-    RadioButtonModule
+    RadioButtonModule,
+    SplitterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
