@@ -4,11 +4,11 @@
     p-0 m-0 b-0
     bg-indigo-900
     border-solid broder-round-2x1 surface-border
-    grid overflow-y-auto">
+    grid">
 
     <p-table [value]="listaUsuarios"
              selectionMode="single" [scrollable]="true"
-             scrollHeight="100%" class="w-full h-full cursor-pointer">
+              scrollHeight="calc(88vh)" class="w-full h-full cursor-pointer">
       <ng-template pTemplate="header">
         <tr class="grid p-0 b-0 m-0">
           <th class="col-1 text-center">Id Usuario</th>
@@ -27,24 +27,24 @@
                 <!--Linha 1 - Nome -->
                 <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
                             <span class="p-inputgroup-addon">
-                                <i class="pi pi-circle"></i>
+                                Nome
                             </span>
-                  <input pInputText type="text" placeholder="Nome" [(ngModel)]="usuarioCadastro.nome"/>
+                  <input pInputText type="text" [(ngModel)]="usuarioCadastro.nome"/>
                 </div>
                 <!--Linha 2 - Login -->
                 <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
                             <span class="p-inputgroup-addon">
-                                <i class="pi pi-user"></i>
+                                Login
                             </span>
-                  <input pInputText type="text" placeholder="Login" [(ngModel)]="usuarioCadastro.login"/>
+                  <input pInputText type="text" [(ngModel)]="usuarioCadastro.login"/>
                 </div>
                 <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
                             <span class="p-inputgroup-addon">
-                                <i class="pi pi-lock"></i>
+                                Senha
                             </span>
-                  <input pInputText type="password" placeholder="Senha" [(ngModel)]="usuarioCadastro.senha"/>
+                  <input pInputText type="password" [(ngModel)]="usuarioCadastro.senha"/>
                 </div>
-                <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
+                <div class="p-inputgroup col-12 h-3 b-0 m-0 p-2 grid">
                   <div class="flex flex-wrap gap-3">
                     <div class="flex align-items-center">
                       <p-radioButton name="Administrador" value="1" [(ngModel)]="statusSelecionado" inputId="A"></p-radioButton>
@@ -107,21 +107,21 @@
 
                   <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
                             <span class="p-inputgroup-addon">
-                                <i class="pi pi-circle"></i>
+                                Nome
                             </span>
                     <input pInputText type="text" placeholder="Nome" [(ngModel)]="this.usuarioAlteracao.nome"/>
                   </div>
 
                   <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
                             <span class="p-inputgroup-addon">
-                                <i class="pi pi-user"></i>
+                                Login
                             </span>
                     <input pInputText type="text" placeholder="Login" [(ngModel)]="this.usuarioAlteracao.login"/>
                   </div>
 
                   <div class="p-inputgroup col-12 h-2 b-0 m-0 p-2 grid">
                             <span class="p-inputgroup-addon">
-                                <i class="pi pi-lock"></i>
+                                Senha
                             </span>
                     <input pInputText type="password" placeholder="Senha" [(ngModel)]="this.usuarioAlteracao.senha"/>
                   </div>

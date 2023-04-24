@@ -62,7 +62,6 @@ public class UsuarioService {
 
     public Usuario alterarUsuario(Usuario usuario){
         if(!usuarioRepository.existsById(usuario.getIdUsuario())){
-            log.info("Não possui usuario existente! =>" + usuario.getIdUsuario());
             return(null);
         }
 
@@ -76,7 +75,6 @@ public class UsuarioService {
 
         //Valida se o login novo já existe
         if(usuarioRepository.existsByLogin(usuarioFinal.getLogin())){
-            log.info("Já existe usuário com o login desejado! =>" + usuario.getLogin());
             return(null);
         }
 
@@ -90,6 +88,25 @@ public class UsuarioService {
             return(!usuarioRepository.existsById(idUsuario));
         }
         return(false);
+    }
+
+    public Usuario desligarUsuario(long idUsuario){
+        //valida se o usuário existe
+        if(!usuarioRepository.existsById(idUsuario)){
+            return(null);
+        }
+
+        Usuario usuarioFinal = usuarioRepository.findById(idUsuario);
+
+        //Valida se o usuário já foi desligado
+        if(!usuarioFinal.getDataDesligamento().equals(LocalDateTime.of(3000,12,31,23,59,59))){
+            return(null);
+        }
+
+        //Não popula o acesso notificado, pois o acesso não é possível realizar a alteração
+        usuarioFinal.setDataDesligamento(LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss")),DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss")));
+
+        return(usuarioRepository.save(usuarioFinal));
     }
 
 }

@@ -13,7 +13,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Usuario findById(long id);
     List<Usuario> findAll();
 
-    @Query("SELECT u FROM Usuario u WHERE u.login = :vLogin AND u.senha = :vSenha")
+    @Query("SELECT u FROM Usuario u WHERE u.login = :vLogin AND u.senha = :vSenha AND u.dataDesligamento > NOW()")
     Usuario validarAcessoUsuario(@Param("vLogin") String vLogin,@Param("vSenha") String vSenha);
 
     boolean existsByLogin(String login);

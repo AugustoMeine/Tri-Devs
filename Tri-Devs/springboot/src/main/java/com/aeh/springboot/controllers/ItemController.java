@@ -29,14 +29,14 @@ public class ItemController{
         return(ResponseEntity.status(HttpStatus.OK).body(itemService.lerItem(idItem)));
     }
 
-    @PostMapping("/{idItem}")
-    public ResponseEntity<Item> salvarItem(@PathVariable long idItem,@RequestBody Item item){
-        return(ResponseEntity.status(HttpStatus.CREATED).body(itemService.salvarItem(idItem,item)));
+    @PostMapping("/")
+    public ResponseEntity<Item> salvarItem(@RequestBody Item item){
+        return(ResponseEntity.status(HttpStatus.CREATED).body(itemService.salvarItem(item)));
     }
 
     @PutMapping("/")
     public ResponseEntity<Item> atualizarItem(@RequestBody Item item){
-        return(ResponseEntity.status(HttpStatus.GONE).body(itemService.alterarItem(item)));
+        return(ResponseEntity.status(HttpStatus.OK).body(itemService.alterarItem(item)));
     }
 
     @GetMapping("/Deletar/{idItem}")

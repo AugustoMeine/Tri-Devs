@@ -93,11 +93,13 @@ export class GerenciamentoUsuarioComponent implements OnInit, OnDestroy{
   }
 
   excluirUsuario(usuario: Usuario){
-    this.usuarioService.deletarUsuario(usuario.idUsuario).subscribe(
+    this.usuarioService.desligarUsuario(usuario.idUsuario).subscribe(
       (retorno:any)=>{
         console.log('Usuario deletado: ' + retorno)
       }
     );
+
+    this.lerListaUsuarios();
   }
 
 }

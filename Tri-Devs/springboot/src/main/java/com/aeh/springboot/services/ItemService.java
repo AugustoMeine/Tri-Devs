@@ -23,12 +23,12 @@ public class ItemService {
         return(itemRepository.findAll());
     }
 
-    public Item salvarItem(long idItem,Item item){
+    public Item salvarItem(Item item){
 
-        if(itemRepository.existsById(idItem)){
+        if(itemRepository.existsByNome(item.getNome())){
             return(null);
         }
-
+        item.setIdItem(-1L);
         return(itemRepository.save(item));
     }
 
@@ -38,8 +38,14 @@ public class ItemService {
             return (null);
         }
 
+        //valida se já existe o nome
+        if(itemRepository.existsByNome(item.getNome())){
+            return(null);
+        }
+
         Item itemFinalizado = itemRepository.findById(item.getIdItem());
 
+        itemFinalizado.setIdItem(item.getIdItem());
         itemFinalizado.setNome(item.getNome());
         itemFinalizado.setPrecoUnidade(item.getPrecoUnidade());
         itemFinalizado.setNecessitaPreparoCozinha(item.isNecessitaPreparoCozinha());
