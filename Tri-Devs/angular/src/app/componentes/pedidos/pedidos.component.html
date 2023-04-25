@@ -33,7 +33,7 @@
                     border-top-none border-left-none border-right-none border-bottom-none
                     surface-50 text-xl text-white m-0 p-0 overflow-y-auto">
           <!--Comando para gerar lista das Mesas-->
-          <div *ngFor="let mesa of listasMesas;" class="w-full h-1 b-0 m-0 p-0 grid">
+          <div *ngFor="let mesa of listasMesas" class="w-full h-1 b-0 m-0 p-0 grid">
 
             <!-- Número Mesa -->
             <div class="col-3 h-full m-0 p- b-0 grid">
@@ -47,12 +47,12 @@
               <!-- Ícone quantidade item comanda -->
               <div class="col-6 h-full m-0 p-0 b-0
                           flex align-items-center justify-content-center">
-<!--                <span style="padding: 0.25em 0.5em; background-color: #007bff; color: #fff;">-->
-<!--                </span>-->
+                <!--                <span style="padding: 0.25em 0.5em; background-color: #007bff; color: #fff;">-->
+                <!--                </span>-->
               </div>
             </div>
 
-            <!-- Botão visualizar Mesa-->
+            <!-- Botão visualizar comandaMesa-->
             <div class="col-3 h-full m-0 p- b-0 flex align-items-center justify-content-center">
               <p-button label="Visualizar" styleClass="p-1" icon="pi pi-search" (click)="verDetalheComandaMesa(mesa)"></p-button>
             </div>
