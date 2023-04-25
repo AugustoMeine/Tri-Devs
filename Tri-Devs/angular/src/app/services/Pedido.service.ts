@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Pedido} from "../models/Pedido.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class PedidoService {
     return(this.http.get('http://localhost:4321/Pedido/Comanda/' + idComanda));
   }
 
+
+  public salvarPedidoComIdMesa(idMesa:number, pedido:Pedido){
+    return(this.http.post('http://localhost:4321/Pedido/Mesa/' + idMesa, pedido));
+  }
 
   public lerPedidosPendentePreparo():Observable<any>{
     return(this.http.get('http://localhost:4321/Pedido/PendentePreparo/'));

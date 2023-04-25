@@ -41,7 +41,7 @@
           <div *ngFor="let mesa of listasMesas" class="w-full h-1 b-0 m-0 p-0 grid">
 
             <!-- Número Mesa -->
-            <div class="col-3 h-full m-0 p- b-0 grid">
+            <div class="col-4 h-full m-0 p- b-0 grid">
               <div class="col-6 h-full m-0 p-0 b-0
                           flex align-items-center justify-content-center">
                 <span>
@@ -58,24 +58,15 @@
             </div>
 
             <!-- Botão visualizar comandaMesa-->
-            <div class="col-3 h-full m-0 p- b-0 flex align-items-center justify-content-center">
+            <div class="col-4 h-full m-0 p- b-0 flex align-items-center justify-content-center">
               <p-button label="Visualizar" styleClass="p-1" icon="pi pi-search" (click)="visualizarPedidosDaMesa(mesa)"></p-button>
             </div>
 
             <!-- Botão Adicionar Pedido-->
-            <div class="col-3 h-full m-0 p-0 b-0 flex align-items-center justify-content-center">
+            <div class="col-4 h-full m-0 p-0 b-0 flex align-items-center justify-content-center">
               <p-button label="Adicionar" styleClass=" p-1" icon="pi pi-plus" (click)="adicionarItemMesa(mesa)"></p-button>
             </div>
 
-            <!-- Botão Finalizar Mesa-->
-            <div class="col-3 h-full m-0 p-0 b-0 flex align-items-center justify-content-center">
-
-              <div class="p-0 m-0 b-0">
-                <button type="button" class="p-1" pButton pRipple label="Finalizar" icon="pi pi-check-circle"
-                        (click)="finalizarComandaMesa(mesa)">
-                </button>
-              </div>
-            </div>
           </div>
           <p-toast></p-toast>
         </div>
