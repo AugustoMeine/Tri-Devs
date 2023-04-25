@@ -11,17 +11,22 @@
     <div class="w-full h-full m-0 p-0 b-0">
 
       <!-- Área do título -->
-      <div class="text-center w-full h-1 border-noround border-1 border-double
-                  border-200 surface-50 text-center text-3xl text-white
-                  flex align-items-center justify-content-center
-                  cursor-pointer">
-        <div class="flex align-content-center">
-          <div class="h-full p-0" (click)="direcionamento()">
-            <span>
-              Mesas
-            </span>
+      <div class="p-0 m-0 b-0 text-center w-full h-1 border-noround border-1 border-double border-200 surface-50 text-center text-3xl text-white">
+
+        <div class="w-full h-full flex justify-content-center align-items-start grid p-0 m-0 b-0">
+
+          <div class="col-11 h-full p-0 m-0 b-0">
+                <span class="p-0 m-0 b-0 w-full h-full text-center flex justify-content-center align-items-center">
+                  Mesas
+                </span>
           </div>
+
+          <button class="col-1 h-full pi pi-chevron-up bg-blue-900 p-0 m-0 b-0 border-1 border-top-none border-right-none border-bottom-none"
+                  (click)="direcionamento()">
+          </button>
+
         </div>
+
       </div>
 
       <!-- Área do corpo Mesa-->
@@ -54,12 +59,12 @@
 
             <!-- Botão visualizar comandaMesa-->
             <div class="col-3 h-full m-0 p- b-0 flex align-items-center justify-content-center">
-              <p-button label="Visualizar" styleClass="p-1" icon="pi pi-search" (click)="visualizarPedidosDaMesa(mesa)"></p-button>
+              <p-button label="Visualizar" styleClass="p-1" icon="pi pi-search" (click)="visualizarPedidosDaMesa(this.mesa)"></p-button>
             </div>
 
             <!-- Botão Adicionar Pedido-->
             <div class="col-3 h-full m-0 p-0 b-0 flex align-items-center justify-content-center">
-              <p-button label="Adicionar" styleClass=" p-1" icon="pi pi-plus" (click)="adicionarItemMesa(mesa)"></p-button>
+              <p-button label="Adicionar" styleClass=" p-1" icon="pi pi-plus" (click)="adicionarItemMesa(this.mesa)"></p-button>
             </div>
 
             <!-- Botão Finalizar Mesa-->

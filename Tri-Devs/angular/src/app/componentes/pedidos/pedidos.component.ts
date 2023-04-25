@@ -17,12 +17,7 @@ export class PedidosComponent implements OnInit,OnDestroy{
   private subscription: Subscription;
 
   listasMesas: Mesa[] = [];
-  idPesquisaMesa: number = 0;
   listaComandas: Comanda[] = [];
-
-  onSelect(mesa: Mesa): void {
-    console.log(mesa.idMesa)
-  }
 
   constructor(private route:Router, private toast:MessageService, private mesaService:MesaService){
     this.listaComandas = [];
@@ -55,11 +50,14 @@ export class PedidosComponent implements OnInit,OnDestroy{
   }
 
   visualizarPedidosDaMesa(mesa:Mesa) {
+    localStorage.removeItem("mesaParaLerPedidosNaTelaDeComanda");
     localStorage.setItem("mesaParaLerPedidosNaTelaDeComanda",JSON.stringify(mesa));
     this.route.navigate(['/Comanda']);
   }
 
   adicionarItemMesa(mesa:Mesa) {
+    localStorage.removeItem("mesaParaAdicionarPedidosNaTelaDeComanda");
+    localStorage.setItem("mesaParaAdicionarPedidosNaTelaDeComanda",JSON.stringify(mesa));
     this.route.navigate(['/Cardapio']);
   }
 

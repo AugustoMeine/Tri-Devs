@@ -2,7 +2,7 @@ export class Item{
     idItem: number;
     nome: string;
     precoUnidade: number;
-    necessitaPreparoCozinha?: boolean;
+    necessitaPreparoCozinha: boolean;
 
 
   constructor(idItem: number, nome: string, precoUnidade: number, necessitaPreparoCozinha: boolean) {
