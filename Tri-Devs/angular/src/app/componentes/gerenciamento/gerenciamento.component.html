@@ -2,19 +2,25 @@
     <!--
         Header da página
     -->
-    <span class = "surface-50 w-12 h-1
-    m-0 b-0 p-0">
-        <div class="w-full h-full
-        m-0 b-0 p-0">
-            <div class="col w-full h-full
-            text-center text-3xl text-white-800
-            m-0 b-0 p-0
-            cursor-pointer"
-            (click)="direcionamento()">
-                Administração
-            </div>
-        </div>
-    </span>
+
+
+  <div class="p-0 m-0 b-0 text-center w-full h-1 border-noround border-1 border-double border-200 surface-50 text-center text-3xl text-white">
+
+    <div class="w-full h-full flex justify-content-center align-items-start grid p-0 m-0 b-0">
+
+      <div class="col-11 h-full p-0 m-0 b-0">
+                <span class="p-0 m-0 b-0 w-full h-full text-center flex justify-content-center align-items-center">
+                  Administração
+                </span>
+      </div>
+
+      <button class="col-1 h-full pi pi-chevron-up bg-blue-900 p-0 m-0 b-0 border-1 border-top-none border-right-none border-bottom-none"
+              (click)="direcionamento()">
+      </button>
+
+    </div>
+
+  </div>
 
     <!--
         Corpo da página (área dos pedidos/comandas recebidos)

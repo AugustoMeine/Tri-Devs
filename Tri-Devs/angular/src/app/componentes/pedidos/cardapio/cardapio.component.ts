@@ -7,6 +7,7 @@ import {Item} from "../../../models/Item.model";
 import {Comanda} from "../../../models/Comanda.model";
 import {Mesa} from "../../../models/Mesa.model";
 import {ComandaService} from "../../../services/Comanda.service";
+import {switchMap} from "rxjs";
 
 
 @Component({
@@ -36,7 +37,7 @@ export class CardapioComponent implements OnInit{
   }
 
   lerItens(){
-    this.itemService.lerItens().subscribe(
+    this.itemService.lerItens().toPromise().then(
       (listaItensRetornada: Item[])=>{
         localStorage.setItem('listaItens',JSON.stringify(listaItensRetornada));
         console.log('Lista de itens retornada com sucesso!');
@@ -79,71 +80,12 @@ export class CardapioComponent implements OnInit{
   }
 
   registrarPedidos(){
-    let existePedidoPendenteCadastro: boolean = false;
-    //valida se foi adicionado algum pedido
-    for(let i:number = 0;i < this.listaPedidos.length; i++){
-      if(this.listaPedidos[i].quantidadeItem > 0){
-        existePedidoPendenteCadastro = true;
-        break;
-      }
-    }
-
-    console.log('Existe pedido para cadastro: ' + existePedidoPendenteCadastro)
-    //Se não existir ele sai da função, caso contrário ele irá cadastrar os pedidos
-    if(!existePedidoPendenteCadastro){
-      return;
-    }
-
-    //Valida se existe uma comanda para a mesa, se não existir vai criar uma comanda para inserir os pedidos
-
-    localStorage.removeItem('comandaCriada');
-    this.comandaService.consultarComandaDaMesa(this.mesaSelecionada.idMesa).subscribe(
-      (comandaRetornada:Comanda)=>{
-        this.comandaParaRegistroDosPedidos = comandaRetornada;
-        if(this.comandaParaRegistroDosPedidos){
-          localStorage.setItem('comandaCriada',JSON.stringify(this.comandaParaRegistroDosPedidos));
-        }else{
-          this.comandaService.salvarComanda(this.mesaSelecionada.idMesa,new Comanda(-1,this.mesaSelecionada,0, true)).subscribe(
-            (comandaRetornada: Comanda)=>{
-              this.comandaParaRegistroDosPedidos = comandaRetornada;
-              localStorage.setItem('comandaCriada',JSON.stringify(comandaRetornada));
-
-            }
-          );
-        }
-
-      }
-    );
-    let validacao = localStorage.getItem('comandaCriada');
-    if(validacao != null){
-      this.comandaParaRegistroDosPedidos = JSON.parse(validacao);
-    }
-    else{
-      console.log("Caiu no return do else")
-      return;
-    }
-    localStorage.removeItem('comandaCriada');
-
-
-    console.log("Chegou aqui");
     //Inserir os pedidos na comanda
     for(let i:number = 0;i < this.listaPedidos.length; i++){
-      console.log("Comanda id:" + this.comandaParaRegistroDosPedidos.idComanda);
-      console.log("Id item: " + this.listaPedidos[i].item.idItem);
-      console.log("Quantidade item: " +this.listaPedidos[i].quantidadeItem);
       if(this.listaPedidos[i].quantidadeItem > 0){
-        console.log("Comanda id:" + this.comandaParaRegistroDosPedidos.idComanda);
-        console.log("Id item: " + this.listaPedidos[i].item.idItem);
-        console.log("Quantidade item: " +this.listaPedidos[i].quantidadeItem);
-        this.pedidoService.salvarPedido(this.comandaParaRegistroDosPedidos.idComanda,this.listaPedidos[i].item.idItem,this.listaPedidos[i].quantidadeItem).subscribe(
-          (pedidoRetornado: Pedido)=>{
-            console.log(pedidoRetornado);
-            console.log('Pedido registrado na comanda com sucesso!');
-          }
-        );
+        this.pedidoService.salvarPedidoComIdMesa(this.mesaSelecionada.idMesa,this.listaPedidos[i]).subscribe();
       }
     }
-
   }
 
 

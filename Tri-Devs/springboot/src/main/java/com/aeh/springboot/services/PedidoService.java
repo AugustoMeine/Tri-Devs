@@ -26,6 +26,7 @@ public class PedidoService {
     private final ComandaRepository comandaRepository;
     private final ComandaService comandaService;
     private final MesaRepository mesaRepository;
+    private final MesaService mesaService;
 
     public Pedido lerPedido(long idPedido){
         return(pedidoRepository.findById(idPedido));
@@ -60,6 +61,22 @@ public class PedidoService {
         }
 
         return(pedidoRepository.lerPedidosFinalizadosDaMesa(idMesa));
+    }
+
+    public Pedido salvarPedidoComIdMesa(long idMesa, Pedido pedido){
+        if(!mesaRepository.existsById(idMesa)){
+            return(null);
+        }
+        Comanda comandaAux;
+        //Pegar a comanda ou criar uma para salvar o pedido
+        if(comandaService.consultarComandaDaMesa(idMesa) == null){
+            comandaAux = comandaService.salvarComanda(idMesa,new Comanda(-1,mesaRepository.findById(idMesa),0,true));
+        }
+        else{
+            comandaAux = comandaService.consultarComandaDaMesa(idMesa);
+        }
+
+        return(salvarPedido(comandaAux.getIdComanda(), pedido.getItem().getIdItem(), pedido.getQuantidadeItem()));
     }
 
     public List<Pedido> lerPedidosPendentePreparo(){

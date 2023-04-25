@@ -64,6 +64,11 @@ public class PedidoController {
         return(ResponseEntity.status(HttpStatus.OK).body(pedidoService.lerPedido(idPedido)));
     }
 
+    @PostMapping("/Mesa/{idMesa}")
+    public ResponseEntity<Pedido> salvarPedidoComIdMesa(@PathVariable long idMesa,@RequestBody Pedido pedido){
+        return(ResponseEntity.status(HttpStatus.OK).body(pedidoService.salvarPedidoComIdMesa(idMesa,pedido)));
+    }
+
     @GetMapping("/{idComanda}/{idItem}/{quantidadeItem}")
     public ResponseEntity<Pedido> salvarPedido(@PathVariable long idComanda,@PathVariable long idItem,@PathVariable int quantidadeItem){
         return(ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.salvarPedido(idComanda,idItem,quantidadeItem)));
