@@ -1,0 +1,85 @@
+<main class="bg-blue-800 w-screen h-screen grid
+             p-0 b-0 m-0">
+
+  <!-- Lateral da esquerda -->
+  <div class="col-2 h-full m-0 p-0 b-0"></div>
+
+  <!-- Centro  -->
+  <div class="col-8 h-full m-0 p-0 b-0">
+
+    <!-- Área da lista -->
+    <div class="w-full h-full m-0 p-0 b-0">
+
+      <!-- Área do título -->
+      <div class="p-0 m-0 b-0 text-center w-full h-1 border-noround border-1 border-double border-200 surface-50 text-center text-3xl text-white">
+
+        <div class="w-full h-full flex justify-content-center align-items-start grid p-0 m-0 b-0">
+
+          <div class="col-11 h-full p-0 m-0 b-0">
+                <span class="p-0 m-0 b-0 w-full h-full text-center flex justify-content-center align-items-center">
+                  Cardapio
+                </span>
+          </div>
+
+          <button class="col-1 h-full pi pi-chevron-up bg-blue-900 p-0 m-0 b-0 border-1 border-top-none border-right-none border-bottom-none"
+                  (click)="direcionamento()">
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- Area da lista dos pedidos da comanda -->
+      <!-- Lista Pedidos -->
+      <div class="w-full h-10 border-noround border-double border-200 border-top-none border-left-none border-right-none border-bottom-none surface-50 text-xl text-white m-0 p-0 overflow-y-auto">
+
+        <!--  Área da tabela  -->
+        <div class="w-full h-full p-0 b-0 m-0 grid">
+          <!--     Cabeçalho       -->
+          <div class="col-12 h-1 p-0 b-0 m-0 grid border-bottom-2 border-white">
+            <div class="col-4 h-full p-0 b-0 m-0 flex justify-content-center align-items-center text-center">Nome Item</div>
+            <div class="col-3 h-full p-0 b-0 m-0 flex justify-content-center align-items-center text-center">Subtrair</div>
+            <div class="col-2 h-full p-0 b-0 m-0 flex justify-content-center align-items-center text-center">Quantidade Item</div>
+            <div class="col-3 h-full p-0 b-0 m-0 flex justify-content-center align-items-center text-center">Soma</div>
+          </div>
+          <!--     Corpo da tabela       -->
+          <div class="col-12 h-11 p-0 b-0 m-0">
+            <div *ngFor="let pedido of listaPedidos; let i = index" class="w-full h-1 b-0 m-0 p-0 grid border-bottom-1 border-white">
+              <div class="col-4 h-full p-0 b-0 m-0 flex justify-content-center align-items-center text-center">{{pedido.item.nome}}</div>
+              <div class="col-3 h-full p-0 b-0 m-0 flex justify-content-center align-items-center text-center">
+                <button class="w-full h-full bg-blue-900 p-0 m-0 b-0 border-1 border-top-none border-right-none border-bottom-none" (click)="subtrairQuantidade(i)">
+                  -
+                </button>
+              </div>
+              <div class="col-2 h-full p-0 b-0 m-0 flex justify-content-center align-items-center text-center">{{pedido.quantidadeItem}}</div>
+              <div class="col-3 h-full p-0 b-0 m-0 flex justify-content-center align-items-center text-center">
+                <button class="w-full h-full bg-blue-900 p-0 m-0 b-0 border-1 border-top-none border-right-none border-bottom-none" (click)="somarQuantidade(i)">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!--   Área do botão que realiza o cadastro do pedido   -->
+      <div class="p-0 m-0 b-0 text-center w-full h-1 border-noround border-1 border-double border-200 surface-50 text-center text-3xl text-white">
+
+        <div class="w-full h-full flex justify-content-center align-items-start grid p-0 m-0 b-0">
+
+
+          <button class="col-12 h-full pi pi-check bg-green-700 p-0 m-0 b-0 border-3 border-black-alpha-50 text-xl"
+                  (click)="registrarPedidos()">
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+    <!-- Finaliza a área do centro   -->
+  </div>
+
+  <!-- Lateral da direta -->
+  <div class="col-2 h-full m-0 p-0 b-0"></div>
+</main>
