@@ -7,30 +7,67 @@
     grid">
 
     <p-table [value]="listaMesas"
-             selectionMode="single" [(selection)]="mesaSelecionada" [scrollable]="true"
-             scrollHeight="100%" class="w-full h-full cursor-pointer">
+             selectionMode="single" [scrollable]="true"
+             scrollHeight="calc(88vh)" class="w-full h-full cursor-pointer">
       <ng-template pTemplate="header">
         <tr class="grid p-0 b-0 m-0">
-          <th class="col-5 text-center">Id Mesa</th>
-          <th class="col-5 text-center">Ocupada</th>
-          <th class="col-2 text-center">
+          <th class="col-4 text-center">Id Mesa</th>
+          <th class="col-4 text-center">Está ocupada</th>
+          <th class="col-4 text-center">
             <div class="w-full h-full bg-green-600 cursor-pointer border- border-solid border-0 border-right-none"
-                 (click)="cadastrarMesa()">
+                 (click)="realizarCadastro()">
               <i class="pi pi-plus text-green-900"></i>
             </div>
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-mesa >
+      <ng-template pTemplate="body" let-mesa>
         <tr class="grid p-0 m-0 b-0">
-          <td class="col-5 text-center">{{mesa.idMesa}}</td>
-          <td class="col-5 text-center">{{mesa.estaOcupada}}</td>
-          <td class="col-2 text-center h-full">
+          <td class="col-4 text-center">{{mesa.idMesa}}</td>
+          <td class="col-4 text-center">{{mesa.estaOcupada}}</td>
+          <td class="col-4 text-center h-full">
             <div class="w-full h-full p-0 m-0 b-0 outline-none grid">
-              <div class="col-6 h-full bg-yellow-500 cursor-pointer border-2 border-solid border-0 border-right-none">
+              <div class="col-6 h-full bg-yellow-500 cursor-pointer border-2 border-solid border-0 border-right-none"
+                   (click)="alterarModel(this.mesa)">
                 <i class="pi pi-pencil text-yellow-800"></i>
               </div>
-              <div class="col-6 h-full bg-red-600 cursor-pointer border-2 border-solid border-0">
+              <p-dialog header="Alterar usuario" [(visible)]="alterarVisivel" [style]="{width: '60vw', height: '90vh'}">
+                <div class="w-full h-full b-0 m-0 p-0 grid">
+                  <div class="p-inputgroup col-12 h-4 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                Id Mesa
+                            </span>
+                    <input pInputText type="text" placeholder="IdUsuario" [disabled]="true" [value]="this.mesaAlteracao.idMesa"/>
+                  </div>
+
+                  <div class="p-inputgroup col-12 h-4 b-0 m-0 p-2 grid">
+                    <div class="flex flex-wrap gap-3">
+                      <div class="flex align-items-center">
+                        <p-radioButton name="Esté Ocupada" value=true [(ngModel)]="this.mesaAlteracao.estaOcupada" inputId="estaOcupada"></p-radioButton>
+                        <label for="estaOcupada" class="ml-2">Esta ocupada</label>
+                      </div>
+
+                      <div class="flex align-items-center">
+                        <p-radioButton name="Não Está Ocupada" value=false [(ngModel)]="this.mesaAlteracao.estaOcupada" inputId="naoEstaOcupada"></p-radioButton>
+                        <label for="naoEstaOcupada" class="ml-2">Não Está Ocupada</label>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-12 h-3 b-0 m-0 p-2 grid">
+                    <div class="pi pi-check p-0 m-0 b-0
+                            w-full h-full
+                            bg-green-100 text-green-500
+                            flex justify-content-center align-items-center
+                            cursor-pointer
+                            border-round-2xl border-solid" (click)="alterarMesa(mesa)">
+                    </div>
+                  </div>
+                </div>
+              </p-dialog>
+              <div class="col-6 h-full bg-red-600 cursor-pointer border-2 border-solid border-0"
+                   (click)="excluirMesa(mesa)">
                 <i class="pi pi-times text-red-900"></i>
               </div>
             </div>

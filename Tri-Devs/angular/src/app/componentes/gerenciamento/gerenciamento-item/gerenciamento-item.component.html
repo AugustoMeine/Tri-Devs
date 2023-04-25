@@ -7,8 +7,8 @@
     grid">
 
     <p-table [value]="listaItens"
-             selectionMode="single" [(selection)]="itemSelecionado" [scrollable]="true"
-             scrollHeight="100%" class="w-full h-full cursor-pointer">
+             selectionMode="single" [scrollable]="true"
+             scrollHeight="calc(88vh)" class="w-full h-full cursor-pointer">
       <ng-template pTemplate="header">
         <tr class="grid p-0 b-0 m-0">
           <th class="col-2 text-center">Id Item</th>
@@ -20,21 +20,35 @@
                  (click)="cadastrarModel()">
               <i class="pi pi-plus text-green-900"></i>
             </div>
-            <p-dialog header="Cadastrar usuario" [(visible)]="cadastroVisivel" [style]="{width: '60vw', height: '90vh'}">
+            <p-dialog header="Cadastrar Item" [(visible)]="cadastroVisivel" [style]="{width: '60vw', height: '90vh'}">
               <div class="w-full h-full b-0 m-0 p-0 grid">
                 <!--Linha 1 - Nome -->
-                <div class="col-12 h-3 b-0 m-0 p-2 grid">
-                  <div class="col-2 h-full text-center align-items-end">Nome</div>
-                  <input class="col-10 h-full justify-content-start" type="text" pInputText [(ngModel)]="nome" />
+                <div class="p-inputgroup col-12 h-3 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                Nome
+                            </span>
+                  <input pInputText type="text" [(ngModel)]="itemCadastro.nome"/>
                 </div>
                 <!--Linha 2 - Login -->
-                <div class="col-12 h-3 b-0 m-0 p-2 grid">
-                  <div class="col-2 h-full text-center">Preço da unidade</div>
-                  <input class="col-10 h-full justify-content-start" type="number" pInputText [(ngModel)]="precoUnidade" />
+                <div class="p-inputgroup col-12 h-3 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                Preço unidade
+                            </span>
+                  <input pInputText type="number" [(ngModel)]="itemCadastro.precoUnidade"/>
                 </div>
-                <div class="col-12 h-3 b-0 m-0 p-2 grid">
-                  <div class="col-2 h-full text-center">Necessita preparo</div>
-                  <input class="col-10 h-full justify-content-start" type="text" pInputText [(ngModel)]="necessitaPreparoCozinha" />
+                <div class="p-inputgroup col-12 h-3 b-0 m-0 p-2 grid">
+                  <div class="flex flex-wrap gap-3">
+                    <div class="flex align-items-center">
+                      <p-radioButton name="Necessita Preparo" value=true [(ngModel)]="itemCadastro.necessitaPreparoCozinha" inputId="necessitaPreparo"></p-radioButton>
+                      <label for="necessitaPreparo" class="ml-2">Necessita Preparo</label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                      <p-radioButton name="Não Necessita Preparo" value=false [(ngModel)]="itemCadastro.necessitaPreparoCozinha" inputId="naoNecessitaPreparo"></p-radioButton>
+                      <label for="naoNecessitaPreparo" class="ml-2">Não Necessita Preparo</label>
+                    </div>
+
+                  </div>
                 </div>
                 <!-- Botão para confirmar -->
                 <div class="col-12 h-3 b-0 m-0 p-2 grid">
@@ -42,7 +56,8 @@
                             w-full h-full
                             bg-green-100 text-green-500
                             flex justify-content-center align-items-center
-                            cursor-pointer" (click)="finalizarCadastro()">
+                            cursor-pointer
+                            border-round-2xl border-solid" (click)="realizarCadastro()">
                   </div>
                 </div>
               </div>
@@ -50,20 +65,64 @@
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-usuario >
+      <ng-template pTemplate="body" let-item >
         <tr class="grid p-0 m-0 b-0">
-          <td class="col-1 text-center">{{usuario.idUsuario}}</td>
-          <td class="col-1 text-center">{{usuario.nome}}</td>
-          <td class="col-2 text-center">{{usuario.login}}</td>
-          <td class="col-2 text-center">{{usuario.senha}}</td>
-          <td class="col-2 text-center">{{usuario.dataCriacao}}</td>
-          <td class="col-2 text-center">{{usuario.dataDesligamento}}</td>
+          <td class="col-2 text-center">{{item.idItem}}</td>
+          <td class="col-3 text-center">{{item.nome}}</td>
+          <td class="col-3 text-center">{{item.precoUnidade}}</td>
+          <td class="col-2 text-center">{{item.necessitaPreparoCozinha}}</td>
           <td class="col-2 text-center h-full">
             <div class="w-full h-full p-0 m-0 b-0 outline-none grid">
-              <div class="col-6 h-full bg-yellow-500 cursor-pointer border-2 border-solid border-0 border-right-none">
+              <div class="col-6 h-full bg-yellow-500 cursor-pointer border-2 border-solid border-0 border-right-none"
+                   (click)="alterarModel(this.item)">
                 <i class="pi pi-pencil text-yellow-800"></i>
               </div>
-              <div class="col-6 h-full bg-red-600 cursor-pointer border-2 border-solid border-0">
+              <p-dialog header="Alterar Item" [(visible)]="alterarVisivel" [style]="{width: '60vw', height: '90vh'}">
+                <div class="w-full h-full b-0 m-0 p-0 grid">
+                  <div class="p-inputgroup col-12 h-4 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                Nome
+                            </span>
+                    <input pInputText type="text" [disabled]="true"  [value]="this.itemAlteracao.nome"/>
+                  </div>
+
+                  <div class="p-inputgroup col-12 h-4 b-0 m-0 p-2 grid">
+                            <span class="p-inputgroup-addon">
+                                Preço Unidade
+                            </span>
+                    <input pInputText type="text" [(ngModel)]="this.itemAlteracao.precoUnidade"/>
+                  </div>
+
+                  <div class="p-inputgroup col-12 h-4 b-0 m-0 p-2 grid">
+                    <div class="flex flex-wrap gap-3">
+                      <div class="flex align-items-center">
+                        <p-radioButton name="Necessita Preparo" value=true [(ngModel)]="itemAlteracao.necessitaPreparoCozinha" inputId="necessitaPreparo"></p-radioButton>
+                        <label for="necessitaPreparo" class="ml-2">Necessita Preparo</label>
+                      </div>
+
+                      <div class="flex align-items-center">
+                        <p-radioButton name="Não Necessita Preparo" value=false [(ngModel)]="itemAlteracao.necessitaPreparoCozinha" inputId="naoNecessitaPreparo"></p-radioButton>
+                        <label for="naoNecessitaPreparo" class="ml-2">Não Necessita Preparo</label>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                </div>
+
+                <div class="col-12 h-2 b-0 m-0 p-2 grid">
+                  <div class="pi pi-check p-0 m-0 b-0
+                            w-full h-full
+                            bg-green-100 text-green-500
+                            flex justify-content-center align-items-center
+                            cursor-pointer
+                            border-round-2xl border-solid" (click)="alterarItem(item)">
+                  </div>
+                </div>
+              </p-dialog>
+              <div class="col-6 h-full bg-red-600 cursor-pointer border-2 border-solid border-0"
+                   (click)="excluirItem(item)">
                 <i class="pi pi-times text-red-900"></i>
               </div>
             </div>

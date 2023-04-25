@@ -15,6 +15,14 @@ export class PedidoService {
     return(this.http.get('http://localhost:4321/Pedido/'));
   }
 
+  public lerPedidosDaMesa(idMesa: number):Observable<any>{
+    return(this.http.get('http://localhost:4321/Pedido/Mesa/' + idMesa));
+  }
+
+  public lerPedidosFinalizadosDaMesa(idMesa: number):Observable<any>{
+    return(this.http.get('http://localhost:4321/Pedido/Mesa/Finalizado/' + idMesa));
+  }
+
   public lerPedidosDaComanda(idComanda: number):Observable<any>{
     return(this.http.get('http://localhost:4321/Pedido/Comanda/' + idComanda));
   }

@@ -1,50 +1,96 @@
-import {Component, OnInit} from '@angular/core';
-import {Usuario} from "../../../models/Usuario.model";
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Item} from "../../../models/Item.model";
-import {UsuarioService} from "../../../services/Usuario.service";
 import {ItemService} from "../../../services/Item.service";
+import {interval, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-gerenciamento-item',
   templateUrl: './gerenciamento-item.component.html',
   styleUrls: ['./gerenciamento-item.component.css']
 })
-export class GerenciamentoItemComponent implements OnInit{
-
+export class GerenciamentoItemComponent implements OnInit,OnDestroy{
+  private subscription: Subscription;
   listaItens: Item[] = [];
-  itemSelecionado: Item;
+  itemAlteracao: Item;
+  itemCadastro: Item;
   cadastroVisivel:boolean = false;
-
-  idItem: number;
-  nome: string;
-  precoUnidade: number;
-  necessitaPreparoCozinha: boolean;
+  alterarVisivel:boolean = false;
 
   constructor(private itemService: ItemService){
-    this.idItem = 1;
-    this.nome = "";
-    this.precoUnidade = -1;
-    this.necessitaPreparoCozinha = false;
+    this.subscription = new Subscription();
 
-    this.atualizarLista();
-
-    this.itemSelecionado = this.listaItens[0];
+    this.itemCadastro = new Item(-1,'',0,false);
+    this.itemAlteracao = new Item(-1,'',0,false);
+    this.lerListaItem();
 
   }
 
   ngOnInit(): void {
+    this.subscription = interval(1000).subscribe(() => {
+      this.x(); // substitua "minhaFuncao" pela função que deseja executar
+    });
+
+    this.x();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  x(){
+    if(!this.alterarVisivel){
+      this.lerListaItem();
+    }
+  }
+
+  lerListaItem(){
+    this.itemService.lerItens().subscribe(
+      (listaItens: Item[])=>{
+        this.listaItens = listaItens;
+      }
+    );
   }
 
   cadastrarModel(){
     this.cadastroVisivel = true;
   }
 
-  finalizarCadastro(){
+  alterarModel(item: Item){
+    this.itemAlteracao = item;
+    this.alterarVisivel = true;
+  }
+
+  alterarItem(item:Item){
+    this.itemService.atualizarItem(item).subscribe(
+      (itemRetornado: Item)=>{
+        console.log('Item alterado: ' + itemRetornado);
+      }
+    );
+
+    this.alterarVisivel = false;
+  }
+
+
+  realizarCadastro(){
+    this.itemService.salvarItem(this.itemCadastro).subscribe(
+      (retorno:Item)=>{
+        console.log('Item Cadastrado' + retorno);
+      }
+    );
+
+    this.lerListaItem();
+
     this.cadastroVisivel = false;
   }
 
-  atualizarLista(){
-
+  excluirItem(item:Item){
+    this.itemService.deletarItem(item.idItem).subscribe(
+      (retorno:any)=>{
+        console.log('Item excluido: ' + retorno);
+      }
+    );
   }
 
 }

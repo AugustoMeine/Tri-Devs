@@ -5,6 +5,7 @@ import com.aeh.springboot.models.Item;
 import com.aeh.springboot.models.Pedido;
 import com.aeh.springboot.repositories.ComandaRepository;
 import com.aeh.springboot.repositories.ItemRepository;
+import com.aeh.springboot.repositories.MesaRepository;
 import com.aeh.springboot.repositories.PedidoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ public class PedidoService {
     private final ItemRepository itemRepository;
     private final ComandaRepository comandaRepository;
     private final ComandaService comandaService;
+    private final MesaRepository mesaRepository;
 
     public Pedido lerPedido(long idPedido){
         return(pedidoRepository.findById(idPedido));
@@ -40,6 +42,24 @@ public class PedidoService {
         }
 
         return(pedidoRepository.localizarPedidosPeloIdComanda(idComanda));
+    }
+
+    public List<Pedido> lerPedidosDaMesa(long idMesa){
+        //Validar se a mesa existe
+        if(!mesaRepository.existsById(idMesa)){
+            return(null);
+        }
+
+        return(pedidoRepository.lerPedidosDaMesa(idMesa));
+    }
+
+    public List<Pedido> lerPedidosFinalizadosDaMesa(long idMesa){
+        //Validar se a mesa existe
+        if(!mesaRepository.existsById(idMesa)){
+            return(null);
+        }
+
+        return(pedidoRepository.lerPedidosFinalizadosDaMesa(idMesa));
     }
 
     public List<Pedido> lerPedidosPendentePreparo(){

@@ -36,4 +36,8 @@ export class UsuarioService {
     return(this.http.get('http://localhost:4321/Usuario/Deletar/'+ idUsuario));
   }
 
+  public desligarUsuario(idUsuario:number){
+    return(this.http.get('http://localhost:4321/Usuario/Desligar/'+ idUsuario));
+  }
+
 }

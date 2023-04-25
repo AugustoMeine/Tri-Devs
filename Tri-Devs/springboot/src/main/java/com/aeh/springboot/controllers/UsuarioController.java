@@ -47,8 +47,13 @@ public class UsuarioController {
     }
 
     @GetMapping("/Deletar/{idUsuario}")
-    public boolean deletarUsuario(@PathVariable long idUsuario){
-        return(usuarioService.deletarUsuario(idUsuario));
+    public ResponseEntity<Boolean> deletarUsuario(@PathVariable long idUsuario){
+        return(ResponseEntity.status(HttpStatus.GONE).body(usuarioService.deletarUsuario(idUsuario)));
+    }
+
+    @GetMapping("/Desligar/{idUsuario}")
+    public ResponseEntity<Usuario> desligarUsuario(@PathVariable long idUsuario){
+        return(ResponseEntity.status(HttpStatus.GONE).body(usuarioService.desligarUsuario(idUsuario)));
     }
 
 }

@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item,Long> {
     Item findById(long id);
+
+    boolean existsByNome(String nome);
     List<Item> findAll();
     boolean existsById(long idItem);
 }
