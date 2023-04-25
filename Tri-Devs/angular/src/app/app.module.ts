@@ -35,6 +35,8 @@ import { GerenciamentoComponent } from './componentes/gerenciamento/gerenciament
 import { GerenciamentoUsuarioComponent } from './componentes/gerenciamento/gerenciamento-usuario/gerenciamento-usuario.component';
 import { GerenciamentoItemComponent } from './componentes/gerenciamento/gerenciamento-item/gerenciamento-item.component';
 import { GerenciamentoMesaComponent } from './componentes/gerenciamento/gerenciamento-mesa/gerenciamento-mesa.component';
+import { VisualizarComandaComponent } from './componentes/pedidos/visualizar-comanda/visualizar-comanda.component';
+import { CardapioComponent } from './componentes/pedidos/cardapio/cardapio.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { GerenciamentoMesaComponent } from './componentes/gerenciamento/gerencia
     GerenciamentoComponent,
     GerenciamentoUsuarioComponent,
     GerenciamentoItemComponent,
-    GerenciamentoMesaComponent
+    GerenciamentoMesaComponent,
+    VisualizarComandaComponent,
+    CardapioComponent
   ],
   imports: [
     BrowserModule,

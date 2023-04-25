@@ -9,6 +9,8 @@ import { DirecionamentoComponent } from './componentes/direcionamento/direcionam
 import { PedidosComponent } from './componentes/pedidos/pedidos.component';
 import { CaixaComponent } from './componentes/caixa/caixa.component';
 import { GerenciamentoComponent } from './componentes/gerenciamento/gerenciamento.component';
+import {CardapioComponent} from "./componentes/pedidos/cardapio/cardapio.component";
+import {VisualizarComandaComponent} from "./componentes/pedidos/visualizar-comanda/visualizar-comanda.component";
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
@@ -16,7 +18,9 @@ const routes: Routes = [
   {path:"Direcionamento" , component:DirecionamentoComponent},
   {path:"Pedido", component:PedidosComponent},
   {path:"Caixa",component:CaixaComponent},
-  {path:"Gerenciamento", component:GerenciamentoComponent}  
+  {path:"Gerenciamento", component:GerenciamentoComponent},
+  {path:"Cardapio",component:CardapioComponent},
+  {path:"Comanda",component:VisualizarComandaComponent}
 ];
 
 @NgModule({

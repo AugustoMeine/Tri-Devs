@@ -54,8 +54,8 @@ export class PedidosComponent implements OnInit,OnDestroy{
     );
   }
 
-  verDetalheComandaMesa(mesa:Mesa) {
-    localStorage.setItem("mesaParaLerComandaNaTelaPedido",JSON.stringify(mesa));
+  visualizarPedidosDaMesa(mesa:Mesa) {
+    localStorage.setItem("mesaParaLerPedidosNaTelaDeComanda",JSON.stringify(mesa));
     this.route.navigate(['/Comanda']);
   }
 
